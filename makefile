@@ -6,7 +6,7 @@ TEXCOMMAND := pdflatex
 BIBCOMMAND := bibtex
 TEXFILES   := $(shell ls *.tex *.bib)
 
-view : $(OUTPUTNAME) 
+view : $(OUTPUTNAME) clean
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
 
 $(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls pdfs
@@ -14,18 +14,30 @@ $(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/bas
 	$(BIBCOMMAND) $(BASENAME)
 	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
 	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
-	/bin/rm -rf *.log *.aux *.bbl *.blg *~ *.out *.toc *.lot *.lof
 	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
 	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf
 	perl -pi -e "s/.*?\/ID.*/\/ID [<0535B734E397B655F1D0DD37FD8A8CF9> <0535B734E397B655F1D0DD37FD8A8CF9>]/" $(BASENAME).pdf
 	mv $(BASENAME).pdf pdfs/$(BASENAME).$(DATE).pdf
 	fdupes . -q -d -N
 
+intro : intro.pdf
+
+intro.pdf : intro.tex clean
+	$(TEXCOMMAND) -jobname intro intro.tex
+	$(TEXCOMMAND) intro.tex
+	$(TEXCOMMAND) -jobname intro intro.tex
+	$(TEXCOMMAND) -jobname intro intro.tex
+	/bin/rm -rf *.log *.aux *.bbl *.blg *~ *.out *.toc *.lot *.lof
+	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
+	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf
+	perl -pi -e "s/.*?\/ID.*/\/ID [<0535B734E397B655F1D0DD37FD8A8CF9> <0535B734E397B655F1D0DD37FD8A8CF9>]/" $(BASENAME).pdf
+	mv $(BASENAME).pdf pdfs/intro.$(DATE).pdf
+
 pdfs :
 	@mkdir pdfs
 
 clean : 
-	@/bin/rm -rf *.log *.aux *.bbl *.blg *~
+	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *~ *.out *.toc *.lot *.lof
 	@/bin/rm -f $(OUTPUTNAME)
 
 .PHONY : clean view

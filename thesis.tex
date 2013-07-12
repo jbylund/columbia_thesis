@@ -5,42 +5,37 @@
 \documentclass[11pt,openright,oneside,letterpaper,onecolumn]{report}  %% USE THIS FOR SINGLE SIDED
 \input{header}
 \begin{document}
-% For the first pages we do not have numbering 
 \pagestyle{empty}
 \thesistitlepage
 \thesiscopyrightpage
 \thesisabstract
-% In the "roman-numbered" section of the thesis, we have numbers at the bottom
-% and we have to reduce the textheight of the text to make space for the number
 \pagenumbering{roman}
 \pagestyle{plain}
 \setlength{\footskip}{0.5in}
 \setcounter{tocdepth}{2}
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
-\cleardoublepage
-\listoffigures
-\cleardoublepage
-\listoftables 
-\cleardoublepage
-%%%
-%%% Acknowledgments
-%%%
-\input{ack.tex}
-\cleardoublepage
-%%%
-%%% Dedication page
-%%%
-\thispagestyle{plain}
-\strut \vfill
-\centerline{\LARGE 
-Dedication text
-}
-\vfill \strut
-\cleardoublepage
+%\cleardoublepage
+%\listoffigures
+%\cleardoublepage
+%\listoftables 
+%\cleardoublepage
+
+%%%% Acknowledgments
+%\input{ack.tex}
+%\cleardoublepage
+
+
+%%%% Dedication page
+%\thispagestyle{plain}
+%\strut \vfill
+%\centerline{\LARGE 
+%Dedication text
+%}
+%\vfill \strut
+%\cleardoublepage
 
 %\draft   % Generates a draft version in single-space
-
 %%% BODY
 \pagestyle{headings}
 \pagenumbering{arabic}
