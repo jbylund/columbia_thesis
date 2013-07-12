@@ -4,7 +4,7 @@ DATE := $(shell date +"%Y_%m_%d_%H%M")
 OUTPUTNAME := pdfs/$(BASENAME).$(DATE).pdf
 TEXCOMMAND := pdflatex
 BIBCOMMAND := bibtex
-TEXFILES   := $(shell ls *.tex *.bib)
+TEXFILES   := $(shell ls *.tex *.bib 2>/dev/null)
 
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
@@ -12,10 +12,11 @@ view : $(OUTPUTNAME)
 $(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 	mkdir -p pdfs
 	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
+	cat refs/*.bib > refs.bib
 	$(BIBCOMMAND) $(BASENAME)
 	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
 	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
-	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *~ *.out *.toc *.lot *.lof
+	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *~ *.out *.toc *.lot *.lof refs.bib
 	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
 	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf
 	perl -pi -e "s/.*?\/ID.*/\/ID [<0535B734E397B655F1D0DD37FD8A8CF9> <0535B734E397B655F1D0DD37FD8A8CF9>]/" $(BASENAME).pdf
