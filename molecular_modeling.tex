@@ -1,9 +1,27 @@
+Molecular modeling seeks to gain new insights into the real world behavior of molecules by mimicing these molecules, usually using computer simulations.
+Although quantum mechanics calculations are often viewed as the gold standard with respect to intramolecular energy calculations; 
+having been used to parmeterize a majority of the most popular molecular mechanics force fields currently in use, including:
+\begin{enumerate}
+\item AMBER \cite{weiner1984new},
+\item OPLS-AA \cite{kaminski1994free},
+\item and CHARMM \cite{mackerell2002charmm}.
+\end{enumerate}
+Desipte the accuracy of quantum mechnics, its application to large systems such as proteins is currently limited due to the amount of time necessary to perform quantum mechanics calculations on a large number of atoms.
+The earliest molecular mechanics force fields either modeled groups of atoms as a unit, hydrogens being grouped with their bound heavy atom \cite{jorgensen1988opls}, or even each residue as a unit \cite{lee1999energy}, both to reduce the number of parameters in the model and to increase the speed of computations.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/conservation_of_annoyance.png}
+\caption{To an extent it is always possible to either increase accuracy or decrease running time, or the cost of an experiment.
+New scientific methods should allow one to increase accuracy while not spending additional time.}
+\label{figure:pdb_growth}
+\end{center}
+\end{figure}
+
 \input{equations/opls.tex}
 \input{equations/bonds.tex}
 \input{equations/angles.tex}
 \input{equations/dihedrals_compact.tex}
 \input{equations/nonbonded.tex}
 
-Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$.
-
-\cite{jorgensen1996development}
+Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$ \cite{jorgensen1996development}.
