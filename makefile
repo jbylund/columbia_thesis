@@ -21,8 +21,9 @@ $(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/bas
 	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
 	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf
 	perl -pi -e "s/.*?\/ID.*/\/ID [<0535B734E397B655F1D0DD37FD8A8CF9> <0535B734E397B655F1D0DD37FD8A8CF9>]/" $(BASENAME).pdf
-	mv $(BASENAME).pdf $(OUTPUTNAME)
-	fdupes . -q -d -N
+	cp $(BASENAME).pdf $(OUTPUTNAME)
+	cp $(BASENAME).pdf joseph_bylund_thesis.pdf
+	fdupes pdfs -q -d -N
 
 clean : 
 	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *~ *.out *.toc *.lot *.lof
