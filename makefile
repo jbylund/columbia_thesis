@@ -4,12 +4,12 @@ DATE := $(shell date +"%Y_%m_%d_%H%M")
 OUTPUTNAME := pdfs/$(BASENAME).$(DATE).pdf
 TEXCOMMAND := pdflatex
 BIBCOMMAND := bibtex
-TEXFILES   := $(shell ls *.tex *.bib 2>/dev/null)
+TEXFILES   := $(shell ls *.tex refs/*.bib equations/*.tex)
 
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
 
-$(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+$(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls 
 	mkdir -p pdfs
 	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
 	cat refs/*.bib > refs.bib
