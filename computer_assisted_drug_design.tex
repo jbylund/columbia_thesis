@@ -97,9 +97,36 @@ So in order to increase the diversity of drugs and find drugs which are able to 
 
 \subsubsection{Hit-to-Lead Optimization}
 \label{subsubsection:hit_to_lead}
+Hit compounds generally have a binding affinity for the target protein on the order of micromolar binding.
+The goals of hit-to-lead optimization are to further increase that affinity with the goal of eventually reaching binding affinities on the order of ~10 nanomolar or better, find other molecules with similar chemical characteristics to increase the size and diversity of the set of lead compounds, and screening hit compounds for any obvious issues.
+At this stage for computational screening more accurate energy models are required than for the initial screen \cite{jorgensen2004many,gohlke2002approaches,jorgensen2009efficient}.
+Depending on the type of ``hit'' compounds identified in the initial screen, hits are either combined through molecular-growing and evolution techniques, or similar structures to the hit compounds can be sampled either by exploring the local chemical space or ``mutation'' of substituents.
+In either case, the potential lead compound is docked or grown in the known binding site.
+A scoring function which is hopefully well correlated with the binding energy is then used to rank these possible compounds.
+Interestingly it is not necessarily the case that the scoring function is anchored in a physical force field, it is possible to use statistical or artificial intelligence approaches with success, so long as they are able to successfully solve the classification problem of distinguishing strong binders from weak binders.
+Docking as a means of converting hit compounds to lead compounds is very similar to docking as a means of hit generation, however in this case the small molecule library is much smaller and is generated to cover chemical space surrounding hit compounds.
+Additionally whereas for initial hit generation a coarse grained energy function might have been sufficient to differentiate ligands which bind strongly from those which do not bind at all, to convert these ``hits'' to lead compounds it is necessary to use a more sensitive, and necessarily slower, energy model to accurately rank the binding affinity of different small molecules \cite{jorgensen2004many,gohlke2002approaches}.
+These energy models will be discussed briefly in \ref{section:energy_functions}.
 
+A popular program for building, or mutating lead compounds is Biochemical and Organic Model Builder (BOMB) \cite{barreiro2007docking}.
+BOMB can operated as either a hit identification program or as a hit to lead optimization method.
+Working to identify new compounds BOMB starts with a number of different small ``core'' scaffolds and attempts to increase binding affinity by adding or replace substituents with favorable interactions while avoiding steric clashes.
+BOMB has been successfully used to evolve a hit compound which showed no inhibition of HIV reverse transcriptase into a potent non-nucleoside RT inhibitor with nanomolar level binding \cite{barreiro2007docking}.
+
+Whereas previously, lead compounds were evaluated almost exclusively on binding affinity to the target protein, more recently more weight is being placed on identifying hit compounds which satisfy other characterisitcs besides binding affinity \cite{bleicher2003hit}.
+It is important to begin to consider other characterisitcs of the potential drugs earlier in the pre-clinical process, because later it is difficult to make changes which affect characterisitcs such as solubility without significantly altering the binding affinity of an already highly modified hit compound.
+As ``lead'' compounds are rarely very chemically distinct from the hits from which they were derived, and increasing binding affinity is actually sometimes an easier problem than addressing some of the other characteristics in the ``rule of five'' it is reasonable to begin by first trying to optimize hit compounds to satisfy some other criteria and postpone maximizing binding affinity \cite{proudfoot2002drugs}.
 
 \subsubsection{Lead Optimization}
 \label{subsubsection:lead_optimization}
+In lead optimization the compounds which have been identified by the earlier steps in the process are optimized to drug molecules.
+The largest differentiating factor between hit-to-lead optimization and lead optimization is the plausibility of the compound to act as a successful drug molecule.
+The goals of lead optimization overlap heavily with those of the hit-to-lead stage.
+Although this can include increasing binding affinity to the target even further, usually the focus is on other characteristics including selectivity, ease of synthesis, pharmacokinetic properties and intellectual property concerns \cite{keserHu2006hit}.
+Computational modelling can help not only identify hit compounds, and convert those initial hits into leads, but also to help estimate absorption, distribution, metabolism, elimination, toxicology, sometimes referred to as the ADME characteristics \cite{kerns2008drug}.
 
-efficacy or potency, selectivity, chemical tractability, binding mechanism, pharmacokinetic properties and freedom of operation (patentability) \cite{keserHu2006hit}
+Computational models for ADME characteristics ususally use regression equations or neural networks to predict these characteristics \cite{jorgensen2004many}.
+
+Up to one half of all drugs which do not survive clinical trials, fail to do so because of lack of efficacy, which is influenced both by binding, but also by the absorption characteristics of the molecule.
+The number of drugs which fail to make it through clinical trials due to toxcicity is similarly high, about 40\% \cite{li2001screening}.
+Advancing a potential drug to clinical trials represents a very large financial investment, and effective computational screens of lead molecules at this point in the process can reduce the rate of failure in clinical trials, thereby having a very large impact on the final costs of new drugs brought to market.
