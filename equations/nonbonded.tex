@@ -1,0 +1,20 @@
+\begin{equation}
+\begin{split}
+E_\mathrm{nonbonded} = \sum_{i>j} f_{ij} 
+                \left (
+                        \frac {q_i q_j e^2}{r_{ij}}
+                    + 4 \epsilon_{ij} 
+                    \left  [  
+                        \left ( \frac{\sigma_{ij}}{r_{ij}}\right )^{12}
+                      - \left ( \frac{\sigma_{ij}}{r_{ij}}\right )^{6}
+                    \right ]
+                \right )
+\\
+f_{ij} = 
+  \begin{dcases*}
+   0    & if $i$ and $j$ are separated by 2 or fewer bonds\\
+   0.5  & if $i$ and $j$ are separated by 3 bonds\\
+   1.0  & otherwise
+  \end{dcases*}
+\end{split}
+\end{equation}
