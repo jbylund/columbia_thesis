@@ -23,24 +23,6 @@ New scientific methods should allow one to increase accuracy while not spending 
 \end{center}
 \end{figure}
 
-%\begin{figure}[h]
-%    \centering
-%    \begin{subfigure}[b]{0.3\textwidth}
-%        \centering
-%        \includegraphics[width=\textwidth]{figures/drysurf.png}
-%        \label{fig:dry}
-%        \caption{}
-%    \end{subfigure}%
-%    \begin{subfigure}[b]{0.3\textwidth}
-%        \centering
-%        \includegraphics[width=\textwidth]{figures/wetsurf.png}
-%        \label{fig:wet}
-%        \caption{}
-%    \end{subfigure}
-%    \caption{The protein energy surface is roughly funnel shaped}
-%    \label{fig:funnel}
-%\end{figure}
-
 Because of the evolutionary cost of mis-folded proteins, proteins have been selected to minimize mis-folding, making the general shape of the potential energy surface roughly funnel shaped with the native structure at the minimum \cite{leopold1992protein}.
 Despite this shape, the energy landscape of proteins is a very ``jagged'' surface with a large number of local minima \cite{tsai1999folding}.
 
@@ -53,79 +35,29 @@ In order to compensate for this a number of different sampling methods have been
 
 \subsubsection{Monte-Carlo Sampling}
 \label{subsubsection:monte_carlo}
-Metropolis Monte-Carlo simulation was originally developed in the 1950's to provide rapid sampling of the solution space of many variable problems \cite{metropolis1953equation}.
-\cite{hastings1970monte}
-It is a commonly used method in statistical physics, statistics, sequence and structural biology.
-
-
-Monte-Carlo minimization  \cite{li1987monte}.
-Umbrella sampling\cite{torrie1977nonphysical}.
+\input{1_intro/monte_carlo}
 
 \subsubsection{Minimization}
 \label{subsubsection:minimization}
-
+\input{1_intro/minimization}
 
 \subsubsection{Analytic Loop Closure}
 \label{subsubsection:analytic_loop_closure}
-Subsequences with regular secondary structures, $\alpha$-helices and $\beta$-sheets are generally better conserved, and therefore likely to be well covered by simple homology models \cite{kolodny2005inverse}.
-The intervening ``random coil'' or loop regions often play a large role in determining protein specificity for a specific ligand as in antigen-antibody binding \cite{bajorath1996comparison}, small protein toxins to the receptors they target \cite{wu1996functional}, or transcription factors to specific DNA sequences \cite{jones1999protein}.
-
-Loop closure or prediction is a significant part of homology modeling, and building structures consistent with X-ray refraction data.
-Therefore in order to accurately predict three dimensional structure through homology models, infer the protein binding partners and function, or even build a three dimensional structure consistent with both X-ray data and physical constraints, accurately predicting these loop regions is critical \cite{fiser2000modeling}.
-
-The question is, given two fixed endpoints and a flexible loop, or actuator, find a conformation of the loop which connects the two endpoints.
-Because of the similarities that this problem solves with robotics a number of algorithms have been adapted from that field \cite{kolodny2005inverse}.
-The first of these is analytical loop closure, where a conformation which satisfies the closure criteria is solved for directly by solving a system of equations.
-Though this problem can be solved analytically for small loops \cite{wedemeyer1999exact,go1970ring,bruccoleri1985chain,palmer1991standard}, the problem becomes more difficult as loop length grows and the number of degrees of freedom of the loop section increases.
-Additionally these closure constraints make sampling multiple different conformations more difficult \cite{cortes2005sampling}, though it is possible to hierarchically solve sub-loops in order to generate conformations for possible loops \cite{wedemeyer1999exact}.
+\input{1_intro/analytic_loop_closure}
 
 \subsubsection{Random Tweak}
 \label{subsubsection:tweak}
+\input{1_intro/random_tweak}
 
 \subsubsection{Cyclic Coordinate Descent}
 \label{subsubsection:cyclic_coordinate_descent}
-Another robotics algorithm which has been successfully applied to protein loop closure is Cyclic Coordinate Descent \cite{canutescu2003cyclic}.
-As the length of a loop grows the number of degrees of freedom increases and the possible solution space grows exponentially. 
+\input{1_intro/cyclic_coordinate_descent}
 
-
-\cite{moult1986algorithm}
-
-
-
-Plop like methods ? \cite{kolodny2005inverse}
-
-
-Homology modeling \cite{browne1969possible}
+\subsubsection{Rotamer Assembly}
+\label{subsubsection:rotamer_assembly}
+\input{1_intro/rotamer_assembly}
 
 \subsection{Energy Functions}
 \label{subsection:energy_functions}
-Some energy models do not seek to accurately rank potential conformations, fast ``screening'' functions attempt to quickly differentiate physically impossible conformations from plausible conformations without performing an expensive minimization or energy calculation step.
-Application of these screening functions has the potential to greatly reduce the number of potential conformations that must be scored using the full detail energy function, greatly decreasing the overall cost of conformation prediction.
-These screening criteria can be applied either during the sampling procedure, potentially eliminating sampling of a large area of excluded conformation space, or after sampling before a more expensive energy function is applied to rank conformations.
-Effective screening criteria have a large impact on the total performance of a structure prediction method.
-
-One of the earliest screening criteria was the hard sphere overlap collision detection \cite{levinthal1966molecular}, and this method is consistently included in screening scriteria.
-Other screens include:
-\begin{enumerate}
-\item bounds on bond lengths and angles, as a single bond which deviates significantly from equilibrium can dominate the energy of a conformation,
-\item limitations on $\phi$-$\psi$ space occuped by backbone dihedrals corresponding to the Ramachandran plot of the residue,
-\item limiting side chain dihedrals to staggered conformations, which correspond to the low energy well of side chain dihedral space \cite{moult1986algorithm},
-\item excluding structuctures which present excessive solvent accessible surface area, as this conflicts with the hydrophobic effect, which has a large effect on the conformation of the native state \cite{chothia1975principles}
-\item limitations on the number of ``dry'' cavities, and the number of internal charged residues \cite{moult1986algorithm}
-\end{enumerate}
-
-The general form of most molecular mechanics energy potentials is reasonably consistent, with bonds and angles being modeled as a spring, dihedrals as a Fourier series.
-\input{equations/opls.tex}
-\input{equations/bonds.tex}
-\input{equations/angles.tex}
-\input{equations/dihedrals_compact.tex}
-The non-bonded terms are modeled as a Columbic potential between any point charges and a Lennard-Jones or 6-12 potential between any non-bonded atoms.
-These non-bonded atoms are phased in by a ``fudge factor'' for atoms in a 1-4 configuration.
-\input{equations/nonbonded.tex}
-Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$ \cite{jorgensen1996development}.
-
-
-
-
-
+\input{1_intro/energy_functions}
 
