@@ -51,26 +51,64 @@ In order to compensate for this a number of different sampling methods have been
 \subsection{Sampling Methods}
 \label{subsection:sampling_methods}
 
-\subsubsection{Cyclic Coordinate Descent}
-\label{subsubsection:cyclic_coordinate_descent}
-
-\subsubsection{Analytic Loop Closure}
-\label{subsubsection:analytic_loop_closure}
-
 \subsubsection{Monte-Carlo Sampling}
 \label{subsubsection:monte_carlo}
-Monte-Carlo simulations \cite{li1987monte}.
+Metropolis Monte-Carlo simulation was originally developed in the 1950's to provide rapid sampling of the solution space of many variable problems \cite{metropolis1953equation}.
+\cite{hastings1970monte}
+It is a commonly used method in statistical physics, statistics, sequence and structural biology.
+
+
+Monte-Carlo minimization  \cite{li1987monte}.
+Umbrella sampling\cite{torrie1977nonphysical}.
 
 \subsubsection{Minimization}
 \label{subsubsection:minimization}
 
+
+\subsubsection{Analytic Loop Closure}
+\label{subsubsection:analytic_loop_closure}
+Subsequences with regular secondary structures, $\alpha$-helices and $\beta$-sheets are generally better conserved, and therefore likely to be well covered by simple homology models \cite{kolodny2005inverse}.
+The intervening ``random coil'' or loop regions often play a large role in determining protein specificity for a specific ligand as in antigen-antibody binding \cite{bajorath1996comparison}, small protein toxins to the receptors they target \cite{wu1996functional}, or transcription factors to specific DNA sequences \cite{jones1999protein}.
+
+Loop closure or prediction is a significant part of homology modeling, and building structures consistent with X-ray refraction data.
+Therefore in order to accurately predict three dimensional structure through homology models, infer the protein binding partners and function, or even build a three dimensional structure consistent with both X-ray data and physical constraints, accurately predicting these loop regions is critical \cite{fiser2000modeling}.
+
+The question is, given two fixed endpoints and a flexible loop, or actuator, find a conformation of the loop which connects the two endpoints.
+Because of the similarities that this problem solves with robotics a number of algorithms have been adapted from that field \cite{kolodny2005inverse}.
+The first of these is analytical loop closure, where a conformation which satisfies the closure criteria is solved for directly by solving a system of equations.
+Though this problem can be solved analytically for small loops \cite{wedemeyer1999exact,go1970ring,bruccoleri1985chain,palmer1991standard}, the problem becomes more difficult as loop length grows and the number of degrees of freedom of the loop section increases.
+Additionally these closure constraints make sampling multiple different conformations more difficult \cite{cortes2005sampling}, though it is possible to hierarchically solve sub-loops in order to generate conformations for possible loops \cite{wedemeyer1999exact}.
+
+\subsubsection{Cyclic Coordinate Descent}
+\label{subsubsection:cyclic_coordinate_descent}
+Another robotics algorithm which has been successfully applied to protein loop closure is Cyclic Coordinate Descent \cite{canutescu2003cyclic}.
+As the length of a loop grows the number of degrees of freedom increases and the possible solution space grows exponentially. 
+
+
+\cite{moult1986algorithm}
+
+
+
+Plop like methods ? \cite{kolodny2005inverse}
+
+
+Homology modeling \cite{browne1969possible}
+
 \subsection{Energy Functions}
 \label{subsection:energy_functions}
-
+The general form of most molecular mechanics energy potentials is reasonably consistent, with bonds and angles being modeled as a spring, dihedrals as a Fourier series.
 \input{equations/opls.tex}
 \input{equations/bonds.tex}
 \input{equations/angles.tex}
 \input{equations/dihedrals_compact.tex}
+The non-bonded terms are modeled as a Columbic potential between any point charges and a Lennard-Jones or 6-12 potential between any non-bonded atoms.
+These non-bonded atoms are phased in by a ``fudge factor'' for atoms in a 1-4 configuration.
 \input{equations/nonbonded.tex}
-
 Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$ \cite{jorgensen1996development}.
+
+
+\cite{moult1986algorithm}
+
+
+
+
