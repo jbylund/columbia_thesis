@@ -1,2 +1,10 @@
-Minimimization techniques seek to find the lowest energy conformation in a given potential well.
-Generally, they make no attempt to sample outside of that well, and therefore are frequently implemented as a final stage in sampling, in order to releive any unfavorable interactions in proposed structures.
+Minimization techniques seek to find the lowest energy conformation in a given potential well.
+Generally, they make no attempt to sample outside of that well, and therefore are frequently implemented as a final stage in sampling, in order to relieve any unfavorable interactions in proposed structures.
+There are a large number of different minimization techniques, and they will not be covered in any real depth here, please see the original papers for more details.
+As the basic terms of the general molecular mechanics potential energy function are differentiable, and discounting for the moment the significant effects of solvent, it is possible to solve for the energy gradient, or force on every atom for a given conformation. 
+A few minimizations methods include:
+\begin{enumerate}
+\item ``Steepest descent'', conceptually the simplest minimization algorithm, in which the gradient is calculated at each step, and the size of the step is proportional to the magnitude of the gradient \cite{levitt1969refinement,bixon1967potential}.
+\end{enumerate}
+
+
