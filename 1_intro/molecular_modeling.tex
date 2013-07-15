@@ -19,7 +19,7 @@ Although {\it ab initio} folding experiments are theoretically interesting, they
 \includegraphics[width=0.7\textwidth]{figures/conservation_of_annoyance.png}
 \caption{To an extent it is always possible to either increase accuracy or decrease running time, or the cost of an experiment.
 New scientific methods should allow one to increase accuracy while not spending additional time.}
-\label{figure:pdb_growth}
+\label{figure:conservation_of_annoyance}
 \end{center}
 \end{figure}
 
@@ -79,6 +79,9 @@ The first of these is analytical loop closure, where a conformation which satisf
 Though this problem can be solved analytically for small loops \cite{wedemeyer1999exact,go1970ring,bruccoleri1985chain,palmer1991standard}, the problem becomes more difficult as loop length grows and the number of degrees of freedom of the loop section increases.
 Additionally these closure constraints make sampling multiple different conformations more difficult \cite{cortes2005sampling}, though it is possible to hierarchically solve sub-loops in order to generate conformations for possible loops \cite{wedemeyer1999exact}.
 
+\subsubsection{Random Tweak}
+\label{subsubsection:tweak}
+
 \subsubsection{Cyclic Coordinate Descent}
 \label{subsubsection:cyclic_coordinate_descent}
 Another robotics algorithm which has been successfully applied to protein loop closure is Cyclic Coordinate Descent \cite{canutescu2003cyclic}.
@@ -96,6 +99,21 @@ Homology modeling \cite{browne1969possible}
 
 \subsection{Energy Functions}
 \label{subsection:energy_functions}
+Some energy models do not seek to accurately rank potential conformations, fast ``screening'' functions attempt to quickly differentiate physically impossible conformations from plausible conformations without performing an expensive minimization or energy calculation step.
+Application of these screening functions has the potential to greatly reduce the number of potential conformations that must be scored using the full detail energy function, greatly decreasing the overall cost of conformation prediction.
+These screening criteria can be applied either during the sampling procedure, potentially eliminating sampling of a large area of excluded conformation space, or after sampling before a more expensive energy function is applied to rank conformations.
+Effective screening criteria have a large impact on the total performance of a structure prediction method.
+
+One of the earliest screening criteria was the hard sphere overlap collision detection \cite{levinthal1966molecular}, and this method is consistently included in screening scriteria.
+Other screens include:
+\begin{enumerate}
+\item bounds on bond lengths and angles, as a single bond which deviates significantly from equilibrium can dominate the energy of a conformation,
+\item limitations on $\phi$-$\psi$ space occuped by backbone dihedrals corresponding to the Ramachandran plot of the residue,
+\item limiting side chain dihedrals to staggered conformations, which correspond to the low energy well of side chain dihedral space \cite{moult1986algorithm},
+\item excluding structuctures which present excessive solvent accessible surface area, as this conflicts with the hydrophobic effect, which has a large effect on the conformation of the native state \cite{chothia1975principles}
+\item limitations on the number of ``dry'' cavities, and the number of internal charged residues \cite{moult1986algorithm}
+\end{enumerate}
+
 The general form of most molecular mechanics energy potentials is reasonably consistent, with bonds and angles being modeled as a spring, dihedrals as a Fourier series.
 \input{equations/opls.tex}
 \input{equations/bonds.tex}
@@ -107,7 +125,6 @@ These non-bonded atoms are phased in by a ``fudge factor'' for atoms in a 1-4 co
 Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$ \cite{jorgensen1996development}.
 
 
-\cite{moult1986algorithm}
 
 
 
