@@ -4,7 +4,7 @@ DATE := $(shell date +"%Y_%m_%d_%H%M")
 OUTPUTNAME := pdfs/$(BASENAME).$(DATE).pdf
 TEXCOMMAND := pdflatex
 BIBCOMMAND := bibtex
-TEXFILES   := $(shell ls *.tex refs/*.bib equations/*.tex)
+TEXFILES   := $(shell ls *.tex refs/*.bib */*.tex)
 
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
