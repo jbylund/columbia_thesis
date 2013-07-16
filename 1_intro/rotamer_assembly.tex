@@ -1,6 +1,11 @@
 Rotamer assembly or systematic search shares some similarity with fragment buildup techniques in that it uses a rotamer library to assemble possible loops.
 This rotamer library represents the common backbone dihedrals for each amino acid.
-This method operates by dividing the loop into two pieces, usually in half, and considering all possible half loops which can be built using rotamer library.
+This method operates by dividing the loop into two pieces, usually in half, and considering all possible half loops which can be built using rotamer library \cite{moult1986algorithm}.
+For each side of the loop a ``tree'' is considered in both a physical sense, that the hemi-loop branches as it grows away from its anchor, and a decision tree sense, in that every residue represents a decision where a single rotamer is selected from the rotamer library.
+When the hemi-trees for each side of the gap are fully constructed some closure criteria is applied, in the case of the original systematic search geometric agreement is required of the entire mid-residue \cite{moult1986algorithm}, however a more lax criteria is applied in the case of the PLOP where only one atom is required to be approximately superimposed \cite{jacobson2004hierarchical}.
+By carefully pruning trees during the building process, and biasing the search towards occupied regions of $\phi$-$\psi$ space, systematic search can be quite efficient, spending little time sampling implausible regions of conformation space.
+Additionaly, by building residue pairs, using a smaller
+ possibly restricting the rotamer library by building multiple residues at a time this sort of procedure has been used to build loops of 20+ residues \cite{zhao2011progress}.
 
-\cite{moult1986algorithm}
-\cite{kolodny2005inverse}?
+
+% \cite{kolodny2005inverse}
