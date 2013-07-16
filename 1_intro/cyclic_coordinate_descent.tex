@@ -5,7 +5,7 @@ This method is able to solve for conformations very quickly, and the likelyhood 
 In cyclic coordinate descent the $\phi$ and $\psi$ angles of each loop backbone residue are first randomized.
 Then a loop dihedral is chosen at random, and varied to move the last atom of the loop as near as possible to its desired position.
 A new dihedral is chosen and optimized until the loop is closed.
-It is possible that this procedure does not converge to a closed state, however experiments have shown that this is very unlikely even for extended loops with few degrees of freedom, <2\% failure rate for 4 residue loops.
+It is possible that this procedure does not converge to a closed state, however experiments have shown that this is very unlikely even for extended loops with few degrees of freedom, $ < 2\%$ failure rate for 4 residue loops.
 Solving for the ideal dihedral angle at each step is a simple optimization problem making CCD a very fast algorithm \cite{wang1991combined,canutescu2003cyclic}.
 In experiments CCD produces closed loop candidates in ~1/6 the time of the random tweak method.
 

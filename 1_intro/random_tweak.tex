@@ -1,4 +1,6 @@
-\cite{fine1986predicting}
-\cite{shenkin1987predicting}
-
-
+Random tweak, like CCD is a method of producing and sampling closed loop conformations.
+It begins in much the same was as CCD, by randomizing $\phi$ and $\psi$ dihedral angles.
+Random tweak seeks to close the loop while retaining dihedral angles as close to the randomized starting structure as possible.
+By adjusting each dihedral only a small amount at a time and staying in the region where $sin(\Theta) \approx \Theta$ it is possible to formulate a set of linear equations to solve for a set of $\Delta\Theta_{i}$ which minimizes the distance between the crystal position of the atom to be closed and the random position.
+Because the assumption $sin(\Theta) \approx \Theta$, only holds for small $\Theta$, the maximum change in angle is limited, 10 degrees in the original implementation.
+Because almost all structures predicted using the random tweak or cyclic coordinate descent produce closed loops, a much smaller fraction of time is spent sampling loops which do not satisfy the closure criteria, and these algorithms can be very efficient \cite{fine1986predicting,shenkin1987predicting}.
