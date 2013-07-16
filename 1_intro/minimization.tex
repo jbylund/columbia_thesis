@@ -5,6 +5,9 @@ As the basic terms of the general molecular mechanics potential energy function 
 A few minimizations methods include:
 \begin{enumerate}
 \item ``Steepest descent'', conceptually the simplest minimization algorithm, in which the gradient is calculated at each step, and the size of the step is proportional to the magnitude of the gradient \cite{levitt1969refinement,bixon1967potential}.
+\item ``Newton'' methods instead of approximating the gradient as a linear function in a small neighborhood, express the gradient, as a quadratic function.  This has been shown to converge more quickly than steepest descent \cite{ponder1987efficient}.  Quasi-Newton methods like ABNR of CHARMM estimate the hessian, instead of computing it directly, by accumulating residuals over multiple steps \cite{chu2003super}.
+\item ``Truncated Newton'' \cite{}.
 \end{enumerate}
 
+% molecular mechanics burkert allinger
 
