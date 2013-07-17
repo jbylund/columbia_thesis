@@ -25,8 +25,8 @@ $(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/bas
 	mv $(BASENAME).pdf joseph_bylund_thesis.pdf
 	fdupes pdfs -q -d -N
 
-clean : 
-	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *~ *.out *.toc *.lot *.lof
+clean :
+	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg    *.out *.toc *.lot *.lof refs.bib
 	@/bin/rm -f $(OUTPUTNAME)
 
 .PHONY : clean view

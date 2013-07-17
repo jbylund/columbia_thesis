@@ -60,7 +60,7 @@ Of the total proteome only ~30,000 are regulated by small molecule binding, maki
 A large number of these possible drug targets are not implicated in any disease, due to this and a number of other factors, estimates of the total number of these proteins which are possible drug targets is much lower.
 Frequently cited numbers for the number of possible drug targets in humans are six-hundred to fifteen-hundred, still significantly higher than the total number of targets which are exploited by current drugs.
 The different families of cellular proteins are not equally likely to be targets of drugs.
-As of \the\year 47\% of current drug targets are enzymes, followed by 30\% being GPCR's \cite{hopkins2002druggable}.
+As of {\the\year} 47\% of current drug targets are enzymes, followed by 30\% being GPCR's \cite{hopkins2002druggable}.
 
 % drug-likeness
 The consists of a number of characteristics which are generally true of drug like molecules:
@@ -81,7 +81,30 @@ One of the earliest examples of the successful application of structure based dr
 % limitations
 Despite advantages in speed and cost due to limitations in accuracy computational screening has struggled to produce the same results as empirical screening.
 However, more recently virtual screening has succeeded in producing hit rates greater than those from empirical screening techniques.
-Virtual screening identified leads which were later developed into the human immunodeficiency virus (HIV) protease inhibitor Viracept, and the anti-influenza drug Relenza.
+Virtual screening has been used to identified leads which were later developed into the human immunodeficiency virus (HIV) protease inhibitor Viracept, and the anti-influenza drug Relenza.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/nelfinavir_small.png}
+        \label{fig:nelfinavir_chemical}
+        \caption{}
+    \end{subfigure}%
+    \hspace{0.1\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/complexed_nelfinavir_white.png}
+        \label{fig:nelfinavir_docked}
+        \caption{}
+    \end{subfigure}
+    \label{fig:nelfinavir}
+    \caption{\protect\cite{povray}}
+% and POVRAY \cite{}.
+%The HIV protease inhibitor, nelfinavir, marketed under the name Viracept was originally identified using a computational docking screen.
+%It has a very high binding affinity for its target protein, 2nM.
+%Here it is shown crystallized with multidrug variant (ACT) (V82T/I84V) of HIV-1 protease, PDBID 3EL5.
+%(b) generated with Visual Molecular Dynamics 
+\end{figure}
 A number of challenges which limit the utility of docking programs have been identified
 \begin{enumerate}
 \item The number of possible small molecules is essentially unbounded, however only a very small fraction of these ligands are potentially drug compounds. Limiting sampling to this subspace is a challenging problem.
