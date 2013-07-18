@@ -1,0 +1,11 @@
+Central to the discussion of solvent is a discussion of how to formulate the surface of a protein.
+The most frequently used formulations of surface area include:
+\begin{enumerate}
+\item The Van der Waals (VDW) surface is the surface formed by the VDW radius of each molecule, though sometimes differing parameters are used for the VDW radii, and the ideal radii may even vary by application.
+\item The solvent accessible surface, which is defined as the surface traced by the center of a spherical probe ``rolled'' over the VDW surface \cite{richards1977areas}.  This idea is very closely related to the idea of the solvent excluded volume, or the shape of the solvent cavity enforced by the VDW surface of the molecule \cite{richmond1984solvent}.
+\item The molecular surface, or Connolly surface, is composed of the VDW surface in areas where the spherical probe touches the VDW surface, in union with all points on the probe ``between'' two points on the VDW surface when the probe is contacting multiple atoms \cite{connolly1983analytical}, put another way the surface of the volume which intersects no possible probe location.
+\end{enumerate}
+Frequently these surfaces are approximated numerically, using the Shrake-Rupley algorithm \cite{shrake1973environment}, by considering a spherical mesh about every atom and including only points which satisfy the definition of the surface, or using these points to interpolate a surface.
+
+The significance of surface area is determined by physical constraints but can be well illustrated by a number of observations about proteins.
+First the ratio of total area of a theoretical unfolded, i.e. linearly arranged, protein to its length is almost among proteins, only varying by \textapprox 3\% between different proteins.

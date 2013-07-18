@@ -1,1 +1,10 @@
-The section on solvent models.
+Explicitly modeling each water molecule and sampling over possible conformations is the most realistic possible model.
+However, this adds a huge number of degrees of freedom to the system, significantly complicating sampling, and also a large number of interactions to compute between water molecules.
+Because of these complexities with the efficient methods of sampling explicit solvent models, these simulations are too expensive to use on systems the size of proteins \cite{figueirido1997large,zhang2001solvent}.
+
+Therefore there is significant interest in continuum models which accurately describe the mean force of water, without requiring additional sampling or interactions as in explicit models \cite{zhang2001solvent,still1990semianalytical,qiu1997gb}.
+These methods have the potential to be three orders of magnitude, or even more, faster than explicit solvent experiments \cite{zhang2001solvent}.
+The total free energy of solvation can be separated into polar and non-polar components, which correspond to the work done inserting the uncharged solute molecule, or protein, into the solvent and then building the charges to their native values \cite{roux1999implicit}.
+
+
+\cite{roux1999implicit}
