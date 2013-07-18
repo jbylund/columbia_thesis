@@ -3,6 +3,7 @@ BASENAME := $(shell basename $(BASENAME) .tex)
 DATE := $(shell date +"%Y_%m_%d_%H%M")
 OUTPUTNAME := pdfs/$(BASENAME).$(DATE).pdf
 TEXCOMMAND := pdflatex
+TEXOPTS    := "-halt-on-error"
 BIBCOMMAND := bibtex
 TEXFILES   := $(shell find . -iname "*.tex" -o -iname "*.bib")
 
@@ -11,11 +12,11 @@ view : $(OUTPUTNAME)
 
 $(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls 
 	mkdir -p pdfs
-	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
+	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
 	cat refs/*.bib > refs.bib
 	$(BIBCOMMAND) $(BASENAME)
-	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
-	$(TEXCOMMAND) -jobname $(BASENAME) $(BASENAME).tex
+	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex > /dev/null
+	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
 	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *.out *.toc *.lot *.lof refs.bib
 	@find refs -type f -name "*~" -delete
 	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf

@@ -52,13 +52,16 @@
 \renewcommand{\headrulewidth}{0pt}
 }
 \pagestyle{plain}
+\clearpage
+\pagenumbering{arabic}
 
 \input{1_intro/intro}
-\input{2_p450/p450}
-
+\input{cell_based_solvent/cell_solvent}
 
 %%% Bibliography
-\part{Bibliography}
+%\part{Bibliography}
+%\chapter{Bibliography}
+%\addcontentsline{toc}{chapter}{Bibliography}
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{refs}
 \bibliographystyle{named} 
