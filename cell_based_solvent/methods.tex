@@ -46,9 +46,9 @@ In the present implementation, cell size is at first set to 2.745 angstroms, and
 If the number of cells that this would require is unmanageably large, cells are then grown simultaneously in all dimensions such that the cell size is 1/250th of the longest dimension of the structure.
 
 % cells figure, pretty
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
-\includegraphics[width=3in]{figures/grid4_crop.png}
+\includegraphics[width=0.6\textwidth]{figures/grid4_crop.png}
 \caption{This illustrates, in two dimensions, the grid based spatial indexing method.
 The naive S-GB method would require a distance computation to every other atom in the system.
 By only considering atoms in cells intersecting the radius of influence, represented here in blue, it is possible to consider far fewer interactions.
@@ -58,9 +58,9 @@ Although only atoms inside the circle in this illustration contribute to surface
 \end{figure}
 
 % side by side performance comparison figure
-\begin{figure}[H]
+\begin{figure}[h]
 \begin{center}
-\includegraphics[width=3in]{figures/side_by_side.png}
+\includegraphics[width=0.6\textwidth]{figures/side_by_side.png}
 \caption{Time spent during energy calculations on different parts of the energy model.
 The left pie represents the non-cell based approach and the right pie the cell based approach, the charts are scaled relative the total cost of computing the energy.
 One can see that although some overhead is introduced in maintaining the hash structure this significantly reduces the total cost of the solvent term, and as the solvent is such a large contributor to the total, also the total cost of computing the energy.}
