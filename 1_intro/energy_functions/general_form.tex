@@ -1,0 +1,9 @@
+The general form of most molecular mechanics energy potentials is reasonably consistent, with bonds and angles being modeled as a spring, dihedrals as a Fourier series.
+\input{equations/opls.tex}
+\input{equations/bonds.tex}
+\input{equations/angles.tex}
+\input{equations/dihedrals_compact.tex}
+The non-bonded terms are modeled as a Columbic potential between any point charges and a Lennard-Jones or 6-12 potential between any non-bonded atoms.
+These non-bonded atoms are phased in by a ``fudge factor'' for atoms in a 1-4 configuration.
+\input{equations/nonbonded.tex}
+Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$ \cite{jorgensen1996development}.

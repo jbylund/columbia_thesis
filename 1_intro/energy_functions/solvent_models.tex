@@ -1,12 +1,34 @@
-\subsection{Solvent Models}
-\label{subsection:solvent_models}
-
-Explicitly modeling each water molecule and sampling over possible conformations is the most realistic possible model.
-However, this adds a huge number of degrees of freedom to the system, significantly complicating sampling, and also a large number of interactions to compute between water molecules.
-Because of these complexities with the efficient methods of sampling explicit solvent models, these simulations are too expensive to use on systems the size of proteins \cite{figueirido1997large,zhang2001solvent}.
+Beyond covalent terms and electrostatic effects, solvation effects have a very large effect on protein structure, and the interactions between proteins and small molecules.
+Therefore it is critical to accurately model the effect of the solvent on the molecule.
+While explicitly modeling each water molecule and sampling over possible conformations is the most realistic possible model, doing so requires calculating both a large number of solute-solute interactions as well as sampling extensively different solvent configurations.
+In this case it is likely that more time will be spent determining the behavior of the solvent than that of the solute.
+Because of these complexities even with efficient methods of sampling explicit solvent models, these simulations are too expensive to use on systems the size of proteins \cite{figueirido1997large,zhang2001solvent}.
 
 Therefore there is significant interest in continuum models which accurately describe the mean force of water, without requiring additional sampling or interactions as in explicit models \cite{zhang2001solvent,still1990semianalytical,qiu1997gb}.
-These methods have the potential to be three orders of magnitude, or even more, faster than explicit solvent experiments \cite{zhang2001solvent}.
-The total free energy of solvation can be separated into polar and non-polar components, which correspond to the work done inserting the uncharged solute molecule, or protein, into the solvent and then building the charges to their native values \cite{roux1999implicit}.
+These methods have the potential to be three orders of magnitude, or even more, faster than explicit solvent experiments, and a number of different methods have been shown to accurately describe solvent effects \cite{zhang2001solvent}.
 
-\cite{roux1999implicit}
+The total free energy of solvation can be separated into polar and non-polar components, which correspond to the work done inserting the uncharged solute molecule, or protein, into the solvent and then building the charges to their native values \cite{roux1999implicit}.
+\input{equations/solvent_decomposition}
+According to scaled particle theory the non-polar work done by inserting a sphere into a solvent can be approximated if the raidus of the sphere is neither too large nor to small as
+\input{equations/surface_dependent_work}
+where $\gamma$ is the surface tension of the solvent and the surface area corresponds most closely to the Connolly surface.
+
+The electrostatic contribution to the solvent energy is the work necessary to add a charge to a hard sphere atom already in the solvent.
+The charge density in the solvent can be given by the Poisson-Boltzmann equation
+\input{equations/poisson_boltzmann}
+Though it is possible to solve this at every step of a simulation, it becomes rather expensive, therefore faster approximations are sought \cite{nicholls1991rapid}.
+The total work can be approximated by the Born model
+\input{equations/born}
+However, this assumes that the induced charge in the solvent is entirely concentrated on the surface of the ion, which is impossible, therefore $R$, or the Born $\alpha$ radius becomes a fit parameter, representing the effective radius of a charged sphere in the solvent.
+
+The electrostatic solvation contribution can also be expressed as
+\input{equations/electrostatic_solvent}
+where f is a weighting function for the interaction between charges $q_i$ and $q_j$.
+Historically there are a variety of methods of approximating this weighting function, however one of the most popular is the generalized Born (GB) \cite{still1990semianalytical}.
+In the generalized Born approch
+\input{equations/generalized_born}
+and one of the limiting factors to accuracy becomes obtaining proper estimates of the effecitve radii, since charges are not uniformly exposed to the solvent \cite{schaefer1996comprehensive}.
+
+Another approach is to estimate both the nonpolar and electrostatic contributions to solvation as proportional to the surface area, with different proportionality constants for different atoms.
+\input{equations/surface_area_solvation}
+Although this method is very inexpensive to compute, it can be somewhat difficult to solve for the force on an atom, due to the way the surface changes as atoms move \cite{roux1999implicit}.

@@ -1,5 +1,3 @@
-\subsection{Energy Functions}
-\label{subsection:energy_functions}
 Some energy models do not seek to accurately rank potential conformations, fast ``screening'' functions attempt to quickly differentiate physically impossible conformations from plausible conformations without performing an expensive minimization or energy calculation step.
 Application of these screening functions has the potential to greatly reduce the number of potential conformations that must be scored using the full detail energy function, greatly decreasing the overall cost of conformation prediction.
 These screening criteria can be applied either during the sampling procedure, potentially eliminating sampling of a large area of excluded conformation space, or after sampling before a more expensive energy function is applied to rank conformations.
@@ -15,22 +13,14 @@ Other screens include:
 \item limitations on the number of ``dry'' cavities, and the number of internal charged residues \cite{moult1986algorithm}
 \end{enumerate}
 
-    \subsubsection{The General Form of the Energy Model}
-    \label{subsubsection:energy_general_form}
-    The general form of most molecular mechanics energy potentials is reasonably consistent, with bonds and angles being modeled as a spring, dihedrals as a Fourier series.
-    \input{equations/opls.tex}
-    \input{equations/bonds.tex}
-    \input{equations/angles.tex}
-    \input{equations/dihedrals_compact.tex}
-    The non-bonded terms are modeled as a Columbic potential between any point charges and a Lennard-Jones or 6-12 potential between any non-bonded atoms.
-    These non-bonded atoms are phased in by a ``fudge factor'' for atoms in a 1-4 configuration.
-    \input{equations/nonbonded.tex}
-    Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$ \cite{jorgensen1996development}.
+\subsection{The General Form of the Energy Model}
+\label{subsection:energy_general_form}
+\input{1_intro/energy_functions/general_form}
 
-    \subsubsection{Molecular Surfaces}
-    \label{subsubsection:molecular_surfaces}
-    \input{1_intro/energy_functions/molecular_surfaces}
+\subsection{Molecular Surfaces}
+\label{subsection:molecular_surfaces}
+\input{1_intro/energy_functions/molecular_surfaces}
 
-    \subsubsection{Molecular Surfaces}
-    \label{subsubsection:molecular_surfaces}
-    \input{1_intro/energy_functions/solvent_models}
+\subsection{Solvent Models}
+\label{subsection:Solvent Models}
+\input{1_intro/energy_functions/solvent_models}

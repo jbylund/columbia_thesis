@@ -9,5 +9,5 @@ It is possible that this procedure does not converge to a closed state, however 
 Solving for the ideal dihedral angle at each step is a simple optimization problem making CCD a very fast algorithm \cite{wang1991combined,canutescu2003cyclic}.
 In experiments CCD produces closed loop candidates in ~1/6 the time of the random tweak method.
 
-A variation on cyclic coordinate descent seeks to close the loop by not only requiring atom closure, but by requiring that the entire backbone of the closure residue is superimposed between the predicted and crystal structure.
+A variation on cyclic coordinate descent seeks to close the loop by not only requiring atom closure, but by requiring that the entire backbone of the closure residue is superimposed, within some geometric similarity tolerance, between the predicted and crystal structure.
 This constrainint ensures that the angles and dihedrals of the closure residue are reasonable\cite{canutescu2003cyclic}.
