@@ -1,0 +1,23 @@
+\subsection{General Mutation Screening}
+The generalized mutation screening method implemented in PLOP allows efficient evaluation of a large number of possible mutations.
+It accepts as input a set of possible mutations for each residue, or a set of possible mutations for a set of residues.
+For instance tryptophan, tyrosine and arginine are overrepresented in hot spot resiudes \cite{hu2000conservation}, so it may be desirable to consider all mutations in which a set of residues are either left at their native identity or replaced with one of these residues.
+If desired the user can also set bounds for the minimum and maximum number of simultaneous mutations allowed.
+While the residues are still in their native states the conformation of each residue which will be mutated is re-predicted and minimized.
+This is done in order to prevent bias towards predicted states which will later be predicted in the same fashion.
+For each residue for which mutations are allowed the sidechain 
+These side chain predictions were performed by choosing at random from a high resolution rotamer library an initial conformation.
+Each residue was then replaced sequentially by the lowest energy conformation present in the rotamer library.
+This procedure was continued until all residues were static.
+Five iterations of this procedure, from randomization to a static conformation, were performed for each structure \cite{jacobson2002force,jacobson2002role}.
+
+
+
+
+\subsection{Alanine Scanning Experiments}
+Three protein complexes, 1FCC, 1BRS, and 1DVF, with both experimental data for bindinging affinity and crystal structures were identified using the ASEdb \cite{thorn2001asedb}.
+Protonation states and locations of polar hydrogens were assigned for all residues as in \cite{li2007assignment}.
+A crystal context was built for each structure using symmetry data determined by experiment.
+
+For each mutation represented in the alanine scan database single residue was mutated to alanine and this side chain prediction was repeated.
+The resulting structures were examined side chain conformation agreement with crystal structures and the change in binding free energy to native was recorded. 
