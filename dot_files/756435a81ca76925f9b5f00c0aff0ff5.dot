@@ -1,0 +1,22 @@
+digraph G {
+	overlap=prism;
+	sep=2;
+	//src/alchemical_mod.F
+	node [color="#7487cc"];
+    "Pharmacophore Identification";
+    "Pharmacophore Modification";
+    "Fit for the Receptor";
+    "Potential Drug";
+
+	"Pharmacophore Identification" -> "Pharmacophore Modification";
+    "Pharmacophore Modification" -> "Fit for the Receptor";
+    "Fit for the Receptor" -> "Potential Drug";
+
+
+    "Active Site Identification";
+    "Ligand Fragments Growing";
+    "Fit for the Receptor";
+    "Change Fragment";
+    "Complete Growing";
+    "Potential Drug";
+}

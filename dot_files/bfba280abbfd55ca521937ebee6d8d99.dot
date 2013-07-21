@@ -1,0 +1,77 @@
+digraph world {
+rankdir="TB"
+//splines=true
+//size="8,8"
+bgcolor="0.58 0.40 1.00"
+//ordering=out;
+
+node [fontsize=20, shape = record];
+//overlap=false
+
+subgraph cluster_0
+{
+	style=invisible;
+	edge [style=invisible,dir=none];
+	start -> perturb -> minimize -> stopping_rule -> final;
+}
+
+subgraph cluster_1 {
+	style=invisible;
+	node [style=invisible];
+	edge [style=invisible,dir=none];
+	b1 -> b2 -> revert_lowest -> b4 -> b5;
+	revert_lowest [ style = solid ];
+}
+
+minimize -> stopping_rule;
+perturb -> minimize;
+revert_lowest:n -> perturb:e [ style = "dotted" ];
+start -> perturb;
+stopping_rule -> final;
+stopping_rule:e -> revert_lowest:s [ style = "dotted" ];
+stopping_rule:ne -> perturb:se [ style = "dotted" ];
+stopping_rule:nw -> start:sw [ style = "dotted" ];
+
+start [label="Initial Structure"];
+perturb [label="Perturb"];
+minimize [label="Truncated Newton\nMinimization"];
+stopping_rule [label="Apply Stopping Rule"];
+final [label="Final Structure"];
+revert_lowest [label="Revert to\nLowest Energy"];
+
+{ rank=same; start b1; }
+}
+
+
+//subgraph cluster_0 {
+//style="invisible"
+
+//perturb [label = "Perturb"];
+//stop_rule [label = "Apply Stopping Rule"];
+//finish [label = "Finish"];
+//}
+
+//minimize [label = "TN-Minimization"];
+//revert_lowest [label = "Revert to Lowest\nEnergy Sampled (global)"];
+
+
+////dummy1 [shape = plaintext, label = "" ]
+////dummy2 [shape = plaintext, label = "" ]
+////dummy4 [shape = plaintext, label = "" ]
+////dummy5 [shape = plaintext, label = "" ]
+////dummy1 -> dummy2
+////dummy2 -> revert_lowest
+////revert_lowest -> dummy4
+////dummy4 -> dummy5
+
+
+////{ rank=same; minimize revert_lowest; }
+
+//start -> perturb
+//perturb -> minimize
+//stop_rule -> revert_lowest [ style = "dotted" ];
+//stop_rule -> start [ style = "dotted" ];
+//stop_rule -> perturb [ style = "dotted" ];
+//revert_lowest -> perturb
+//minimize -> stop_rule
+//stop_rule -> finish
