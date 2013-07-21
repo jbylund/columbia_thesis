@@ -33,6 +33,6 @@ clean :
 
 unsorted/main.tex : $(UTEXFILES)
 	-rm unsorted/main.tex
-	for i in $(shell ls unsorted/*.tex | \grep -v main.tex); do j=`basename $$i .tex`; echo "\input{unsorted/$$j}" >> unsorted/main.tex; done
+	./scripts/make_unsorted
 
 .PHONY : clean view
