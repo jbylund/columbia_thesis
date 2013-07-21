@@ -6,11 +6,12 @@ TEXCOMMAND := pdflatex
 TEXOPTS    := "-halt-on-error"
 BIBCOMMAND := bibtex
 TEXFILES   := $(shell find . -iname "*.tex" -o -iname "*.bib")
+UTEXFILES  := $(shell find unsorted -name "*.tex" | \grep -v main.tex )
 
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
 
-$(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls 
+$(OUTPUTNAME) : $(TEXFILES) unsorted/main.tex makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls 
 	mkdir -p pdfs
 	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
 	cat refs/*.bib > refs.bib
@@ -27,7 +28,11 @@ $(OUTPUTNAME) : $(TEXFILES) makefile /usr/share/texlive/texmf-dist/tex/latex/bas
 	fdupes pdfs -q -d -N
 
 clean :
-	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg    *.out *.toc *.lot *.lof refs.bib
+	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *.out *.toc *.lot *.lof refs.bib
 	@/bin/rm -f $(OUTPUTNAME)
+
+unsorted/main.tex : $(UTEXFILES)
+	-rm unsorted/main.tex
+	for i in $(shell ls unsorted/*.tex | \grep -v main.tex); do j=`basename $$i .tex`; echo "\input{unsorted/$$j}" >> unsorted/main.tex; done
 
 .PHONY : clean view
