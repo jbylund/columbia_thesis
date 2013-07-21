@@ -1,0 +1,7 @@
+#!/bin/bash
+rm unsorted/main.tex
+for i in `ls unsorted/*.tex`
+do
+    j=`basename $i .tex`
+    echo "\input{unsorted/$j}" >> unsorted/main.tex
+done

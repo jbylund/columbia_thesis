@@ -7,11 +7,12 @@ TEXOPTS    := "-halt-on-error"
 BIBCOMMAND := bibtex
 TEXFILES   := $(shell find . -iname "*.tex" -o -iname "*.bib")
 UTEXFILES  := $(shell find unsorted -name "*.tex" | \grep -v main.tex )
+FLOWCHARTS := dot_files/mcm_flowchart.png
 
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
 
-$(OUTPUTNAME) : $(TEXFILES) unsorted/main.tex makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls 
+$(OUTPUTNAME) : $(TEXFILES) $(FLOWCHARTS) unsorted/main.tex makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls 
 	mkdir -p pdfs
 	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
 	cat refs/*.bib > refs.bib
@@ -30,6 +31,10 @@ $(OUTPUTNAME) : $(TEXFILES) unsorted/main.tex makefile /usr/share/texlive/texmf-
 clean :
 	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *.out *.toc *.lot *.lof refs.bib
 	@/bin/rm -f $(OUTPUTNAME)
+
+# rule to make each flowchart
+dot_files/%.png: dot_files/%.dot
+	dot -Tpng -o $@ $<
 
 unsorted/main.tex : $(UTEXFILES)
 	-rm unsorted/main.tex
