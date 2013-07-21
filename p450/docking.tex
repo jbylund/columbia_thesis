@@ -1,16 +1,25 @@
-Starting from the ligand and the protein receptor structures, IDSite carries out flexible ligand docking with Glide.
-The flexible ligand docking protocol generates a large number of ligand conformations that are then docked into the rigid receptor.
-The first step in Glide docking is to define the binding box and calculate the receptor grid.
-As in Glide, in IDSite the binding site is defined as a box centered at the center of selected residues or a ligand (if the structure contains a ligand).
-Because we start from the apo structure of CYP2D6 (PDBID: 2F9Q.
-See below for details about the protein preparation), the center of the binding box is selected as the centroid of the residues Glu216, Asp301, Thr309, and Phe483.
-The box dimension on each side is set to 10 angstroms for the inner box and 20 angstroms for the outer box.
-After the grid generation, IDSite samples the conformations of freely rotatable bonds and rings with Glide Standard Precision (SP).
-In order to increase sampling, IDSite uses reduced Van der Waals (VDW) radii and skips the default filtering with a rough score within Glide (also referred to as expanded sampling).
-Similar poses are clustered according to their RMSD (cutoff 2.0 angstroms).
-Finally, a post-docking minimization is performed and the top 60 minimized poses according to the Glide SP score are retained.
-These poses are then screened to remove the poses with obvious steric clashes, with too many atoms outside the inner binding box, or without atoms close to the heme iron (Table 3.1).
-The remaining poses are then passed to the first refinement stage.
+In the initial docking stage of the IDSITE protocol Glide is used to generate a number of proposed docked conformations for each ligand.
+Glide (standard precision) is used to generate a number of different ligand conformations by sampling conformations of freely rotatable bonds and rings.
+A bounding box, which will be used for a grid search, is defined centered at the centroid of the ligand with an edge length of 10 angstroms.
+Because the crystal structure used for CYP2D6 (PDBID: 2F9Q) does not have a ligand, the centroid of residues Glu216, Asp301, Thr309, and Phe483 was used instead in this case.
+Because the steric clashes present in many proposed docked conformations can be relieved using a simple minimization procedure a reduced Van der Waals (VDW) radii were used in the docking stage, and additional filtering of possible high energy conformations was also skipped in order to ensure the greatest diversity of docked poses reached the refinement stage.
+The collection of docked poses are then clustered according to the RMSD of the ligand, and each pose is minimized.
+The top sixty ranked poses according to the Glide SP metric are retained screened using a number of different criteria.
+A hard sphere overlap criteria is used to remove poses with obvious steric clashes which were not removed during the minimization procedure.
+A number of other rule based geometric screens are used to remove structures which are unlikely to react.
+Structures where:
+\begin{enumerate}
+\item The distance of the basic nitrogen to the ferryl oxygen is less than 5.0 angstroms;
+\item The distance of the basic nitrogen to the negative charged oxygen (in Glu216 or Asp301) is greater than 5.5 angstroms;
+\item More than 2 heavy atoms from the ligands are further than 16.0 angstroms away from the heme iron;
+\item More than 1 heavy atom from the ligand are closer than 1.0 angstroms to the receptor;
+\item More than 6 heavy atoms from the ligand are closer than 1.8 angstroms to the receptor;
+\item No heavy atom in the ligand is within 5.0 angstroms to the heme iron;
+\end{enumerate}
+are removed and the remaining poses are passed on to the first Monte Carlo Minimization refinement stage.
+
+% joe is this far
+
 IDSite uses reduced VDW radii for nonpolar atoms both in the protein receptor and the ligand, so that slight steric clashes are tolerated during the docking stage.
 For the protein receptor the VDW scaling factor is fixed at 0.40, while for the ligand, the scaling factor starting from 0.80 is adaptively adjusted until at least 4 valid poses are found.
 With highly flexible ligands and relatively high scaling factors, Glide often finds only a handful of valid poses, and even fewer survive after IDSite screening.
