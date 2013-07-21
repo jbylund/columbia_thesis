@@ -1,4 +1,3 @@
-%\documentclass[11pt,openright,twoside,letterpaper,onecolumn]{report} %% USE THIS FOR DOUBLE SIDED
 \documentclass[11pt,openright,oneside,letterpaper,onecolumn]{report}  %% USE THIS FOR SINGLE SIDED
 \input{header}
 \begin{document}
@@ -12,25 +11,7 @@
 \setcounter{tocdepth}{4}
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
-%\cleardoublepage
-%\listoffigures
-%\cleardoublepage
-%\listoftables 
-%\cleardoublepage
-
-%%%% Acknowledgments
-%\input{ack.tex}
-%\cleardoublepage
-
-
-%%%% Dedication page
-%\thispagestyle{plain}
-%\strut \vfill
-%\centerline{\LARGE 
-%Dedication text
-%}
-%\vfill \strut
-%\cleardoublepage
+\cleardoublepage
 
 %\draft   % Generates a draft version in single-space
 %%% BODY
@@ -58,8 +39,12 @@
 \input{1_intro/intro}
 \input{cell_based_solvent/cell_solvent}
 \input{computational_mutation_scanning/computational_mutation_scanning}
+\input{p450/main}
+%\input{rfs/main}
+\input{small_molecule_library/main}
+\input{unsorted/main}
 
-%%% Bibliography
+% Bibliography
 %\part{Bibliography}
 %\chapter{Bibliography}
 %\addcontentsline{toc}{chapter}{Bibliography}
@@ -91,3 +76,22 @@
 %\input{sample-appendix}
 %\input{sample-appendix}
 
+% table of tables and table of figures
+%\listoffigures
+%\cleardoublepage
+%\listoftables 
+%\cleardoublepage
+
+%%%% Acknowledgments
+%\input{ack.tex}
+%\cleardoublepage
+
+
+%%%% Dedication page
+%\thispagestyle{plain}
+%\strut \vfill
+%\centerline{\LARGE 
+%Dedication text
+%}
+%\vfill \strut
+%\cleardoublepage
