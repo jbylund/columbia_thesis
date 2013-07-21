@@ -10,153 +10,54 @@
 
 Prediction of sites of metabolism is a three stage procedure:
 \begin{enumerate}
-\item Initially the small molecule is docked using a rigid body grid search algorith GLIDE
-\item The docked conformations are refined using a Monte Carlo Minimization (MMC) approach which samples degrees of freedom in both the ligand and protein
-\item Refined conformations are classified into reactive site or non-reactive site on the basis of the energy of the refined conformations and the intrinsic reactivity of the site
+\item Initially a number of different ligand conformations are generated, and these are docked into a rigid protein, with soft VDW terms using Glide \cite{halgren2004glide,friesner2004glide}.
+\item The docked conformations are refined using a Monte Carlo Minimization (MMC) approach which samples degrees of freedom in both the ligand and protein.
+\item Refined conformations are classified into reactive site or non-reactive site on the basis of the energy of the refined conformations and the intrinsic reactivity of the site. \cite{li2011idsite}
 \end{enumerate}
 
 \subsection{Docking}
 \label{subsection:p450/docking}
+\input{p450/docking}
 
 \subsection{Monte Carlo Minimization Refinement}
 \label{subsection:p450/mcm}
+The refinement procedure used by IDSITE, makes use of a Monte Carlo Minimization procedure.
+Since an emphasis was placed on efficient sampling of low energy conformations, as only these conformations are passed on to the next stage of prediction, Monte Carlo Minimization which provides more efficient sampling of low energy conformations was used instead of a more traditional Monte Carlo simulation (see \ref{subsection:monte_carlo}).
+This IDSITE Monte Carlo Minimization refinement procedure incorportates three different types of steps: side chain motions, rigid body transformations, and hybrid Monte Carlo simulations.
+For each Monte Carlo step one of these three types of motions is selected according to the weighted probabilities 14:7:1 (side-chain:rigid-body:hybrid-Monte-Carlo).
+A new conformation is proposed according to the chosen move type.
+This conformation is minimized before the Metropolis acceptance criteria (equation \ref{equation:metropolis_acceptance}) is applied to the proposed state, using a temperature of 300 K.
+All atoms of all residues with any atom within 5 Angstroms of the ligand in the starting crystal structure were allowed to move during Monte Carlo moves, including the ligand itself.
 
+%For the simulations described in this paper, we used the following parameters: Short range energy dipole-dipole and Lennard-Jones cutoffs of 8 Angstroms were used, as well as 12 Angstrom cutoffs for the short range charge-dipole cutoff and 15 Angstroms for the short range dipole-dipole cutoff.
+%All long range cutoffs were set to be effectively infinite.
+%In this study, we compared four different functional forms of the potential function.
+%In all cases, OPLS-2005 protein parameters were used for both the protein and ligand, as implemented in PLOP.
+%Ligand parameters were generated with the hetgrp\_ffgen utility of Schrodinger software, using OPLS-2005 parameters.
+%Surface Generalized Born implicit solvent was used, in the form described in \cite{ghosh1998generalized}.
+%In previous papers using structure prediction with PLOP, two separate correction terms were introduced which substantially improved side chain prediction.
+%One was a hydrophobic attraction term, introduced by analogy with the ChemScore [cite].
+%The second was a variable dielectric treatment of charged side chains, accounting for the change of polarization around charged moieties \cite{zhu2007improved}. % also variable dielectric in generalized born sigalov2005incorporating
+%Our four effective potential energy functions are four choices resulting from inclusion or exclusion of these correction terms.
+%For each combination of force fields and for each structure, a sequence of 3100 repetitions of the overall serial MC sequence was carried out.
+%The relative probabilities for HMC, rigid body MC, and side chain MC were 1, 7, and 14, respectively (the total probability is normalized to 1.0).
+%Minimized Monte Carlo acceptance was performed at 300 K.
+%[We can decide how much of our intermediate results about useful parameters to use here.
+%I'd lean towards more mentions.
+%It would help explain some of the screwy combinations we have (like the different MC acceptance criteria)].
+
+\begin{enumerate}
+\item \input{p450/side_chain}
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{dot_files/mcm_flowchart.png}
 \caption{An outline of the Monte Carlo minimization refinement stages in PLOP.}
 \label{fig:mcm_flowchart}
 \end{figure}
-
-\begin{enumerate}
-\item Hybrid Monte Carlo Moves: Hybrid Monte Carlo (HMC) is built on top of a molecular dynamics (MD) integrator.
-We implemented velocity verlet MD using the RESPA formalism \cite{tuckerman1991molecular}, with bonded and short range interactions evaluated every inner time step, with long range interactions evaluated every long time step.
-We also included in the including Andersen, Berendsen, and Langevin thermostats, as well as Brownian Dynamics.
-Short range interactions included all bonded interactions and nonbonded interactions less than a user-specified cutoff.
-Both short and long range cutoffs are dipole-based as described in a previous paper [cite].
-Energies are conserved in vacuum simulations if the long range cutoff extends to cover the entire molecule.
-With implicit solvent dynamics, energies are not conserved as there is no derivative of the Born alpha with respect to position, so a thermostat must be used to approximate realistic dynamics.
-One mode of action is to run HMC on top of normal RESPA dynamics, with acceptance and rejections done after a fixed number of steps of MD, as in typical HMC.
-Velocities are re-randomized after every Monte Carlo step from the Maxwell-Boltzmann distribution.
-However, HMC can also be implemented in a multiple-time step Monte Carlo framework \cite{hetenyi2002multiple}.
-In this case, molecular dynamics is run only using only the short range energies, which will conserve energy and thus yield proper Markov chain behavior while the cutoffs and Born alpha are not updated.
-Inner loop Monte Carlo steps are performed with only the short range dynamics, and outer loop Monte Carlo steps are performed with all interactions.
-In the case of implicit solvent simulations, the Born alpha are only reevaluated in the outer loop Monte Carlo steps.
-This allows for evaluation of the full surface integral relatively infrequently, and yields a properly weighted Boltzmann distribution of conformations without needing position derivatives of the Born alphas.
-The hybrid Monte Carlo (HMC)\cite{duane1987hybrid} move in PLOP performs simultaneous sampling for the selected residues in the protein side chains and backbone as well as the ligand.
-Each HMC move performs a 5 picosecond, constant energy molecular dynamic (MD) simulation (starting at 900K) on all the atoms in the selected residues.
-Taking up to 15 minutes per move, the HMC is the most expensive among all three types of moves in PLOP.
-
-\item Rigid motion moves.
-Rigid body translation and rotation were also implemented for noncovalently linked moieties, such as ligands.
-Random rotations and translations were coupled together, allowing for more concerted movement.
-Rigid body move implemented in PLOP can optionally include a screening step, where atomic Lennard-Jones overlaps that would lead to energies much higher than would be observed in any conceivably long equilibrium simulation are rejected without further evaluation.
-A ratio of 0.7 between the distance between the two atoms and the sum of the Lennard-Jones radii of the two atoms yields energies on the order of 10's of thousands of kcal/mol, and is thus reasonable to maintain equilibrium sampling in a Monte Carlo simulation.
-Translations were implemented in a random direction, with a user-defined magnitude.
-Rotations were implemented by picking a random quarternion (a random angle around a random axis, through the geometric center of the rigid group) with a user specified maximum random angle centered around either the current angle, or 180 from the current angle, in the case of a flip.
-Multiple time scale Monte Carlo sampling was also implemented with rigid body moves, with short range and long range interactions defined as above.
-In addition, an option to compute the inner Monte Carlo loops with reduced Lennard-Jones radii were also implemented, to increase the ability to escape from tight spacial bottlenecks.
-In this case, the long time step energies are the full energies with unscaled Lennard-Jones radii.
-This increases the conformational freedom and therefore sampling for the short, at a cost of decreasing the acceptance probability in the outer loop.
-Scaled Lennard-Jones radii were also implemented in multiple time dynamics, but yielded very little apparent improvement because of the lack of phase space overlap between dynamics with different scaled Lennard-Jones radii).
-Rigid body moves are used to sample the translational and rotational space of the ligand.
-Multiple attempts with reduced VDW radii are applied, as it is quite common to fail in searching for a clash-free conformation in a single rigid body moving attempt (especially when the ligand is large and flexible and the binding pocket is relatively small).
-Each rigid body move includes 1000 attempts, and each attempt performs a translation along a random vector and a rotation around a random axis, with less than 0.5 angstroms and 60 degree displacement, respectively.
-In addition, the VDW radii are reduced (scaling factor 0.8) to soften the Lennard-Jones potential, so that mild steric clashes are allowed, which are likely to be resolved by the subsequent minimization.
-The rigid body move usually takes 20 to 40 seconds per move.
-
-\item Side chain moves.
-Several types of side chain motions were implemented in PLOP.
-In all cases, they are defined in a such a way that they can be applied to both ligands and proteins.
-The same atomic overlap screening function implemented with the rigid body Monte Carlo was implemented with the side chain torsional moves.
-a. Random torsion angle moves: The first type of move that was implemented is random movement of torsional chi angles.
-For small torsion moves, a random perturbation of the angle of +/- X is made, where X is a random number with user defined magnitude.
-For large torsion moves, for each torsion angle that is changed, a random angle is selected in the form 60*Y +/- X, where Y = 1 through 5, and X is the same random number for the small torsion moves.
-The large move was introduced since positions at the top of rotamer barriers are relatively unlikely to be selected, and efficiency thus can be improved by focusing on the more probable moves.
-The ratio of small to large torsion moves can be used-adjusted, as can the ratio of probabilities of changing all the torsions in a randomly selected side chain versus changing only one single (randomly selected) torsion among all the free torsions in the simulation can be set as a user-defined parameter.
-Rotamer side chain moves: A second type of torsional samples implemented is random selection of a new rotamer state for the entire side chain, plus an optional user defined small noise term for each torsion in the rotamer state.
-A database of protein rotamer states obtained from crystallographic data are already a part of PLOP \cite{xiang2001extending} Rotamer libraries for ligands are generated by examining all possible side chain conformations at 10 degree resolution and screening this set for steric clashes.
-A Monte Carlo move in this case represents a choice of a new torsional rotamer state for the entire side chain.
-Monte Carlo moves based on torsional states cannot lead to correct equilibrium distributions, as transitions from non-rotamer states to rotamer states are defined, but not reverse transitions, upsetting detailed balance.
-However, a pretabulated rotamer state is more likely to be low energy than a randomly generated torsional state, and thus allows for more diverse conformational searching.
-Correlated torsional moves: Most torsional rearrangements of the side chains in the core of proteins are highly correlated because of the density.
-In order to attempt to include correlated torsional motion, at each step we examine the distance between all pairs of beta carbons in the ligands that are free to move.
-At each step, for the set of side chains that are free to move, clusters where beta carbons are all mutually within a user-specified distance are identified.
-This process takes a trivial amount of time compared to an energy evaluation, so does not slow the simulation at all.
-Then, with user specified probabilities, clusters of different sizes are selected for the torsional moves, either with random side chain moves, or rotamer selection moves.
-By selecting only clusters where all residues are mutual neighbors, detailed balanced is observed for simulations where accurate equilibrium sampling is desired.
-By varying the dihedral angles of the rotatable bonds, IDSite uses side chain MC moves in PLOP to sample the selected side-chain conformations of the protein and of the ligand.
-Up to three close residues (C beta distance within 6 angstroms) are allowed to rotate collectively, but the moves of the protein residues and those of the ligand are separated.
-In each attempted movement, the conformations of the selected side chains (from the protein/ligand) are either changed by random perturbations or assigned by the randomly selected rotamers from a library.
-For an attempt with a random perturbation, the displacement of each dihedral angle is the sum of a large rotation (N times 60 degrees with N as a random integer between 0 and 5) and a random perturbation from 0 to 30 degrees.
-For a rotamer library attempt, a side-chain conformation is updated with a random rotamer from a high resolution side-chain library for protein residues \cite{xiang2001extending}, and from a homogeneous library at 10 degree resolution for the ligand.
-If a structure with tolerable overlaps is generated in an attempt, it is minimized and sent to subsequent stages for judgment of acceptance.
-Each side-chain move takes less than 15 seconds and is the fastest among all the three move types.
+\item \input{p450/rigid_body}
+\item \input{p450/hmc}
 \end{enumerate}
 
 \subsection{Evaluation}
 \label{subsection:p450/evaluation}
-
-1. PLOP, designed for extensive sampling with protein loop optimization proteins has had recent success in correctly predicting protein structure such as short and medium loops and side chain configurations [cite] 
-
-2. It has also been useful in identifying and partially overcoming certain classes of errors in implicit model simulations, such as insufficiently compact structures [cite], and overstabilitzation of salt bridges [cite] 
-
-3. However, the sampling methods introduced in plop have been limited in the ability to sample the system.
-Although it can sample very diverse structures, it doesn't necessary locate nearby minima, especially those related by conformational rearrangement, and may therefore miss some decoy configurations.
-
-4. We have introduced a framework for Monte Carlo sampling into PLOP, including 
-1. hybrid Monte Carlo using molecular dynamics 
-2. torsional moves 
-3. translation and rotation moves for separated moieties, such as ligands bound in an active site.
-
-5. We have used this Monte Carlo framework to extensively sample CDK2 ligands.
-Methods: We have introduced a framework into PLOP for both rigorous Monte Carlo sampling and minimization Monte Carlo.
-Move sets including hybrid Monte Carlo, moves in torsional space, and translation and rotational rigid body moves.
-
-Chains of Monte Carlo moves: Chains of Monte Carlo moves are performed serially.
-At the beginning of each sequence of steps, one of the possible Monte Carlo options (for these simulations HMC, rigid body MC, and side chain MC) is randomly selected according to the user specified probabilities, and a user specified number of outer loop MC moves are made.
-The process is then repeated for a user-specified number of steps.
-In many cases, thermodynamic sampling is not needed, and all that is required is exploration of representative low energy states.
-Many of the caveats that are required for equilibrium simulations can be ignored, and additional MC methods leading to significantly increased conformational sampling can be used.
-Low energy state sampling: In this paper we will focus on the minimization Monte Carlo (MinMC) as a tool to generate large numbers of low-energy configurations to test the underlying energy model.
-MinMC was implemented in the multiple level Monte Carlo framework as well, with minimization occuring only at the outer steps.
-This allows a number of very rapid moves to be made on the short range potentials at high temperature to maximize conformational exploration before minimization.
-By using a moderately high temperature, significant conformational motion can be introduced while still remaining somewhat close to the potential energy surface.
-Other Considerations: The Monte Carlo implementation in PLOP is very modular, allowing additional Monte Carlo move sets to be added in easily.
-Additional speedups were achieved by implementing storage and retrieval of the complete state of GB variables such that upon rejection, no additional calculation need be done.
-Other features that have been implemented that will not be further discussed in this paper are a simulated annealing protocol, allowing the temperature used either for strict or minimization Monte Carlo to be decreased throughout the simulation, and replica exchange using MPI.
-There are a very large number of possible parameters that have been introduced, and it is not feasible to directly optimize conformational searching over the entire parameter space.
-We performed limited optimization, first of the [fill in the sequence of optimizations and the rationale], looking for the most diverse clustering [Robert, fill in this discussion of the criteria].
-This lead to the following set of parameters.
-[We can decide how much of our intermediate results about useful parameters to use here.
-I'd lean towards more mentions.
-It would help explain some of the screwy combinations we have (like the different MC acceptance criteria)].
-For the simulations described in this paper, we used the following parameters: Short range energy dipole-dipole and Lennard-Jones cutoffs of 8 Angstroms were used, as well as 12 Angstrom cutoffs for the short range charge-dipole cutoff and 15 Angstroms for the short range dipole-dipole cutoff.
-All long range cutoffs were set to be effectively infinite.
-In this study, we compared four different functional forms of the potential function.
-In all cases, OPLS-2005 protein parameters were used for both the protein and ligand, as implemented in PLOP.
-Ligand parameters were generated with the hetgrp\_ffgen utility of Schrodinger software, using OPLS-2005 parameters.
-Surface Generalized Born implicit solvent was used, in the form described in \cite{ghosh1998generalized}.
-In previous papers using structure prediction with PLOP, two separate correction terms were introduced which substantially improved side chain prediction.
-One was a hydrophobic attraction term, introduced by analogy with the ChemScore [cite].
-The second was a variable dielectric treatment of charged side chains, accounting for the change of polarization around charged moieties \cite{zhu2007improved}. % also variable dielectric in generalized born sigalov2005incorporating
-Our four effective potential energy functions are four choices resulting from inclusion or exclusion of these correction terms.
-All atoms of all residues with any atom within 5 Angstroms of the ligand in the starting crystal structure were allowed to move during Monte Carlo moves, including the ligand itself.
-For each combination of force fields and for each structure, a sequence of 3100 repetitions of the overall serial MC sequence was carried out.
-The relative probabilities for HMC, rigid body MC, and side chain MC were 1, 7, and 14, respectively (the total probability is normalized to 1.0).
-For rigid body Monte Carlo, a steric screen with an overlap factor of 0.7 was used, with a translation size of 0.5 Angstroms and a rotation size of plus or minus 60 degrees.
-No flip moves were included, as flips were not anticipated with the geometry of the ligand system [Robert, check this is true?] A Lennard-Jones scaling parameter of 0.8 was used during the inner steps.
-Each rigid MC step consisted of 1000 inner steps, and only one outer step, meaning that only one minimization occurred each time rigid body Monte Carlo was selected as the move step.
-Minimized Monte Carlo acceptance was performed at 300 K.
-For side chain Monte Carlo, a steric screen with an overlap factor of 0.6 was used.
-Rotamer torsional moves were selected 75\% of the time, with half of the remaining being of random torsions, and the other half random perturbations of all torsions within the randomly selected side chains.
-Clusters of size 1 (i.e. single side chains), size 2 and size three were selected in equal proportion, and all side chains in the cluster were perturbed with the selected torsion move.
-A mutual beta carbon distance of 6 Angstroms was used for the clustering size.
-Small torsion perturbations made +/- 60 degress from the current dihedral angle, and were performed 5\% of the time; Large periodic moves were performed 95\% of the time.
-Only outer steps were performed, and each side chain Monte Carlo series consisted in only one move.
-Minimization was performed after the single step, and acceptance was performed at 1 K.
-The underlying molecular dynamics for the hybrid Monte Carlo consisted of 500 5 ns RESPA \cite{tuckerman1991molecular} steps, each with 5 1 ns short range steps.
-The dynamics were initialized from a Maxwell-Boltzmann distribution at 900 K, and then run without any thermostat the full 2.
-5 ps run.
-Minimization was performed after the single HMC step, with acceptance/rejection performed at a Monte Carlo temperature of 900 K.
 

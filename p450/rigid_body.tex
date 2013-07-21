@@ -1,0 +1,23 @@
+Rigid motion moves.
+Rigid body translation and rotation were also implemented for noncovalently linked moieties, such as ligands.
+Random rotations and translations were coupled together, allowing for more concerted movement.
+Rigid body move implemented in PLOP can optionally include a screening step, where atomic Lennard-Jones overlaps that would lead to energies much higher than would be observed in any conceivably long equilibrium simulation are rejected without further evaluation.
+A ratio of 0.7 between the distance between the two atoms and the sum of the Lennard-Jones radii of the two atoms yields energies on the order of 10's of thousands of kcal/mol, and is thus reasonable to maintain equilibrium sampling in a Monte Carlo simulation.
+Translations were implemented in a random direction, with a user-defined magnitude.
+Rotations were implemented by picking a random quarternion (a random angle around a random axis, through the geometric center of the rigid group) with a user specified maximum random angle centered around either the current angle, or 180 from the current angle, in the case of a flip.
+Multiple time scale Monte Carlo sampling was also implemented with rigid body moves, with short range and long range interactions defined as above.
+In addition, an option to compute the inner Monte Carlo loops with reduced Lennard-Jones radii were also implemented, to increase the ability to escape from tight spacial bottlenecks.
+In this case, the long time step energies are the full energies with unscaled Lennard-Jones radii.
+This increases the conformational freedom and therefore sampling for the short, at a cost of decreasing the acceptance probability in the outer loop.
+Scaled Lennard-Jones radii were also implemented in multiple time dynamics, but yielded very little apparent improvement because of the lack of phase space overlap between dynamics with different scaled Lennard-Jones radii).
+Rigid body moves are used to sample the translational and rotational space of the ligand.
+Multiple attempts with reduced VDW radii are applied, as it is quite common to fail in searching for a clash-free conformation in a single rigid body moving attempt (especially when the ligand is large and flexible and the binding pocket is relatively small).
+Each rigid body move includes 1000 attempts, and each attempt performs a translation along a random vector and a rotation around a random axis, with less than 0.5 angstroms and 60 degree displacement, respectively.
+In addition, the VDW radii are reduced (scaling factor 0.8) to soften the Lennard-Jones potential, so that mild steric clashes are allowed, which are likely to be resolved by the subsequent minimization.
+The rigid body move usually takes 20 to 40 seconds per move.
+
+% from mike's
+For rigid body Monte Carlo, a steric screen with an overlap factor of 0.7 was used, with a translation size of 0.5 Angstroms and a rotation size of plus or minus 60 degrees.
+No flip moves were included, as flips were not anticipated with the geometry of the ligand system [Robert, check this is true?] A Lennard-Jones scaling parameter of 0.8 was used during the inner steps.
+Each rigid MC step consisted of 1000 inner steps, and only one outer step, meaning that only one minimization occurred each time rigid body Monte Carlo was selected as the move step.
+
