@@ -3,9 +3,11 @@
 \begin{document}
 \pagestyle{empty}
 \normalspace
+
 %\thesistitlepage
 %\thesiscopyrightpage
 %\thesisabstract
+
 \pagenumbering{roman}
 \pagestyle{plain}
 \setlength{\footskip}{0.5in}
@@ -13,6 +15,12 @@
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
 \cleardoublepage
+
+% table of tables and table of figures
+%\listoffigures
+%\cleardoublepage
+%\listoftables 
+%\cleardoublepage
 
 %\draft   % Generates a draft version in single-space
 %%% BODY
@@ -38,8 +46,8 @@
 \pagenumbering{arabic}
 
 \input{1_intro/intro}
-\input{cell_based_solvent/cell_solvent}
-\input{computational_mutation_scanning/computational_mutation_scanning}
+%\input{cell_based_solvent/cell_solvent}
+%\input{computational_mutation_scanning/computational_mutation_scanning}
 \input{p450/main}
 \input{unsorted/main}
 
@@ -52,7 +60,6 @@
 \bibliographystyle{named} 
 
 \end{document}
-
 
 %\input{monte_carlo}
 %\input{cross_docking}
@@ -75,16 +82,9 @@
 %\input{sample-appendix}
 %\input{sample-appendix}
 
-% table of tables and table of figures
-%\listoffigures
-%\cleardoublepage
-%\listoftables 
-%\cleardoublepage
-
 %%%% Acknowledgments
 %\input{ack.tex}
 %\cleardoublepage
-
 
 %%%% Dedication page
 %\thispagestyle{plain}
