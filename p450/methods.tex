@@ -29,28 +29,11 @@ A new conformation is proposed according to the chosen move type.
 This conformation is minimized before the Metropolis acceptance criteria (equation \ref{equation:metropolis_acceptance}) is applied to the proposed state, using a temperature of 300 K.
 All atoms of all residues with any atom within 5 Angstroms of the ligand in the starting crystal structure were allowed to move during Monte Carlo moves, including the ligand itself.
 
-%For the simulations described in this paper, we used the following parameters: Short range energy dipole-dipole and Lennard-Jones cutoffs of 8 Angstroms were used, as well as 12 Angstrom cutoffs for the short range charge-dipole cutoff and 15 Angstroms for the short range dipole-dipole cutoff.
-%All long range cutoffs were set to be effectively infinite.
-%In this study, we compared four different functional forms of the potential function.
-%In all cases, OPLS-2005 protein parameters were used for both the protein and ligand, as implemented in PLOP.
-%Ligand parameters were generated with the hetgrp\_ffgen utility of Schrodinger software, using OPLS-2005 parameters.
-%Surface Generalized Born implicit solvent was used, in the form described in \cite{ghosh1998generalized}.
-%In previous papers using structure prediction with PLOP, two separate correction terms were introduced which substantially improved side chain prediction.
-%One was a hydrophobic attraction term, introduced by analogy with the ChemScore [cite].
-%The second was a variable dielectric treatment of charged side chains, accounting for the change of polarization around charged moieties \cite{zhu2007improved}. % also variable dielectric in generalized born sigalov2005incorporating
-%Our four effective potential energy functions are four choices resulting from inclusion or exclusion of these correction terms.
-%For each combination of force fields and for each structure, a sequence of 3100 repetitions of the overall serial MC sequence was carried out.
-%The relative probabilities for HMC, rigid body MC, and side chain MC were 1, 7, and 14, respectively (the total probability is normalized to 1.0).
-%Minimized Monte Carlo acceptance was performed at 300 K.
-%[We can decide how much of our intermediate results about useful parameters to use here.
-%I'd lean towards more mentions.
-%It would help explain some of the screwy combinations we have (like the different MC acceptance criteria)].
-
 \begin{enumerate}
 \item \input{p450/side_chain}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\textwidth]{dot_files/mcm_flowchart.png}
+\includegraphics[width=0.7\textwidth]{dot_files/mcm_flowchart.png}
 \caption{An outline of the Monte Carlo minimization refinement stages in PLOP.}
 \label{fig:mcm_flowchart}
 \end{figure}
@@ -60,4 +43,4 @@ All atoms of all residues with any atom within 5 Angstroms of the ligand in the 
 
 \subsection{Evaluation}
 \label{subsection:p450/evaluation}
-
+\input{p450/evaluation}
