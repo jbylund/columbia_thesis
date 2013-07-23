@@ -13,7 +13,7 @@ A conserved feature of CYP2D6 ligand complexes is a salt bridge with Glu216 or A
 In order to reduce sampling cost IDSITE only considers structures with at least one hydrogen-bond donor within 4 residues of the centroid of these two residues and Ser304.
 The sphere defined by these residues is illustrated along with the bounding box used for sampling in Figure \ref{fig:idsite_glide}
 A number of other rule based geometric screens are used to remove structures which are unlikely to react.
-Structures where:
+Structures meeting any of the following criteria:
 \begin{enumerate}
 \item The distance of the basic nitrogen to the ferryl oxygen is less than 5.0 angstroms;
 \item The distance of the basic nitrogen to the negative charged oxygen (in Glu216 or Asp301) is greater than 5.5 angstroms;
@@ -22,7 +22,9 @@ Structures where:
 \item More than 6 heavy atoms from the ligand are closer than 1.8 angstroms to the receptor;
 \item No heavy atom in the ligand is within 5.0 angstroms to the heme iron;
 \end{enumerate}
-are removed and the remaining poses are passed on to the first Monte Carlo Minimization refinement stage.
+are removed.
+If the number of structures at this point is too low, the VDW scaling factors of the non-polar atoms of the ligand are stepped down, and the process is repeated.
+If four or more poses are found at these point these poses are passed onto the next stage of the IDSITE procedure, the Monte Carlo Minimization refinement stage.
 
 \begin{figure}[h]
 \centering

@@ -1,24 +1,33 @@
-Hybrid Monte Carlo Moves: Hybrid Monte Carlo (HMC) is built on top of a molecular dynamics (MD) integrator.
-We implemented velocity verlet MD using the RESPA formalism \cite{tuckerman1991molecular}, with bonded and short range interactions evaluated every inner time step, with long range interactions evaluated every long time step.
-We also included in the including Andersen, Berendsen, and Langevin thermostats, as well as Brownian Dynamics.
-Short range interactions included all bonded interactions and nonbonded interactions less than a user-specified cutoff.
-Both short and long range cutoffs are dipole-based as described in a previous paper [cite].
-Energies are conserved in vacuum simulations if the long range cutoff extends to cover the entire molecule.
-With implicit solvent dynamics, energies are not conserved as there is no derivative of the Born alpha with respect to position, so a thermostat must be used to approximate realistic dynamics.
-One mode of action is to run HMC on top of normal RESPA dynamics, with acceptance and rejections done after a fixed number of steps of MD, as in typical HMC.
-Velocities are re-randomized after every Monte Carlo step from the Maxwell-Boltzmann distribution.
-However, HMC can also be implemented in a multiple-time step Monte Carlo framework \cite{hetenyi2002multiple}.
-In this case, molecular dynamics is run only using only the short range energies, which will conserve energy and thus yield proper Markov chain behavior while the cutoffs and Born alpha are not updated.
-Inner loop Monte Carlo steps are performed with only the short range dynamics, and outer loop Monte Carlo steps are performed with all interactions.
-In the case of implicit solvent simulations, the Born alpha are only reevaluated in the outer loop Monte Carlo steps.
-This allows for evaluation of the full surface integral relatively infrequently, and yields a properly weighted Boltzmann distribution of conformations without needing position derivatives of the Born alphas.
-The hybrid Monte Carlo (HMC)\cite{duane1987hybrid} move in PLOP performs simultaneous sampling for the selected residues in the protein side chains and backbone as well as the ligand.
-Each HMC move performs a 5 picosecond, constant energy molecular dynamic (MD) simulation (starting at 900K) on all the atoms in the selected residues.
+The Hybrid Monte Carlo (HMC) \cite{duane1987hybrid} step is a velocity verlet molecular dynamics simulation.
+This simulation allows all atoms in both the ligand and residues containing atoms withing 5 angstroms of the ligand to move.
+Initial velocities are taken from a Maxwell-Boltzmann distribution at 900 K.
+Bonded and short range interactions evaluated every 1 nanosecond inner time step, and long range potentials are assumed to be fixed over inner steps.
+Five inner steps compose each outer HMC step.
+In the outer step the molecular surface, long range interactions and, Born alphas are updated before computing the energy and applying the Metropolis acceptance criteria at a temperature of 900 K after each MD run.
 Taking up to 15 minutes per move, the HMC is the most expensive among all three types of moves in PLOP.
 
-% from mike's
-The underlying molecular dynamics for the hybrid Monte Carlo consisted of 500 5 ns RESPA \cite{tuckerman1991molecular} steps, each with 5 1 ns short range steps.
-The dynamics were initialized from a Maxwell-Boltzmann distribution at 900 K, and then run without any thermostat the full 2.
-5 ps run.
-Minimization was performed after the single HMC step, with acceptance/rejection performed at a Monte Carlo temperature of 900 K.
+%, with long range interactions evaluated every long time step.
+%In this case, molecular dynamics is run only using only the short range energies, which will conserve energy and thus yield proper Markov chain behavior while the cutoffs and Born alpha are not updated.
+%Inner loop Monte Carlo steps are performed with only the short range dynamics, and outer loop Monte Carlo steps are performed with all interactions.
+%In the case of implicit solvent simulations, the Born alpha are only reevaluated in the outer loop Monte Carlo steps.
+%This allows for evaluation of the full surface integral relatively infrequently, and yields a properly weighted Boltzmann distribution of conformations without needing position derivatives of the Born alphas.
 
+%Energies are conserved in vacuum simulations if the long range cutoff extends to cover the entire molecule.
+%With implicit solvent dynamics, energies are not conserved as there is no derivative of the Born alpha with respect to position, so a thermostat must be used to approximate realistic dynamics.
+%One mode of action is to run HMC on top of normal RESPA dynamics, with acceptance and rejections done after a fixed number of steps of MD, as in typical HMC.
+%Velocities are re-randomized after every Monte Carlo step from the Maxwell-Boltzmann distribution.
+%However, HMC can also be implemented in a multiple-time step Monte Carlo framework \cite{hetenyi2002multiple}.
+%The hybrid Monte Carlo (HMC)\cite{duane1987hybrid} move in PLOP performs simultaneous sampling for the selected residues in the protein side chains and backbone as well as the ligand.
+%Each HMC move performs a 5 picosecond, constant energy molecular dynamic (MD) simulation (starting at 900K) on all the atoms in the selected residues.
+%Taking up to 15 minutes per move, the HMC is the most expensive among all three types of moves in PLOP.
+
+%The underlying molecular dynamics for the hybrid Monte Carlo consisted of 500 5 ns RESPA \cite{tuckerman1991molecular} steps, each with 5 1 ns short range steps.
+%The dynamics were initialized from a Maxwell-Boltzmann distribution at 900 K, and then run without any thermostat the full 2.5 ps run.
+%Minimization was performed after the single HMC step, with acceptance/rejection performed at a Monte Carlo temperature of 900 K.
+
+% is built on top of a molecular dynamics (MD) integrator.
+% We implemented velocity verlet MD using the RESPA formalism \cite{tuckerman1991molecular}, with bonded and short range interactions evaluated every inner time step, with long range interactions evaluated every long time step.
+% We also included in the including Andersen, Berendsen, and Langevin thermostats, as well as Brownian Dynamics.
+% Short range interactions included all bonded interactions and nonbonded interactions less than a user-specified cutoff.
+% Both short and long range cutoffs are dipole-based as described in a previous paper [cite].
+% and then run without any thermostat the full 2.5 ps run.
