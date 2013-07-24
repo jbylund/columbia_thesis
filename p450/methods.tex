@@ -22,7 +22,7 @@ Prediction of sites of metabolism is a three stage procedure:
 \subsection{Monte Carlo Minimization Refinement}
 \label{subsection:p450/mcm}
 Since the emphasis in this method is on efficient sampling of low energy conformations, as only these conformations are passed on to the next stage of prediction, Monte Carlo Minimization which provides more efficient sampling of low energy conformations was used instead of a more traditional Monte Carlo simulation (see \ref{subsection:monte_carlo}).
-The Monte Carlo Minimization sampling used by IDSITE for refinement incorportates three different types of steps: side chain motions, rigid body transformations, and hybrid Monte Carlo simulations.
+The Monte Carlo Minimization sampling used by IDSite for refinement incorportates three different types of steps: side chain motions, rigid body transformations, and hybrid Monte Carlo simulations.
 For each Monte Carlo step one of these three types of motions is selected according to the weighted probabilities 14:7:1 (side-chain:rigid-body:hybrid-Monte-Carlo), probabilities which were chosen based on the likelihood of acceptance, the amount structural change, and the amount of time necessary for each type of move.
 Using the chosen method a new conformation is proposed and minimized before the Metropolis acceptance criteria (equation \ref{equation:metropolis_acceptance}) is applied to the proposed state, using a temperature of 300 K.
 All atoms of all residues with any atom within 5 Angstroms of the ligand in the starting crystal structure were allowed to move during Monte Carlo moves, including the ligand itself.
