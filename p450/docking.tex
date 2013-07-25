@@ -10,7 +10,7 @@ The collection of docked poses are then clustered according to the RMSD of the l
 The top sixty ranked poses according to the Glide SP metric are retained screened using a number of different criteria.
 A hard sphere overlap criteria is used to remove poses with obvious steric clashes which were not removed during the minimization procedure.
 A conserved feature of CYP2D6 ligand complexes is a salt bridge with Glu216 or Asp301.
-In order to reduce sampling cost IDSite only considers structures with at least one hydrogen-bond donor within 4 residues of the centroid of these two residues and Ser304.
+In order to reduce sampling cost IDSite only considers structures with at least one hydrogen-bond donor within 4 angstroms of the centroid of these two residues and Ser304.
 The sphere defined by these residues is illustrated along with the bounding box used for sampling in Figure \ref{fig:idsite_glide}
 A number of other rule based geometric screens are used to remove structures which are unlikely to react.
 Structures meeting any of the following criteria:
@@ -29,7 +29,9 @@ If four or more poses are found at these point these poses are passed onto the n
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.35\textwidth]{figures/idsite/glide.png}
-\caption{An overview of the entire IDSite procedure.}
+\caption{The bounding box used by Glide in order to generate the inital set of docked poses.
+The docking procedure also requires at least one hydrogen bond donor be found within 4 angstroms of the centroid of Glu216, Asp301, and Ser304 is also shown.
+The sphere representing this constraint is also shown.}
 \label{fig:idsite_glide}
 \end{figure}
 
