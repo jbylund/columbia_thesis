@@ -5,20 +5,18 @@ Both physical and fitted IDSite were able to acheive promising results predictin
 The physical model correctly identified 68 of 82 active sites of metabolism for a sensitivity of 0.829.
 For inactive sites this model correctly identified 1054 of 1075 inactive sites with a specificity of 0.980.
 The fit model performed similarly, and even slighly better identifying 52 of 57 sites of metabolism (sensitivity of 0.912) in the training set and 25 of 25 in the test set (sensitivity of 1.0).
+\input{equations/specificity}
+\input{equations/sensitivity}
+\input{tables/p450_training}
+\input{tables/p450_testing}
 The fit model also correctly identified 709 of 717 inactive sites in the training set (specificity of 0.989) and 352 of 358 inactive sites in the test set (specificity of 0.983).
 As the performance of the fit model is similar to that of the physical model, it does not appear that the fit model is overparameterized to the training set.
 Specific results for both models are presented in Tables \ref{table:p450_training} and \ref{table:p450_testing}, and the specific sites identified by both models as well as experiments are illustrated in Figures \ref{fig:idsite_traininga} and \ref{fig:idsite_test}. 
-
 
 We believe that the parameters help account for some degree of noise in the molecular mechanics calculations.
 The scaling of the binding energy difference, either to zero inside a window about the minimum energy pose, or by a factor of 0.58 decreases the relative weight of the molecular mechanics contribution relative the quantum contribution to the classifier.
 This might imply that some sites are not being classified as active because they are not in the lowest energy conformation around the docked pose, suggesting that additional molecular mechanics sampling might further improve results.
 However as will be discussed later, the molecular mechanics stage already dominates the total time necessary for an IDSite prediction, and the current molecular mechanics procedure takes about 450 hours.   
 
-\input{equations/specificity}
-\input{equations/sensitivity}
-
-\input{tables/p450_training}
-\input{tables/p450_testing}
 \input{p450/training_figures}
 \input{p450/testing_figures}
