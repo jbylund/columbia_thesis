@@ -8,7 +8,7 @@ BIBCOMMAND := bibtex
 TEXFILES   := $(shell find . -iname "*.tex")
 BIBFILES   := $(shell find refs -iname "*.bib")
 UTEXFILES  := $(shell find unsorted -name "*.tex" | \grep -v main.tex )
-FLOWCHARTS := dot_files/mcm_flowchart.png
+FLOWCHARTS := dot_files/mcm_flowchart.png dot_files/idsite.png
 
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
@@ -20,14 +20,13 @@ $(OUTPUTNAME) : $(TEXFILES) $(FLOWCHARTS) unsorted/main.tex makefile /usr/share/
 	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex > /dev/null
 	@find refs -type f -name "*~" -delete
 	mkdir -p pdfs
+	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
+	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf
+	perl -pi -e "s/.*?\/ID \[<.*/\/ID [<0535B734E397B655F1D0DD37FD8A8CF9> <0535B734E397B655F1D0DD37FD8A8CF9>]/" $(BASENAME).pdf
 	cp $(BASENAME).pdf $(OUTPUTNAME)
 	mv $(BASENAME).pdf joseph_bylund_thesis.pdf
 	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *.out *.toc *.lot *.lof
 	fdupes pdfs -q -d -N
-
-#	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf
-#	perl -pi -e "s/.*?CreationDate.*/\/CreationDate (D:20130418152541-04'00')/" $(BASENAME).pdf
-#	perl -pi -e "s/.*?\/ID.*/\/ID [<0535B734E397B655F1D0DD37FD8A8CF9> <0535B734E397B655F1D0DD37FD8A8CF9>]/" $(BASENAME).pdf
 
 refs.bib : $(BIBFILES)
 	/bin/cat refs/*.bib > refs.bib
