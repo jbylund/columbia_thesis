@@ -1,0 +1,21 @@
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \cline{2-3}
+        \multicolumn{1}{r|}{~}                       & \multicolumn{2}{c|}{PLOP Sampling Stage} \\
+        \cline{2-3}
+        \multicolumn{1}{r|}{~}                       & First                        & Second                        \\
+        \hline
+        Number of Residues Sampled                   & 12                           & 40                            \\
+        \vspace{-1.5ex}
+        Number of Structures                         & \multirow{2}{*}{max(n*8,24)} & \multirow{2}{*}{max(n*20,60)} \\
+        Advanced to Next Stage                       &                              &                               \\
+        P(side chain step)                           & 0.5                          & 0.7                           \\
+        P(rigid body step)                           & 0.1                          & 0.2                           \\
+        P(HMC)                                       & 0.4                          & 0.2                           \\
+        \hline
+    \end{tabular}
+    \caption{The number of residues sampled as well as the number of structures advanced to the next stage from each of the sampling stages.
+Also, the relative probabilities of selecting each of the different sampling steps during a Monte Carlo minimization sampling stage.}
+    \label{table:mmc_params}
+\end{table}
