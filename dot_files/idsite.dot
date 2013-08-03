@@ -1,6 +1,6 @@
  digraph graphname {
     node [shape=box,fontsize=20,fontname=DejaVuSerif] // DejaVuSans also works
-    edge [fontsize=20,fontname=DejaVuSerif]
+    edge [fontsize=20,fontname=DejaVuSerif,penwidth=3]
     docking[label="Flexible Docking (Glide)", style="filled", fillcolor=lightblue]
     poses_check[label="More than\n4 poses?",shape=diamond, style="filled", fillcolor=white]
     invisible_node[label="a",style=invisible]//style=invis
@@ -22,11 +22,16 @@
     evaluation[label="Evaluation", style="filled", fillcolor=white]
 
     docking -> first_screen -> poses_check[weight=2]
-    first_constrained_min -> first_plop -> second_screen -> delta_e -> second_constrained_min -> second_plop -> third_screen -> evaluation -> prediction
+    first_constrained_min -> first_plop -> second_screen -> delta_e -> second_constrained_min -> second_plop -> third_screen
     docking -> invisible_node[dir=none,style=invisible]
     poses_check -> docking
     poses_check -> docking[dir=none,label="No",color=white]
     poses_check -> first_constrained_min[label="  Yes"]
     {rank=same; invisible_node first_screen}
-    reactivity -> evaluation
+    reactivity -> evaluation -> prediction
+
+    first_constrained_min -> evaluation [style=dashed,color=dodgerblue]
+    first_plop -> evaluation [style=dashed,color=green4]
+    second_constrained_min -> evaluation [style=dashed,color=red]
+    third_screen -> evaluation [color=blue]
  }

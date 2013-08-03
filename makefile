@@ -14,10 +14,10 @@ view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
 
 $(OUTPUTNAME) : $(TEXFILES) $(FLOWCHARTS) unsorted/main.tex makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls refs.bib
-	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex > /dev/null
-	$(BIBCOMMAND) $(BASENAME) > /dev/null
-	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex > /dev/null
-	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex > /dev/null
+	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
+	$(BIBCOMMAND) $(BASENAME)
+	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
+	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
 	@find refs -type f -name "*~" -delete
 	mkdir -p pdfs
 	perl -pi -e "s/.*?ModDate.*/\/ModDate (D:20130418152511-04'00')/" $(BASENAME).pdf

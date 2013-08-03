@@ -1,11 +1,14 @@
 \section{Methods}
 \label{section:p450/methods}
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
-\includegraphics[width=0.35\textwidth]{dot_files/idsite.png}
-\caption{An overview of the entire IDSite procedure.}
-\label{fig:idsite_overview}
+\includegraphics[width=0.55\textwidth]{dot_files/idsite.png}
+\caption{An overview of the entire IDSite procedure.
+The dotted lines represent abbreviated versions of the full procedure.
+Receiver operating characteristic graphs for the full version, and these abbreviated versions, are presented in \ref{figure:idsite_roc_sampling}.
+Series colors on ROC graphs correspond to arrow colors here.}
+\label{figure:idsite_overview}
 \end{figure}
 
 Prediction of sites of metabolism is a three stage procedure:
@@ -21,19 +24,53 @@ Prediction of sites of metabolism is a three stage procedure:
 
 \subsection{Monte Carlo Minimization Refinement}
 \label{subsection:p450/mcm}
-Since the emphasis in this method is on efficient sampling of low energy conformations, as only these conformations are passed on to the next stage of prediction, Monte Carlo Minimization which provides more efficient sampling of low energy conformations was used instead of a more traditional Monte Carlo simulation (see \ref{subsection:monte_carlo}).
-The Monte Carlo Minimization sampling used by IDSite for refinement incorportates three different types of steps: side chain motions, rigid body transformations, and hybrid Monte Carlo simulations.
-For each Monte Carlo step one of these three types of motions is selected according to the weighted probabilities 14:7:1 (side-chain:rigid-body:hybrid-Monte-Carlo), probabilities which were chosen based on the likelihood of acceptance, the amount structural change, and the amount of time necessary for each type of move.
+Since the emphasis in IDSite sampling is efficient sampling of low energy conformations, as only the lowest energy conformations are passed on to the next stage of prediction, Monte Carlo Minimization, which provides more efficient sampling of low energy conformations, was used instead of a more traditional Monte Carlo simulation (see \ref{subsection:monte_carlo}).
+The Monte Carlo Minimization sampling used by IDSite for refinement incorporates three different types of steps: side chain motions, rigid body transformations, and hybrid Monte Carlo simulations.
+For each Monte Carlo step one of three types of motions is selected according to the weighted probabilities, which are different for the two different PLOP sampling stages, see Table \ref{table:mmc_params}.
+\input{tables/mmc_params}
 Using the chosen method a new conformation is proposed and minimized before the Metropolis acceptance criteria (equation \ref{equation:metropolis_acceptance}) is applied to the proposed state, using a temperature of 300 K.
 All atoms of all residues with any atom within 5 Angstroms of the ligand in the starting crystal structure were allowed to move during Monte Carlo moves, including the ligand itself.
 
+During the minimization Monte Carlo sampling stages of the IDSite procedure artificial constraints are used to guide the sampling towards a transition state like conformation.
+These constraints create artificial bond or angle potentials which affect the minimization, but are not used in the Monte Carlo acceptance test.
+For each of the minimization Monte Carlo sampling stages of the IDSite procedure two different sets of constraints are applied depending on the hybridization of the carbon atom at the possible site of metabolism, for a total of four possible different sets of constraints.
+In the first minimization Monte Carlo stage two constraints are applied:
+\begin{enumerate}
+\item The sulfur-iron-carbon angle is constrained to 145 degrees, with 20 degrees of ``slack'', or a flat bottom to the potential well.
+The spring constant of this constraint is about 25 kcal/mol/degree\superscript{2}, or {\textapprox}40\% the strength of a carbon-carbon-carbon angle.
+\item A ``dummy'' oxygen atom is placed above the plane of the heme group, in the same position that it would occupy if an oxygen molecule was bound to the heme.  
+This dummy atom has no interactions with other atoms, but is used as the anchor of a distance constraint for the carbon at the site of metabolism.  
+The carbon-dummy oxygen distance is constrained to 2.5 angstroms, with 0.5 angstroms of slack.
+The spring constant of this constraint is 100 kcal/mol/angstrom\superscript{2}, approximately 1/3rd the strength of a carbon-carbon bond.
+\end{enumerate}
+\input{p450/first_sp2_constraint} % figure
+\input{p450/first_sp3_constraint} % figure
+
+In the second minimization Monte Carlo sampling stage the constraints are different for sp\superscript{2} and sp\superscript{3} carbons.
+For sp\superscript{3} sites:
+\begin{enumerate}
+\item the hydrogen bound to the carbon at the possible site of metabolism is constrained to a distance of 1.25 angstroms from the dummy oxygen atom, with 0.1 angstroms slack and a spring constant of 20 kcal/mol/angstrom\superscript{2},
+\item the carbon in question is constrained to 2.2 angstroms from the heme iron, with 0.8 angstroms slack and a spring constant of 10 kcal/mol/angstrom\superscript{2},
+\item the heme iron-hydrogen-carbon angle is constrained to 138 degrees, with 5 degrees slack and a spring constant of 20 kcal/mol/degree\superscript{2}.
+\end{enumerate}
+For sp\superscript{2} sites:
+\begin{enumerate}
+\item the carbon at the possible site of metabolism is constrained to 1.8 angstroms from the dummy oxygen atom, with 0.1 angstroms slack and a spring constant of 20 kcal/mol/angstrom\superscript{2},
+\item both adjacent carbons are also constrained to the dummy oxygen atom, at a distance of 2.5 angstroms, with 0.1 angstroms slack and a spring constant of 20 kcal/mol/angstrom\superscript{2}, and
+\item finally the hydrogen bonded to the carbon at the possible site of metabolism is constrained to the oxygen atom at a distance of 2.0 angstroms, with 0.1 angstroms slack and a 20 kcal/mol/angstrom\superscript{2} spring constant.
+\end{enumerate}
+\input{p450/second_sp2_constraint} % figure
+\input{p450/second_sp3_constraint} % figure
+
+A separate set of constraints apply to the region containing the conserved salt bridge.
+
 \begin{enumerate}
 \item \input{p450/side_chain}
-\begin{figure}[h]
+\begin{figure}[hp]
 \centering
 \includegraphics[width=0.7\textwidth]{dot_files/mcm_flowchart.png}
 \caption{An outline of the Monte Carlo minimization refinement stages in PLOP.}
-\label{fig:mcm_flowchart}
+\label{figure:mcm_flowchart}
 \end{figure}
 \item \input{p450/rigid_body}
 \item \input{p450/hmc}
