@@ -36,11 +36,11 @@ These constraints create artificial bond or angle potentials which affect the mi
 For each of the minimization Monte Carlo sampling stages of the IDSite procedure two different sets of constraints are applied depending on the hybridization of the carbon atom at the possible site of metabolism, for a total of four possible different sets of constraints.
 In the first minimization Monte Carlo stage two constraints are applied:
 \begin{enumerate}
-\item The sulfur-iron-carbon angle is constrained to 145 degrees, with 20 degrees of ``slack'', or a flat bottom to the potential well.
+\item The sulfur-iron-carbon angle is constrained to 145 degrees, with 20 degrees of ``slack'', or a flat bottom to the potential well (denoted as 145\plusorminus20 degrees).
 The spring constant of this constraint is about 25 kcal/mol/degree\superscript{2}, or {\textapprox}40\% the strength of a carbon-carbon-carbon angle.
 \item A ``dummy'' oxygen atom is placed above the plane of the heme group, in the same position that it would occupy if an oxygen molecule was bound to the heme.  
 This dummy atom has no interactions with other atoms, but is used as the anchor of a distance constraint for the carbon at the site of metabolism.  
-The carbon-dummy oxygen distance is constrained to 2.5 angstroms, with 0.5 angstroms of slack.
+The carbon-dummy oxygen distance is constrained to 2.5\plusorminus0.5 angstroms.
 The spring constant of this constraint is 100 kcal/mol/angstrom\superscript{2}, approximately 1/3rd the strength of a carbon-carbon bond.
 \end{enumerate}
 \input{p450/first_sp2_constraint} % figure
@@ -49,20 +49,28 @@ The spring constant of this constraint is 100 kcal/mol/angstrom\superscript{2}, 
 In the second minimization Monte Carlo sampling stage the constraints are different for sp\superscript{2} and sp\superscript{3} carbons.
 For sp\superscript{3} sites:
 \begin{enumerate}
-\item the hydrogen bound to the carbon at the possible site of metabolism is constrained to a distance of 1.25 angstroms from the dummy oxygen atom, with 0.1 angstroms slack and a spring constant of 20 kcal/mol/angstrom\superscript{2},
-\item the carbon in question is constrained to 2.2 angstroms from the heme iron, with 0.8 angstroms slack and a spring constant of 10 kcal/mol/angstrom\superscript{2},
-\item the heme iron-hydrogen-carbon angle is constrained to 138 degrees, with 5 degrees slack and a spring constant of 20 kcal/mol/degree\superscript{2}.
+\item the hydrogen bound to the carbon at the possible site of metabolism is constrained to a distance of 1.25\plusorminus0.1 angstroms and a spring constant of 20 kcal/mol/angstrom\superscript{2},
+\item the carbon in question is constrained to 2.2\plusorminus0.8 angstroms and a spring constant of 10 kcal/mol/angstrom\superscript{2},
+\item the heme iron-hydrogen-carbon angle is constrained to 138\plusorminus5 degrees and a spring constant of 20 kcal/mol/degree\superscript{2}.
 \end{enumerate}
 For sp\superscript{2} sites:
 \begin{enumerate}
-\item the carbon at the possible site of metabolism is constrained to 1.8 angstroms from the dummy oxygen atom, with 0.1 angstroms slack and a spring constant of 20 kcal/mol/angstrom\superscript{2},
-\item both adjacent carbons are also constrained to the dummy oxygen atom, at a distance of 2.5 angstroms, with 0.1 angstroms slack and a spring constant of 20 kcal/mol/angstrom\superscript{2}, and
-\item finally the hydrogen bonded to the carbon at the possible site of metabolism is constrained to the oxygen atom at a distance of 2.0 angstroms, with 0.1 angstroms slack and a 20 kcal/mol/angstrom\superscript{2} spring constant.
+\item the carbon at the possible site of metabolism is constrained to 1.8\plusorminus0.1 angstroms and a spring constant of 20 kcal/mol/angstrom\superscript{2},
+\item both adjacent carbons are also constrained to the dummy oxygen atom, at a distance of 2.5\plusorminus0.1 angstroms and a spring constant of 20 kcal/mol/angstrom\superscript{2}, and
+\item finally the hydrogen bonded to the carbon at the possible site of metabolism is constrained to the oxygen atom at a distance of 2.0\plusorminus0.1 angstroms and a 20 kcal/mol/angstrom\superscript{2} spring constant.
 \end{enumerate}
 \input{p450/second_sp2_constraint} % figure
 \input{p450/second_sp3_constraint} % figure
 
-A separate set of constraints apply to the region containing the conserved salt bridge.
+As CYP2D6 forms a conserved salt bridge with the substrate with either glutamate 216 and aspartate 301 \cite{paine2003residues}, this was also incorporated as a constraint during the sampling stages.
+In the first sampling stage this salt bridge is enforced by introducing a harmonic constraint of 3.0\plusorminus0.3 angstroms, between the basic nitrogen of the substrate and each of the side chain oxygen atoms in GLU216, ASP301 and SER304.
+The spring constants of this constraints are 15.0, 8.0 and 4.0 kcal/mol/angstrom\superscript{2} for GLU216, ASP301 and SER304 respectively.
+Additionally, an angle constraint is applied to each of the N-H-O angles, this is set to 150.0\plusorminus30.0 degrees and has a spring constant of 5.0 kcal/mol/degree\superscript{2}.
+\input{p450/salt_bridge_first} % figure
+In the second sampling stage four separate trajectories are calculated for each of the four carboxalate oxygens of GLU216, ASP301.
+In each trajectory a constraint of 1.9\plusorminus0.1 angstroms is applied between the hydrogen attached to the basic substrate nitrogen and one of the four carboxalate oxygens.
+Additionally, the angle of the hydrogen bond is constrained to 168\plusorminus12 degrees, with a spring constant of 5.0 kcal/mol/degree\superscript{2}.
+\input{p450/salt_bridge_second} % figure
 
 \begin{enumerate}
 \item \input{p450/side_chain}
