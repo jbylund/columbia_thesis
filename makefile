@@ -8,7 +8,7 @@ BIBCOMMAND := bibtex
 TEXFILES   := $(shell find . -iname "*.tex")
 BIBFILES   := $(shell find refs -iname "*.bib")
 UTEXFILES  := $(shell find unsorted -name "*.tex" | \grep -v main.tex )
-FLOWCHARTS := dot_files/mcm_flowchart.png dot_files/idsite.png
+FLOWCHARTS := dot_files/mcm_flowchart.png dot_files/idsite.png dot_files/regression_testing.png
 
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
@@ -37,7 +37,7 @@ clean :
 
 # rule to make each flowchart
 dot_files/%.png: dot_files/%.dot
-	dot -Tpng -o $@ $<
+	dot -Gnewrank -Tpng -o $@ $<
 
 unsorted/main.tex : $(UTEXFILES)
 	-rm unsorted/main.tex
