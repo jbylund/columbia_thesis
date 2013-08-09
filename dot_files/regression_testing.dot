@@ -1,0 +1,36 @@
+digraph G {
+    graph [fontsize=20,fontname=DejaVuSerif]
+    node [shape=box,fontsize=20,fontname=DejaVuSerif] // DejaVuSans also works
+    edge [fontsize=20,fontname=DejaVuSerif,penwidth=3]
+
+    subgraph cluster_2 {
+        labelloc=top;
+        labeljust=left;
+		label = "Regression Testing";
+        style=filled;
+        color=lightgrey;
+        checkout[label="Check Out Changes", style="filled", fillcolor=white]
+        build[label="Build Executable", style="filled", fillcolor=white]
+        exp1[label="Experiment 1", style="filled", fillcolor=white]
+        exp2[label="Experiment 2", style="filled", fillcolor=white]
+        exp3[label="Experiment N", style="filled", fillcolor=white]
+        compare[label="Compare Results", style="filled", fillcolor=white]
+        checkout -> build
+        build -> exp1
+        build -> exp2
+        build -> exp3
+        exp1 -> compare
+        exp2 -> compare
+        exp3 -> compare
+    }
+
+    start[label="Code Change", style="filled", fillcolor=white]
+    build_fail[label="Report Build Failure", style="filled", fillcolor=white]
+    pass[label="Increment Revision\nNumber", style="filled", fillcolor=white]
+    fail[label="Report Test Failure", style="filled", fillcolor=white]
+    build -> build_fail [label="Build Fails"]
+    start -> checkout
+    compare -> pass [label="All Tests\nPass"]
+    compare -> fail [label="Any Test\nFails"]
+    {rank=same build build_fail}
+}
