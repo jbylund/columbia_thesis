@@ -1,3 +1,18 @@
 \section{Knowledge Based Backbone Dihedral Penalty}
 \label{section:unsorted/rfs}
-% TODO
+For a number of challenging cases, we experimented with the use of a new addition to our energy model that penalizes loop conformations that are constructed with seldom-observed dipeptide dihedrals.
+The dipeptide rotamer frequency-based scoring term employed a greatly expanded dipeptide rotamer library (garnered from {\textapprox}7500 high-quality PDB structures) that incorporated the frequency of each rotamer in this subset of the PDB.
+This information was used to penalize loop dipeptides whose combination of $(\phi, \psi)$ angles fall in an extremely unpopulated region of the five-dimensional dipeptide analogue to the well-known Ramachandran plot.
+The set of five angles for each dipeptide in the predicted loop, using a ``sliding window'' scheme, is compared against the new library to find the nearest dipeptide rotamer.
+Two criteria determine whether a penalty will be applied to the dipeptide: 
+\begin{enumerate}
+\item if the Euclidean distance between the loop dipeptide and the nearest rotamer in the library is greater than a certain, empirically determined cutoff
+\item if the total population of rotamers within a set radius of the loop dipeptide is below a certain threshold The form of this penalty term, its implementation, and its successes in improving loop prediction in crystal structure and homology model environments will be discussed in detail in an upcoming publication.
+\end{enumerate}
+This term was used in two situations:
+\begin{enumerate}
+\item for all of the predictions in inexact environments this is a substantially more challenging sampling and scoring problem, and the information contained in the dipeptide score can be expected to improve results systematically,
+\item for a small subset of the predictions in the native environment where difficulties in the standard prediction approach were encountered.
+\end{enumerate}
+To date, we have not found any cases where this term worsens results.
+However, more extensive tests are underway and will be presented in a subsequent publication.
