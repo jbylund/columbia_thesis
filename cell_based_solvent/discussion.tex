@@ -13,9 +13,9 @@ The improvement in retrieval using this structure dominates the cost of maintain
 Bentley and Friedman also present a through review of the performance characteristics of a number of other geometric hashing techniques, though they compare the algorithms in a data agnostic means.
 Taking advantage of the characteristics of physical data, in this case atomic coordinates, has some effect of the relative advantages and disadvantages of specific hashing techniques. 
 Specifically, the maximum number of atoms per cell is limited by physical constraints of atomic interactions.
-% other hashing methods - octree.  why yours is better
+% other hashing methods - octree. why yours is better
 An octree is a similar, though hierarchical, hash structure used in computer graphics for fast location based retrieval.
-However, because the criteria for ``collision'' in this case is a fixed distance cutoff, and the data is roughly uniformly distributed it is efficient to used a fixed cell size\cite{turk1989interactive}.
+However, because the criteria for ``collision'' in this case is a fixed distance cutoff, and the data is roughly uniformly distributed it is efficient to used a fixed cell size \cite{turk1989interactive}.
 
 % Can be implemented anywhere there is a pair interaction term
 Though the implicit solvent term was initially targeted, because it dominates the time spent in energy calculations, it is possible to apply this method to any pair-pair interaction.
@@ -41,9 +41,9 @@ Because the size of protein systems are limited, at some level, by physical limi
 Therefore, although the new method reduces the time complexity of implicit solvent calculations, the maximum expected speedup is limited to about a factor of three in large systems.
 The actual speedup depends on both the system size, and the amount of time that a given experiment spends evaluating the solvent contribution.
 The speedup observed in side chain prediction experiments was much less, around 20\%, though it is possible that applying a similar method to terms of the gradient during minimization would increase that amount.
-Nonetheless, even a 20\%  speedup represents a significant improvement, especially as structure prediction methods continue to depend on parallel prediction and reprediction of the same region as a method of structure refinement\cite{goldfeld2013loop}.
+Nonetheless, even a 20\% speedup represents a significant improvement, especially as structure prediction methods continue to depend on parallel prediction and reprediction of the same region as a method of structure refinement \cite{goldfeld2013loop}.
 % could be future work
 Although this algorithm improves on the theoretical time complexity of the S-GB implicit solvent model, parameterization such as the number, and size of cells in the grid structure could have a significant effect on run time.
 Some effort was made towards choosing reasonable parameters, but they are likely not optimal.
-Hardware that is optimized for this sort of spatial indexing and collision detection, or proximity detection, exists in modern video cards, and along with general purpose programming for this sort of hardware it should be possible to further parallelize computation of implicit solvation effects for even greater performance improvements\cite{harris2008cuda}.
+Hardware that is optimized for this sort of spatial indexing and collision detection, or proximity detection, exists in modern video cards, and along with general purpose programming for this sort of hardware it should be possible to further parallelize computation of implicit solvation effects for even greater performance improvements \cite{harris2008cuda}.
 
