@@ -1,0 +1,3 @@
+[submodule "cell_based_solvent"]
+	path = cell_based_solvent
+	url = git@github.com:jbylund/cell_solvent_paper.git
