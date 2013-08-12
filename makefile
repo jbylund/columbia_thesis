@@ -13,7 +13,7 @@ FLOWCHARTS := dot_files/mcm_flowchart.png dot_files/idsite.png dot_files/regress
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)
 
-$(OUTPUTNAME) : $(TEXFILES) $(FLOWCHARTS) unsorted/main.tex makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls refs.bib cell_based_solvent/paper.tex
+$(OUTPUTNAME) : $(TEXFILES) $(FLOWCHARTS) unsorted/main.tex makefile /usr/share/texlive/texmf-dist/tex/latex/base/article.cls refs.bib
 	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
 	$(BIBCOMMAND) $(BASENAME)
 	$(TEXCOMMAND) $(TEXOPTS) -jobname $(BASENAME) $(BASENAME).tex
@@ -27,11 +27,6 @@ $(OUTPUTNAME) : $(TEXFILES) $(FLOWCHARTS) unsorted/main.tex makefile /usr/share/
 	mv $(BASENAME).pdf joseph_bylund_thesis.pdf
 	@/bin/rm -rf  -rf *.log *.aux *.bbl *.blg *.out *.toc *.lot *.lof
 	fdupes pdfs -q -d -N
-
-cell_based_solvent/paper.tex :
-	git submodule init
-	git submodule update
-	cd cell_based_solvent; checkout master
 
 refs.bib : $(BIBFILES)
 	/bin/cat refs/*.bib > refs.bib
