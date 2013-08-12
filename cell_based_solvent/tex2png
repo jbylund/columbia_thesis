@@ -1,0 +1,9 @@
+#!/bin/bash
+echo -e "\\documentclass[10pt]{article}\n\\\\usepackage{amsmath}\n\\\\begin{document}\\\\clearpage
+\\\\thispagestyle{empty}\\\\Large" > temp.tex
+cat $1 >> temp.tex
+echo "\end{document}" >> temp.tex
+perl -pi -e 's/equation/equation*/' temp.tex
+pdflatex temp
+convert -density 300 temp.pdf -trim +repage -background white -alpha remove -alpha off -quality 100 `basename $1 .tex`.png
+rm temp.{pdf,aux,log,tex}
