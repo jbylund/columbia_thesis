@@ -1,0 +1,8 @@
+In preparing the crystal structures for energy calculation and side chain prediction experiments, the first step was to add the crystal copies of the protein of interest.
+PLOP completes this step for all space groups according to the crystal symmetry identified in the PDB file.
+Before modeling a structure using an all atom force field, it is also necessary to add hydrogens and any missing heavy atoms.
+When possible, PLOP uses the positions of bonded heavy atoms to build missing atoms into the structure.
+However, adding hydrogens, especially for titratable residues, is a more complicated problem.
+To address this, PLOP uses the independent cluster decomposition algorithm (ICDA) to determine the protonation states of any titratable residues, as well as the positions of polar hydrogens \cite{li2007assignment}.
+Generally speaking, this proceeds by dividing titratable and polar residues into independent groups using a distance cutoff, and optimizing each group independently.
+Structures with unreasonable steric clashes with crystal neighbors were removed from the data set on the basis that such structures are physically unlikely.
