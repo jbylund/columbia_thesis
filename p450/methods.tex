@@ -72,14 +72,16 @@ In each trajectory a constraint of 1.9\plusorminus0.1 angstroms is applied betwe
 Additionally, the angle of the hydrogen bond is constrained to 168\plusorminus12 degrees, with a spring constant of 5.0 kcal/mol/degree\superscript{2}.
 \input{p450/salt_bridge_second} % figure
 
-\begin{enumerate}
-\item \input{p450/side_chain}
 \begin{figure}[hp]
 \centering
 \includegraphics[width=0.7\textwidth]{dot_files/mcm_flowchart.png}
 \caption{An outline of the Monte Carlo minimization refinement stages in PLOP.}
 \label{figure:mcm_flowchart}
 \end{figure}
+
+Three different methods of sampling, or moves, were implemented in order to sample different protein-ligand conformations.
+\begin{enumerate}
+\item \input{p450/side_chain}
 \item \input{p450/rigid_body}
 \item \input{p450/hmc}
 \end{enumerate}
