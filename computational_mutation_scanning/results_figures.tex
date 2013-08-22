@@ -1,4 +1,7 @@
 %1BRSa
+\input{tables/1brs_a.tex}
+\input{tables/1BRSa_rmsd.tex}
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth]{figures/1brs_barnase_barstar.png}
@@ -13,19 +16,24 @@ Experimental binding affinity taken from \protect\cite{thorn2001asedb}.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1brs_chain_a_resid_58.png}
-  \caption{The caption.}
-  \label{figure:computational_mutation_scanning/figname}
+  \caption{Crystal, colored by atom, and predicted, magenta, side chain conformations for barnase, asparagine 58 of 1BRS.
+The predicted and crystal conformations are almost identical, differing by only 0.121 angstroms, or less than the resolution of the crystal structure.}
+  \label{figure:computational_mutation_scanning/1brs_a_58}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1brs_chain_a_73.png}
-  \caption{The caption.}
+  \caption{Crystal, colored by element, and predicted, gray, side chain conformations of glutamic acid 73 of barnase, chain A of PDBid 1BRS.
+The two conformations differ by 0.993 angstrom RMSD, which is generally considered a successful sidechain prediction, though towards the upper range of a successful prediction.}
   \label{figure:computational_mutation_scanning/figname}
 \end{figure}
 \clearpage
 
 % 1BRSd
+\input{tables/1brs_d.tex}
+\input{tables/1BRSd_rmsd.tex}
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth]{figures/1brs_barstar_barnase.png}
@@ -40,26 +48,33 @@ Experimental binding affinity taken from \protect\cite{thorn2001asedb}.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1brs_all.png}
-  \caption{The caption.}
+  \caption{Distribution of 6 mutated residues, shown in magenta, on the interface surface of barstar, 1BRS chain D.
+Five of the six residues are less than 0.4 angstroms RMSD to the crystal structure.
+The only exception is, glutamic acid 80, shown in the upper left of this figure, and also \protect\cite{figure:computational_mutation_scanning/1brs_d_80}.}
   \label{figure:computational_mutation_scanning/figname}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1brs_chain_d_35.png}
-  \caption{The caption.}
+  \caption{Crystal, colored by atom, and predicted, magenta, side chain conformations for barstar, chain D of PDBid 1BRS.
+The distance to the crystal structure is only 0.098 angstroms, or nearly identical.}
   \label{figure:computational_mutation_scanning/figname}
 \end{figure}
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1brs_chain_d_80.png}
-  \caption{The caption.}
-  \label{figure:computational_mutation_scanning/figname}
+  \caption{Glutamic acid 80 is the only residue on chain D, barstar, of the barnase-barstar complex which was not predicted within 0.4 angstroms of the crystal coordinates during the mutation scanning experiments.
+The difference between these two conformations is 1.804 angstroms, which while sometimes considered a ``successful'' prediction, is not sufficiently close to generate the same interactions, making it difficult to accurately predict binding affinities.}
+  \label{figure:computational_mutation_scanning/1brs_d_80}
 \end{figure}
 \clearpage
 
 % 1DVF
+\input{tables/1dvf.tex}
+\input{tables/1DVF_rmsd.tex}
+
 \begin{figure}[h]
     \centering
   \includegraphics[width=0.65\textwidth]{figures/1dvf.png}
@@ -87,6 +102,9 @@ Experimental binding affinity taken from \protect\cite{thorn2001asedb}.
 \clearpage
 
 % 1FCC
+\input{tables/1fcc.tex}
+\input{tables/1FCC_rmsd.tex}
+
 \begin{figure}[h]
     \centering
   \includegraphics[width=0.65\textwidth]{figures/1fcc.png}
@@ -101,20 +119,6 @@ Experimental binding affinity taken from \protect\cite{thorn2001asedb}.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1fcc_27_31_43.png}
-  \caption{The caption.}
-  \label{figure:computational_mutation_scanning/figname}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/in_pocket_out_of_plane.png}
-  \caption{The caption.}
-  \label{figure:computational_mutation_scanning/figname}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/in_pocket_in_plane.png}
   \caption{The caption.}
   \label{figure:computational_mutation_scanning/figname}
 \end{figure}
@@ -136,8 +140,30 @@ Experimental binding affinity taken from \protect\cite{thorn2001asedb}.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1fcc_43.png}
-  \caption{Native side chain conformation for .}
-  \label{figure:computational_mutation_scanning/figname}
+  \caption{Native, colored by element, and predicted, magenta side chain conformation for tryptophan 43 of 1FCC.
+The root mean square distance between the two side chains is 0.371 angstroms.}
+  \label{figure:computational_mutation_scanning/1fcc_43}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/mutation_side_chain_images/in_pocket_out_of_plane.png}
+        \caption{}
+        \label{figure:mutation_side_chain_images/in_pocket_out_of_plane}
+    \end{subfigure}
+    \hspace{0.1\textwidth}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/mutation_side_chain_images/in_pocket_in_plane.png}
+        \caption{}
+        \label{figure:mutation_side_chain_images/in_pocket_in_plane.png}
+    \end{subfigure}
+    \caption{The pocket of tryptophan 43 of 1FCC.  
+Because of conformation of the neighboring protein structure this residue has very little conformational freedom, and any prediction which successfully locates the sidechain in the pocket will be reasonably close to the native state.
+The conformation predicted in these experiments was very similar, 0.371 angstroms, and is depicted superimposed with the native in figure \protect\ref{1fcc_43}.}
+    \label{figure:1fcc_43_pocket}
 \end{figure}
 
 
