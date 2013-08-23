@@ -18,12 +18,26 @@ Binding affinity studies, especially alanine scanning experiments represent a we
 
 \subsection{Energetic Correlation with Experimental Data}
 \label{subsection:energetic_correlation_with_experimental_data}
-We found that, despite predicting side chain conformations approximately correctly, there was generally no correlation between our computed \ddg\ and the experimental \ddg\ from the alanine scanning database, as shown in figures \ref{figure:computational_mutation_scanning/1BRSa_ddg}, \ref{figure:computational_mutation_scanning/1BRSd_ddg}, \ref{figure:computational_mutation_scanning/1DVF_ddg}, and \ref{figure:computational_mutation_scanning/1FCC_ddg}.
+We found that, despite predicting side chain conformations approximately correctly, there was generally no correlation between our computed \ddg\ and the experimental \ddg\ from the alanine scanning database.
+The relationship between experimental and computationally predicted \ddg\ can be seen in figures \ref{figure:computational_mutation_scanning/1BRSa_ddg}, \ref{figure:computational_mutation_scanning/1BRSd_ddg}, \ref{figure:computational_mutation_scanning/1DVF_ddg}, and \ref{figure:computational_mutation_scanning/1FCC_ddg}.
+It is somewhat surprising that side chain predictions are as accurate as they are without any real correlation in binding affinity.
+A common assumption is that accuracy of predicted conformations implies accuracy of the energy model.
+However, this depends on very extensive sampling such as in full molecular dynamics simulations.
+It is possible for biased sampling, such as is performed here with the goal of both increasing accuracy and speed of exploring conformation space, to mask shortcomings in an energy model.
 
 Experiments by other groups have demonstrated some success in correlating computational \ddg\ with experimental \ddg\ \cite{kortemme2004computational}.
 Some of these experiments have made use of energy models which are largely similar to the one implemented in the PLOP program.
 Despite this, we did not find a significant correlation between experimental data and predictions with respect to \ddg.
 It is possible that the interactions at a protein-protein interface are somehow different than the intramolecular interactions which have constituted the majority of the training sets used to develop the PLOP energy model.
+
+Additionally, some hot spot residues are tightly constrained in conformation by neighboring protein structure, making prediction more similar to placing a jigsaw piece than searching for a low energy conformation among many possibilities.
+This sort of situation was especially prevalent in tyrosine 43 of 1FCC.
+In this case there were only two conformations from the side chain rotamer library which were not eliminated in the initial screening process.
+The conformation of tyrosine 43 in the protein context is shown in \ref{figure:1fcc_43_pocket}.
+
+Finally, because the rotamer library used biases sampling towards experimentally observed side chain conformations it is possible that the energy model is capable of correctly ranking conformations present in the library by energy, but for areas of conformational space outside the rotamer library it performs less well.
+In order to test this hypothesis it would be necessary to use a non-rotamer based approach in a similar set of experiments.
+Conveniently, the side chain sampling method used in the minimization Monte Carlo experiments described in chapter \ref{chapter:p450} can be used to perform such an experiment.
 
 \subsection{Future Directions}
 Because the sampling introduced in these experiments is very modular in nature it would be possible to modify the sampling procedure used or even specify the sampling method to be used in the input file.
