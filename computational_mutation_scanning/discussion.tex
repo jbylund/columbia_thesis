@@ -40,9 +40,25 @@ In order to test this hypothesis it would be necessary to use a non-rotamer base
 Conveniently, the side chain sampling method used in the minimization Monte Carlo experiments described in chapter \ref{chapter:p450} can be used to perform such an experiment.
 
 \subsection{Future Directions}
-Because the sampling introduced in these experiments is very modular in nature it would be possible to modify the sampling procedure used or even specify the sampling method to be used in the input file.
+% where is the error coming from sampling/energy
+Current data indicates that the sampling method introduced here is sufficiently exhaustive to identify native like conformations.
+Thus, it would be logical for future work to focus initially on exploring and improving the energy model.
+As mentioned above, one possible means of doing this would be to implement an energy model used in similar experiments, such as CHARMM, used by the Baker lab in their hot spot identification experiments, in which they were able to successfully predict hot-spot residues, and those which did not contribute significantly to the binding affinity \cite{kortemme2004computational,lazaridis1999effective}.
+This would allow for testing of the sampling method independently of the energy model used, to support or reveal potential shortcomings in the sampling method.
+
+% energy model accuracy
 Testing the performance of the energy model on protein-protein surfaces and classifying the errors would be a necessary step in improving the correlation between predicted and experimental \ddg.
 It would also be very enlightening to be able to compare the performance of the PLOP sampling methods using a known energy model implemented in a different molecular mechanics toolkit.
+
+% sampling modular allows for flexibility
+The sampling introduced in these experiments is very modular in nature.
+Because of this, it would be possible to modify the sampling procedure used in the code, or even to specify the sampling method in the input file.
+This flexibility will hopefully allow testing of many different sampling methods, in order to find a method which provides a good balance of time and coverage of conformational space.
+
+Because the method implemented here is capable of not only alanine scanning, but also generalized mutation scanning, it is possible to computationally screen interactions between a large number of variants of similar proteins.
+If the correlation between predicted and experimental binding affinities can be further improved there would be a number of extremely valuable applications for such a method.
+First, it would be possible to screen variants of an antibody in order to help accelerate affinity maturation.
+Second, it might also be possible to test the efficacy of a number of drugs targeting highly variable proteins, such as HIV protease \cite{watkins2003selection}, by screening the drug against a number of possible mutations.
 
 %\cite{clark2006affinity}
 %\cite{hao2010computational}
