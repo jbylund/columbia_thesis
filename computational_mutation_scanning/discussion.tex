@@ -1,1 +1,38 @@
-% TODO
+There are two necessary subproblems in accurately predicting the effect of mutations on local protein structure:
+\begin{enumerate}
+\item prediction of side chain conformations, and
+\item accurately describing the energetics of the interactions.
+\end{enumerate}
+In the work presented here we have shown that our current methods are able to accurately predict side chain conformations of mutated residues, discussed in \ref{subsection:side_chain_prediction_accuracy}.
+However, it seems that despite being able to differentiate between native and non-native side chain conformations, we are unable to correlate experimental changes in binding energy with computational predictions.
+Possible reasons for this discrepancy are addressed in \ref{subsection:energetic_correlation_with_experimental_data}.
+
+\subsection{Side Chain Prediction Accuracy}
+\label{subsection:side_chain_prediction_accuracy}
+Our results indicate that we are able to successfully predict side chain conformations on protein interfaces in the majority of cases examined.
+Specifically, 29 of 32 side chains predicted over four chains in three independent structures are within 1.5 angstroms of the native conformation, with a significant number of side chains predicted closer to the native crystal conformation than the resolution of the crystal structure.
+This indicates that both the sampling performed here and the energy model are sufficiently extensive and accurate to reproduce the native conformation, which has been used as a standard metric of success in many previous studies, e.g. loop predictions \cite{jacobson2004hierarchical,rapp1999prediction,zhu2006long,sellers2008toward} and side chain predictions \cite{jacobson2002force,jacobson2002role,zhu2007improved}.
+One of the reasons that RMSD is so popular as a performance metric is the difficulty of obtaining experimental data which can be directly compared to experimental predictions.
+Binding affinity studies, especially alanine scanning experiments represent a wealth of data that might be used in training more accurate next generation molecular mechanics energy functions.
+
+
+\subsection{Energetic Correlation with Experimental Data}
+\label{subsection:energetic_correlation_with_experimental_data}
+We found that, despite predicting side chain conformations approximately correctly, there was generally no correlation between our computed \ddg\ and the experimental \ddg\ from the alanine scanning database, as shown in figures \ref{figure:computational_mutation_scanning/1BRSa_ddg}, \ref{figure:computational_mutation_scanning/1BRSd_ddg}, \ref{figure:computational_mutation_scanning/1DVF_ddg}, and \ref{figure:computational_mutation_scanning/1FCC_ddg}.
+
+Experiments by other groups have demonstrated some success in correlating computational \ddg\ with experimental \ddg\ \cite{kortemme2004computational}.
+Some of these experiments have made use of energy models which are largely similar to the one implemented in the PLOP program.
+Despite this, we did not find a significant correlation between experimental data and predictions with respect to \ddg.
+It is possible that the interactions at a protein-protein interface are somehow different than the intramolecular interactions which have constituted the majority of the training sets used to develop the PLOP energy model.
+
+\subsection{Future Directions}
+Because the sampling introduced in these experiments is very modular in nature it would be possible to modify the sampling procedure used or even specify the sampling method to be used in the input file.
+Testing the performance of the energy model on protein-protein surfaces and classifying the errors would be a necessary step in improving the correlation between predicted and experimental \ddg.
+It would also be very enlightening to be able to compare the performance of the PLOP sampling methods using a known energy model implemented in a different molecular mechanics toolkit.
+
+%\cite{clark2006affinity}
+%\cite{hao2010computational}
+%\cite{kortemme2004computational}
+%\cite{lippow2007computational}
+%\cite{massova1999computational}
+%\cite{kortemme2002simple}
