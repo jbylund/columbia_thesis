@@ -2,6 +2,7 @@ Another robotics algorithm which has been successfully applied to protein loop c
 As the length of a flexible loop grows the number of degrees of freedom increases and the possible solution space grows exponentially. 
 Cyclic coordinate descent seeks to close the loop by adjusting the degrees of freedom, in this case the $\phi$ and $\psi$ dihedral angles, sequentially and possibly iterating over each degree of freedom multiple times until the loop is closed.
 This method is able to solve for conformations very quickly, and the likelyhood of closing a loop {\it increases} as the number of degrees of freedom of the system increases.
+
 In cyclic coordinate descent the $\phi$ and $\psi$ angles of each loop backbone residue are first randomized.
 Then a loop dihedral is chosen at random, and varied to move the last atom of the loop as near as possible to its desired position.
 A new dihedral is chosen and optimized until the loop is closed.
