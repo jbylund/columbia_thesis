@@ -73,27 +73,31 @@ As of 2002, 47\% of current drug targets are enzymes, followed by 30\% being GPC
 
 % drug-likeness
 After identifying appropriate proteins as drug targets, focus is then turned to assessing the drug-likeness of candidate small molecules.
-A number of key characteristics are generally true of drug-like small molecules:
+A number of key characteristics are generally true of drug-like small molecules.
+These characteristics are often referred to as the ``rule of five'' \cite{lipinski2004lead,hopkins2002druggable}:
 \begin{enumerate}
 \item Five or fewer hydrogen bond donors,
 \item 500 Da or less total molecular mass,
 \item high liphophilicity,
 \item number of nitrogen and oxygen atoms is not greater than 10 \cite{rule_of_five}.
 \end{enumerate}
-Therefore, when screening small molecules libraries for hits, these criteria are highly prioritized.
+Therefore, when screening small molecules libraries for hits, these criteria can help focus efforts on small molecules which are likely to have good absorption, distribution, metabolism, and excretion, characteristics, which are essential in effective drugs.
+These criteria are discussed further in \nameref{subsubsection:lead_optimization} (\ref{subsubsection:lead_optimization}).
 
-% example of successful application of these ideas
-There is an advantage to flexible substrates, which is that they can flex in order to create better contacts with the protein structure increasing binding affinity.
-This is especially important as the location of heavy atoms in the target protein is frequently only known to an accuracy of ~0.4 angstroms.
-Further, specific knowledge of the binding geometry between the initial lead compound and the target makes it possible to computationally screen possible chemical group substituents, to maximize binding affinity, increase solubility or bioavailability.
-One of the earliest examples of the successful application of structure based drug design is the carbonic anhydrase inhibitor dorzolamide, in which most of these ideas were applied to find a drug with very high binding affinity \cite{greer1994application}.
-Through understanding the protein-ligand conformation and specific contacts they were able to modify a known substrate
+% flexibility
+In addition to the drug-likeness of small molecules, another desirable criteria is some degree of flexibility of the lead compound.
+This is especially important as the location of heavy atoms in the target protein is frequently only known to an accuracy of \textapprox0.4 angstroms and flexible substrates can alter their conformations in order to create better contacts with the protein structure, thereby increasing binding affinity.
+% early example
+One of the earliest examples of the successful application of structure based drug design is the carbonic anhydrase inhibitor dorzolamide, in which many of these ideas were applied to find a drug with very high binding affinity \cite{greer1994application}.
+Through understanding the protein-ligand conformation and specific contacts, Greer {\it et. al.} were able to modify a known substrate into an effective drug. 
 
+%Further, specific knowledge of the binding geometry between the initial lead compound and the target makes it possible to computationally screen possible chemical group substituents, to maximize binding affinity.s
 
 % limitations
-Despite advantages in speed and cost due to limitations in accuracy computational screening has struggled to produce the same results as empirical screening.
+Despite advantages in speed and cost, computational screening has struggled to produce the same results as empirical screening, due to limitations in accuracy.
 However, more recently virtual screening has succeeded in producing hit rates greater than those from empirical screening techniques.
-Virtual screening has been used to identified leads which were later developed into the human immunodeficiency virus (HIV) protease inhibitor Viracept, and the anti-influenza drug Relenza.
+Virtual screening has been used to identified leads which were later developed into the human immunodeficiency virus (HIV) protease inhibitor Viracept (\ref{figure:nelfinavir}) \cite{kaldor1997viracept}, and the anti-influenza drug Relenza \cite{von1993rational}.
+
 \begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
@@ -109,24 +113,27 @@ Virtual screening has been used to identified leads which were later developed i
         \label{fig:nelfinavir_docked}
         \caption{}
     \end{subfigure}
-    \label{fig:nelfinavir}
-    \caption{
-The HIV protease inhibitor, nelfinavir, marketed under the name Viracept was originally identified using a computational docking screen.
-It has a very high binding affinity for its target protein, 2 nM.
-Here it is shown crystallized with multidrug variant (ACT) (V82T/I84V) of HIV-1 protease, PDBID 3EL5 \protect\cite{king2012extreme}.
-(b) generated with Visual Molecular Dynamics \protect\cite{humphrey1996vmd} and \protect\cite{povray}.
-}
+    \label{figure:nelfinavir}
+    \caption{(a,b) The HIV protease inhibitor, nelfinavir, marketed under the name Viracept was originally identified using a computational docking screen.
+It has a very high binding affinity (2 nM) for HIV-1 protease, its target protein.
+(b) Here it is shown crystallized with multidrug variant (ACT) (V82T/I84V) of HIV-1 protease, PDBid 3EL5 \protect\cite{king2012extreme}.
+Generated with Visual Molecular Dynamics \protect\cite{humphrey1996vmd} and \protect\cite{povray}.}
 \end{figure}
-A number of challenges which limit the utility of docking programs have been identified
+
+A number of challenges limiting the utility of docking programs have been identified:
 \begin{enumerate}
-\item The number of possible small molecules is essentially unbounded, however only a very small fraction of these ligands are potentially drug compounds. Limiting sampling to this subspace is a challenging problem.
-\item The number of conformations of ligand molecules rises exponentially with the number of internal degrees of freedom of the ligand. Sampling the huge conformational space of the ligand becomes a computationally difficult problem on its own.
-\item The difficulty of accurately assessing or comparing the energy of different protein-ligand complexes or conformations\cite{shoichet2004virtual}.
+    \item The number of possible small molecules is essentially unbounded.
+    However, only a very small fraction of these ligands are potential drug compounds.
+    Limiting sampling to this subspace of small molecules is a challenging problem, but would significantly enhance accuracy and efficiency of virtual screening.
+    \item The number of conformations of ligand molecules rises exponentially with the number of internal degrees of freedom of the ligand.
+    Sampling the huge conformational space of the ligand becomes extremely computationally expensive.
+    \item Accurately assessing or comparing the energy of different protein-ligand complexes or conformations \cite{shoichet2004virtual}.
+    This is because molecular mechanics force fields must make approximations about the molecular forces.
 \end{enumerate}
 
 % similarity between hits and leads
 It has been found that introduced drugs are often very chemically similar the hit compounds from which they were derived \cite{proudfoot2002drugs}.
-So in order to increase the diversity of drugs and find drugs which are able to treat new diseases, or diseases which have evolved resistance to current drugs it may be necessary to either increase the size of the screened database or increase the possible diversity which might be increase through the hit-to-lead step.
+Therefore, in order to increase the diversity of drugs and find drugs that are able to treat new diseases, or diseases that have evolved resistance to current drugs, it may be necessary to either increase the size of screened databases or increase the possible diversity which might be introduced through the hit-to-lead step.
 
 \subsubsection{Hit-to-Lead Optimization}
 \label{subsubsection:hit_to_lead}
@@ -134,14 +141,12 @@ So in order to increase the diversity of drugs and find drugs which are able to 
 
 \subsubsection{Lead Optimization}
 \label{subsubsection:lead_optimization}
-In lead optimization the compounds which have been identified by the earlier steps in the process are optimized to drug molecules.
-The largest differentiating factor between hit-to-lead optimization and lead optimization is the plausibility of the compound to act as a successful drug molecule.
-The goals of lead optimization overlap heavily with those of the hit-to-lead stage.
-Although this can include increasing binding affinity to the target even further, usually the focus is on other characteristics including selectivity, ease of synthesis, pharmacokinetic properties and intellectual property concerns \cite{keserHu2006hit}.
-Computational modelling can help not only identify hit compounds, and convert those initial hits into leads, but also to help estimate absorption, distribution, metabolism, elimination, toxicology, sometimes referred to as the ADME characteristics \cite{kerns2008drug}.
+In lead optimization the compounds identified by the earlier steps in the process are optimized to drug molecules.
+Though the objectives of lead optimization overlap heavily with those of the hit-to-lead stage, the compounds at the lead optimization stage are much more plausible as potential drugs.
+While this can include further increasing binding affinity to the target protein, usually the focus of lead optimization is on other characteristics including selectivity, ease of synthesis, pharmacokinetic properties and intellectual property concerns \cite{keserHu2006hit}.
+Computational modeling can not only help identify hit compounds and convert those initial hits into leads, but also help estimate and optimize absorption, distribution, metabolism, elimination, toxicology, sometimes referred to as the ADME characteristics \cite{kerns2008drug}.
+Computational models for ADME characteristics usually use regression equations or neural networks to predict these characteristics \cite{jorgensen2004many}.
 
-Computational models for ADME characteristics ususally use regression equations or neural networks to predict these characteristics \cite{jorgensen2004many}.
-
-Up to one half of all drugs which do not survive clinical trials, fail to do so because of lack of efficacy, which is influenced both by binding, but also by the absorption characteristics of the molecule.
-The number of drugs which fail to make it through clinical trials due to toxcicity is similarly high, about 40\% \cite{li2001screening}.
+Up to one half of all drugs which do not survive clinical trials fail to do so because of lack of efficacy, which is influenced both by binding affinity and the ADME characteristics of the molecule.
+The number of drugs that fail to make it through clinical trials due to toxicity is similarly high, about 40\% \cite{li2001screening}.
 Advancing a potential drug to clinical trials represents a very large financial investment, and effective computational screens of lead molecules at this point in the process can reduce the rate of failure in clinical trials, thereby having a very large impact on the final costs of new drugs brought to market.
