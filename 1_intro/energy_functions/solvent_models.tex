@@ -1,10 +1,10 @@
-Beyond covalent terms and electrostatic effects, solvation effects have a very large effect on protein structure, and the interactions between proteins and small molecules.
-Therefore it is critical to accurately model the effect of the solvent on the molecule.
+Beyond covalent, and electrostatic terms, solvation effects have the largest contribution to determining protein structure, and the interactions between proteins and small molecules \cite{chothia1975principles,janin1978conformation}.
+Therefore, it is critical to accurately model the effect of the solvent on the molecule.
 While explicitly modeling each water molecule and sampling over possible conformations is the most realistic possible model, doing so requires calculating both a large number of solute-solute interactions as well as sampling extensively different solvent configurations.
 In this case it is likely that more time will be spent determining the behavior of the solvent than that of the solute.
 Because of these complexities even with efficient methods of sampling explicit solvent models, these simulations are too expensive to use on systems the size of proteins \cite{figueirido1997large,zhang2001solvent}.
 
-Therefore there is significant interest in continuum models which accurately describe the mean force of water, without requiring additional sampling or interactions as in explicit models \cite{zhang2001solvent,still1990semianalytical,qiu1997gb}.
+Therefore, there is significant interest in continuum models that accurately describe the mean force of water, without requiring additional sampling or interactions as in explicit models \cite{zhang2001solvent,still1990semianalytical,qiu1997gb}.
 These methods have the potential to be three orders of magnitude, or even more, faster than explicit solvent experiments, and a number of different methods have been shown to accurately describe solvent effects \cite{zhang2001solvent}.
 
 The total free energy of solvation can be separated into polar and non-polar components, which correspond to the work done inserting the uncharged solute molecule, or protein, into the solvent and then building the charges to their native values \cite{roux1999implicit}.
