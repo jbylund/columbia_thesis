@@ -1,14 +1,20 @@
-Minimization techniques seek to find the lowest energy conformation in a given potential well.
-Generally, they make no attempt to sample outside of that well, and therefore are frequently implemented as a final stage in sampling, in order to relieve any unfavorable interactions in proposed structures.
-There are a large number of different minimization techniques, and they will not be covered in any real depth here, please see the original papers for more details, or \cite{schlick2010molecular} for a review.
+Minimization techniques seek to find the lowest energy conformation in a given potential energy well.
+Generally, they make no attempt to sample outside of that well, and therefore are frequently implemented as a final stage in sampling in order to relieve any unfavorable interactions in proposed structures.
+There are a large number of different minimization techniques used in molecular mechanics modeling.
+A thorough review can be found in \cite{schlick2010molecular}.
 As the basic terms of the general molecular mechanics potential energy function are differentiable, and discounting for the moment the significant effects of solvent, it is possible to solve for the energy gradient, or force on every atom for a given conformation.
 A few minimizations methods include:
 \begin{enumerate}
-\item ``Steepest descent'', conceptually the simplest minimization algorithm, in which the gradient is calculated at each step, and the size of the step is proportional to the magnitude of the gradient \cite{levitt1969refinement,bixon1967potential}.
-\item ``Newton'' methods instead of approximating the gradient as a linear function in a small neighborhood, express the gradient, as a quadratic function.  This has been shown to converge more quickly than steepest descent \cite{ponder1987efficient}.  
-Discrete Newton and Quasi-Newton methods use numeric estimation techniques instead of analytically solving for the gradient \cite{schlick2010molecular}.
-\item ``Truncated Newton'' methods find an approximate solution to Newton's equations, forcing the residual to approach zero as the series converges \cite{dembo1983truncated}. 
+\item Steepest descent, conceptually the simplest minimization algorithm, calculates the gradient of the potential energy at each step of the minimization, and changes the location of each atom by a distance proportional to the magnitude of the gradient at that atom \cite{levitt1969refinement,bixon1967potential}.
+\item Newton methods express the energy gradient as a quadratic function, instead of approximating the gradient as a linear function in a small neighborhood, as in steepest descent.
+This has been shown to converge to a minimum energy structure more quickly than steepest descent \cite{ponder1987efficient}.  
+Discrete Newton and Quasi-Newton are variations that use numeric estimation techniques instead of analytically solving for the gradient \cite{schlick2010molecular}.
+\item Truncated Newton methods find an approximate solution to Newton's equations.
+The accuracy of the solution is increased as a local minimum is approached, by forcing the residual to approach zero as the series converges \cite{dembo1983truncated}.
 \end{enumerate}
+
+The majority of molecular mechanics programs use some sort of minimization technique to refine initial structural guesses \cite{ponder1987efficient,levitt1969refinement,bixon1967potential,zhu2007multiscale}.
+
 
 % molecular mechanics burkert allinger
 
