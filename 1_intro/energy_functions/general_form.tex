@@ -1,9 +1,15 @@
-The general form of most molecular mechanics energy potentials is reasonably consistent, with bonds and angles being modeled as a spring, dihedrals as a Fourier series.
+The form of most molecular mechanics energy potentials is reasonably consistent, following the general form of equation \ref{equation:opls}.
 \input{equations/opls.tex}
+Bonds and angles are modeled as springs and dihedrals as a Fourier series, as shown in equations below.
 \input{equations/bonds.tex}
 \input{equations/angles.tex}
 \input{equations/dihedrals_compact.tex}
-The non-bonded terms are modeled as a Columbic potential between any point charges and a Lennard-Jones or 6-12 potential between any non-bonded atoms.
+The non-bonded terms are modeled as a Columbic potential between any point charges and a Lennard-Jones or 6-12 potential between any non-bonded atoms (equation \ref{equation:nonbonded}).
 These non-bonded atoms are phased in by a ``fudge factor'' for atoms in a 1-4 configuration.
 \input{equations/nonbonded.tex}
 Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$ \cite{jorgensen1996development}.
+
+Energy models following this form have a number of desirable characteristics.
+First, they are reasonably accurate, having been shown to accurately predict a number of different physical phenomena.
+Second, they are significantly less expensive to compute than quantum mechanical energy formulations.
+Third, because the terms of the energy model are differentiable, using this form of an energy model is conducive to using one of the minimization techniques discussed in \nameref{subsection:minimization} (\ref{subsection:minimization}).

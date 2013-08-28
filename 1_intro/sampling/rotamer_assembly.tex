@@ -1,10 +1,9 @@
-Rotamer assembly or systematic search shares some similarity with fragment buildup techniques in that it uses a rotamer library to assemble possible loops.
+Rotamer assembly, or systematic search, shares some similarities with fragment buildup techniques in that it uses a rotamer library to assemble possible loops.
 This rotamer library contains the common backbone dihedrals, $(\phi,\psi)$ pairs, for each amino acid.
-This method operates by dividing the loop into two pieces, usually in half, and considering all possible half loops which can be built using rotamer library \cite{moult1986algorithm}.
-For each side of the loop a ``tree'' is considered in both a physical sense, that the hemi-loop branches as it grows away from its anchor, and a decision tree sense, in that every residue represents a decision where a single rotamer is selected from the rotamer library.
-When the hemi-trees for each side of the gap are fully constructed some closure criteria is applied.
+This method operates by dividing the loop into two pieces, usually in half, and considering all possible half loops that can be built using a rotamer library \cite{moult1986algorithm}.
+For each side of the loop a ``tree'' is considered, in both a physical sense, in that the hemi-loop branches as it grows away from its anchor, and a decision tree sense, in that each residue represents a decision where a single rotamer is selected from the rotamer library.
+When the hemi-trees for each side of the gap are fully constructed, some closure criteria is applied.
 
-In the case of the original systematic search geometric agreement is required of the entire mid-residue \cite{moult1986algorithm}, however a more lax criteria is applied in the case of the PLOP where only one atom is required to be approximately superimposed \cite{jacobson2004hierarchical}.
+In the case of the original systematic search, geometric agreement is required of the entire mid-residue \cite{moult1986algorithm}, however a more lax criteria is applied in the case of the PLOP where only one atom is required to be approximately superimposed \cite{jacobson2004hierarchical}.
 By carefully pruning trees during the building process, and biasing the search towards occupied regions of $\phi$-$\psi$ space, systematic search can be quite efficient, spending little time sampling implausible regions of conformation space.
-Additionaly, by building residue pairs, using a smaller
- possibly restricting the rotamer library by building multiple residues at a time this sort of procedure has been used to build loops of 20+ residues \cite{zhao2011progress}.
+Additionally, using a multipeptide rotamer library which captures information about interactions between sequential dihedrals, and building multiple residues at once, this sort of procedure has been used to successfully build loops of 20+ residues \cite{zhao2011progress}.

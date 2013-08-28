@@ -1,17 +1,20 @@
-Some energy models do not seek to accurately rank potential conformations, fast ``screening'' functions attempt to quickly differentiate physically impossible conformations from plausible conformations without performing an expensive minimization or energy calculation step.
+Some energy models do not seek to accurately rank potential conformations.
+Fast screening functions instead attempt to quickly differentiate physically impossible conformations from plausible conformations without performing a computationally expensive minimization or energy calculation step.
 Application of these screening functions has the potential to greatly reduce the number of potential conformations that must be scored using the full detail energy function, greatly decreasing the overall cost of conformation prediction.
-These screening criteria can be applied either during the sampling procedure, potentially eliminating sampling of a large area of excluded conformation space, or after sampling before a more expensive energy function is applied to rank conformations.
+These screening criteria can be applied either during the sampling procedure, potentially eliminating sampling of a large area of excluded conformation space, or after sampling but before a more expensive energy function is applied to rank conformations.
 Effective screening criteria have a large impact on the total performance of a structure prediction method.
 
-One of the earliest screening criteria was the hard sphere overlap collision detection \cite{levinthal1966molecular}, and this method is consistently included in screening scriteria.
+One of the earliest screening criteria was the hard sphere overlap collision detection \cite{levinthal1966molecular}, which continues to be used in many coarse energy models.
 Other screens include:
 \begin{enumerate}
-\item bounds on bond lengths and angles, as a single bond which deviates significantly from equilibrium can dominate the energy of a conformation,
-\item limitations on $\phi$-$\psi$ space occuped by backbone dihedrals corresponding to the Ramachandran plot of the residue,
+\item bounds on bond lengths and angles, as a single bond which deviates significantly from equilibrium can dominate the total energy of a conformation,
+\item limitations on $\phi$-$\psi$ space occupied by backbone dihedrals corresponding to the Ramachandran plot of the residue,
 \item limiting side chain dihedrals to staggered conformations, which correspond to the low energy well of side chain dihedral space \cite{moult1986algorithm},
-\item excluding structuctures which present excessive solvent accessible surface area, as this conflicts with the hydrophobic effect, which has a large effect on the conformation of the native state \cite{chothia1975principles}
-\item limitations on the number of ``dry'' cavities, and the number of internal charged residues \cite{moult1986algorithm}
+\item excluding structures that present excessive solvent accessible surface area and thus high solvation energy, which has a large effect on the conformation of the native state \cite{chothia1975principles}
+\item limitations on the number of dry cavities, and the number of internal charged residues \cite{moult1986algorithm}
 \end{enumerate}
+Application of these and other screens help reduce the amount of time spent sampling implausible parts of conformation space, making sampling methods significantly more efficient.
+Following application of this sort of screening criteria, a more detailed energy model is used to rank potential conformations.
 
 \subsection{The General Form of the Energy Model}
 \label{subsection:energy_general_form}
