@@ -1,13 +1,13 @@
-Metropolis Monte-Carlo simulation was originally developed in the 1950's to provide rapid sampling of the solution space of many variable problems \cite{metropolis1953equation,hastings1970monte}.
-Monte-Carlo techniques generate a sequence of states from a distribution by proposing a new state based only on the current state 
-If the ensemble average is the same as the sequence average, a Monte Carlo Markov chain can be used to estimate ensemble averages, this is known as {\it ergodicicy} \cite{schlick2010molecular}.
-Another requirement is {\it detailed balance} that the probability of transition from a state $X_{i}$ to a state $X_{i+1}$ is the same as the probability of the reverse transition, i.e. $X_{i+1}$ to $X_{i}$.
+Metropolis Monte Carlo simulation was originally developed in the 1950's to provide rapid sampling of the solution space of many variable problems \cite{metropolis1953equation,hastings1970monte}.
+Monte Carlo techniques generate a sequence of states from a distribution by proposing a new state based only on the current state.
+If the ensemble average is the same as the sequence average, a Monte Carlo Markov chain can be used to estimate ensemble averages, a process known as {\it ergodicity} \cite{schlick2010molecular}.
+Another requirement is {\it detailed balance}: that the probability of transition from a state $X_{i}$ to a state $X_{i+1}$ is the same as the probability of the reverse transition, i.e. $X_{i+1}$ to $X_{i}$.
 By setting the probability of acceptance to
 \input{equations/metropolis_acceptance}
 these conditions are met.
 
 In molecular mechanics, Metropolis Monte Carlo provides a very efficient means of sampling conformation space and a simple method of estimating the distribution of states.
-Modifications on this method, such as annealing, where the temperature is continuously decreased over the course of the simulation, or umbrella sampling, which attempts to achieve better sampling in cases where a potential energy barrier divides two or more states from each other \cite{torrie1977nonphysical}.
+Modifications on this method include annealing, where the temperature is continuously decreased over the course of the simulation, and umbrella sampling, which attempts to achieve better sampling in cases where a potential energy barrier divides two or more states from each other \cite{torrie1977nonphysical}.
 While Monte Carlo sampling techniques are very fast to provide new states, the majority of these states reflect higher energy conformations.
 Since it is of practical biological interest, Monte Carlo minimization has been developed to increase the rate at which minima are sampled \cite{li1987monte}.
-
+This integrates the previously discussed minimization techniques into a Monte Carlo approach, and is the method used in \nameref{chapter:p450} (chapter \ref{chapter:p450}).

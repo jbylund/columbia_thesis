@@ -1,14 +1,14 @@
 Another robotics algorithm which has been successfully applied to protein loop closure is Cyclic Coordinate Descent (CCD) \cite{canutescu2003cyclic}.
-As the length of a flexible loop grows the number of degrees of freedom increases and the possible solution space grows exponentially. 
+As the length of a flexible loop grows, the number of degrees of freedom increases and the possible solution space grows exponentially. 
 Cyclic coordinate descent seeks to close the loop by adjusting the degrees of freedom, in this case the $\phi$ and $\psi$ dihedral angles, sequentially and possibly iterating over each degree of freedom multiple times until the loop is closed.
-This method is able to solve for conformations very quickly, and the likelyhood of closing a loop {\it increases} as the number of degrees of freedom of the system increases.
+This method is able to solve for conformations very quickly, and the probability of failing to find a conformation which successfully joins the two endpoints decreases as the number of degrees of freedom of the system increases.
 
 In cyclic coordinate descent the $\phi$ and $\psi$ angles of each loop backbone residue are first randomized.
 Then a loop dihedral is chosen at random, and varied to move the last atom of the loop as near as possible to its desired position.
 A new dihedral is chosen and optimized until the loop is closed.
-It is possible that this procedure does not converge to a closed state, however experiments have shown that this is very unlikely even for extended loops with few degrees of freedom, $ < 2\%$ failure rate for 4 residue loops.
-Solving for the ideal dihedral angle at each step is a simple optimization problem making CCD a very fast algorithm \cite{wang1991combined,canutescu2003cyclic}.
-In experiments CCD produces closed loop candidates in ~1/6 the time of the random tweak method.
+While it is possible that this procedure does not converge to a closed state, experiments have shown that this is very unlikely even for extended loops with few degrees of freedom, having less than a 2\% failure rate for four residue loops.
+Solving for the ideal dihedral angle at each step is a simple optimization problem in one dimension, making CCD a very fast algorithm \cite{wang1991combined,canutescu2003cyclic}.
+In experiments CCD produces closed loop candidates in \textapprox1/6 the time taken by the random tweak method, discussed in the following section.
 
-A variation on cyclic coordinate descent seeks to close the loop by not only requiring atom closure, but by requiring that the entire backbone of the closure residue is superimposed, within some geometric similarity tolerance, between the predicted and crystal structure.
-This constrainint ensures that the angles and dihedrals of the closure residue are reasonable\cite{canutescu2003cyclic}.
+A variation on cyclic coordinate descent seeks to close the loop by not only requiring atom closure, but by requiring that the entire backbone of the closure residue is superimposed, within some geometric similarity tolerance, between the predicted conformation and the  crystal structure.
+This constraint ensures that the angles and dihedrals of the closure residue are reasonable \cite{canutescu2003cyclic}.

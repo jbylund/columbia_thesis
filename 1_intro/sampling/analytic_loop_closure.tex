@@ -1,11 +1,11 @@
-Subsequences with regular secondary structures, $\alpha$-helices and $\beta$-sheets are generally better conserved, and therefore likely to be well covered by simple homology models \cite{kolodny2005inverse}.
-The intervening ``random coil'' or loop regions often play a large role in determining protein specificity for a specific ligand as in antigen-antibody binding \cite{bajorath1996comparison}, small protein toxins to the receptors they target \cite{wu1996functional}, or transcription factors to specific DNA sequences \cite{jones1999protein}.
+Subsequences with regular secondary structures, i.e. $\alpha$-helices and $\beta$-sheets are generally better conserved, and therefore likely to be well covered by simple homology models \cite{kolodny2005inverse,petrey2003using}.
+The intervening ``random coil'' or loop regions often play a large role in determining protein specificity for a specific ligand, as in antigen-antibody binding \cite{bajorath1996comparison}, small protein toxins to the receptors they target \cite{wu1996functional}, or transcription factors to specific DNA sequences \cite{jones1999protein}.
 
-Loop closure or prediction is a significant part of homology modeling, and building structures consistent with X-ray refraction data.
-Therefore in order to accurately predict three dimensional structure through homology models, infer the protein binding partners and function, or even build a three dimensional structure consistent with both X-ray data and physical constraints, accurately predicting these loop regions is critical \cite{fiser2000modeling}.
+Loop closure or prediction is a significant part of homology modeling \cite{petrey2003using} and building structures consistent with X-ray refraction data.
+Therefore, in order to accurately predict three dimensional structure through homology models, infer protein binding partners and function, or even build a three dimensional structure consistent with both X-ray data and physical constraints, accurately predicting these loop regions is critical \cite{fiser2000modeling}.
 
-The question is, given two fixed endpoints and a flexible loop, or actuator, find a conformation of the loop which connects the two endpoints.
-Because of the similarities that this problem solves with robotics a number of algorithms have been adapted from that field \cite{kolodny2005inverse}.
-The first of these is analytical loop closure, where a conformation which satisfies the closure criteria is solved for directly by solving a system of equations.
-Though this problem can be solved analytically for small loops \cite{wedemeyer1999exact,go1970ring,bruccoleri1985chain,palmer1991standard}, the problem becomes more difficult as loop length grows and the number of degrees of freedom of the loop section increases.
-Additionally these closure constraints make sampling multiple different conformations more difficult \cite{cortes2005sampling}, though it is possible to hierarchically solve sub-loops in order to generate conformations for possible loops \cite{wedemeyer1999exact}.
+The loop closure question is, given two fixed endpoints and a flexible loop, or actuator, how does one find a loop conformation, or set of conformations, that connects the two endpoints.
+Because similar problems are frequently encountered in the field of robotics, a number of loop closure algorithms have been adapted from robotics \cite{kolodny2005inverse}.
+The first of these algorithms is analytical loop closure, where a conformation that satisfies the closure criteria is solved for directly by solving a system of equations.
+Though this problem can be solved analytically for small loops \cite{wedemeyer1999exact,go1970ring,bruccoleri1985chain,palmer1991standard}, the difficulty of the problem increases as loop length grows and the number of degrees of freedom of the loop section increases.
+Additionally, these closure constraints make sampling multiple different conformations more difficult \cite{cortes2005sampling}, though it is possible to hierarchically solve sub-loops in order to generate conformations for possible complete loop conformations \cite{wedemeyer1999exact}.
