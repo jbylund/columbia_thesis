@@ -28,14 +28,3 @@ Without using this hashing scheme, it would be necessary to compute the distance
 \label{figure:grid_hash}
 \end{center}
 \end{figure}
-
-% side by side performance comparison figure
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=0.6\textwidth]{figures/side_by_side.png}
-\caption{Time spent during energy calculations on different parts of the energy model.
-The left pie represents the non-cell based approach and the right pie the cell based approach, the charts are scaled relative the total cost of computing the energy.
-One can see that although some overhead is introduced in maintaining the hash structure this significantly reduces the total cost of the solvent term, and as the solvent is such a large contributor to the total, also the total cost of computing the energy.}
-\label{fig:timing_pie}
-\end{center}
-\end{figure}
