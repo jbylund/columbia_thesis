@@ -1,9 +1,9 @@
 Both a parameterized and an unparameterized model were used to classify potential sites of metabolism.
-IDSite makes the assumptions that all intermediates before the rate determining step are at equilibrium \cite{wang2007stochastic}, that hydrogen abstraction is the rate limiting step for hydroxilation of aliphatic carbons and electrophilic attack is the rate limiting step for hydroxilation of aromatic rings \cite{guengerich2001common,shaik2005theoretical}.
+IDSite makes the assumptions that all intermediates before the rate determining step are at equilibrium \cite{wang2007stochastic}, that hydrogen abstraction is the rate limiting step for hydroxylation of aliphatic carbons and electrophilic attack is the rate limiting step for hydroxylation of aromatic rings \cite{guengerich2001common,shaik2005theoretical}.
 With these assumptions the rate of metabolism at each possible site of reaction is affected by the free energy of binding in order to put that site in the site of reaction, as well as the free energy barrier of rate determining step, or
 \input{equations/curtin_hammett} % dG = dG bind + dG react
 The ${\Delta}G_{\mathrm{binding}}$ above is calculated using a PLOP evaluation of the refined pose.
-The intrinsic reactivity for the system is computed from DFT calculations on a simplified system, replacing the heme with a methody radical, and using a linear relationship between $IR(\mathrm{heme})$ and $IR(\mathrm{methoxy\ radical})$ to estimate the true reactivity for the heme system.
+The intrinsic reactivity for the system is computed from DFT calculations on a simplified system, replacing the heme with a methoxy radical, and using a linear relationship between $IR(\mathrm{heme})$ and $IR(\mathrm{methoxy\ radical})$ to estimate the true reactivity for the heme system.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/idsite/intrinsic_corrected.png}

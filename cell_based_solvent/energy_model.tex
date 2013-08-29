@@ -6,5 +6,5 @@ For the electrostatic contribution to solvation free energy, two different molec
 A surface mesh is constructed for each atom using the generalized spiral points method \cite{rakhmanov1994minimal,saff1997distributing,zhou1995arrangements}.
 The number of points for each sphere is 10 for the low resolution surface and 330 for the high resolution surface.
 An atomic based distance cutoff is used when evaluating the electrostatic contribution to the solvation free energy.
-Inside a distance of $\sqrt{50}$ angstroms, the high resolution surface is used; between this distance and 20 angstroms, the lower resolution surface is used; and the contribution of atoms outside this distance is assumed to be negligable.
+Inside a distance of $\sqrt{50}$ angstroms, the high resolution surface is used; between this distance and 20 angstroms, the lower resolution surface is used; and the contribution of atoms outside this distance is assumed to be negligible.
 The same set of cutoffs is used in both the current implementation in PLOP and the new cell based method described here.

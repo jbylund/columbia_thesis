@@ -28,10 +28,10 @@ The newer energy models, optimized variable dielectric (OVD or VSGB2.0) and vari
 \end{figure}
 
 The performance of a selection of the energy models implemented in PLOP was compared using a subset of these ligands found in CDK2 crystal structures.
-Minimized crystal structures starting from the crystal coordinates were consistenly closer to native conformations using the variable dielectric generalized Born solvation model than using a constant internal dielectric.
+Minimized crystal structures starting from the crystal coordinates were consistently closer to native conformations using the variable dielectric generalized Born solvation model than using a constant internal dielectric.
 However, there was no differentiation found between the newer and significantly more complex energy model, variously named optimized variable dielectric (OVD) and variable dielectric surface generalized Born 2.0 (vsgb2.0), which implements a number of terms to explicitly describe hydrogen bonding, $\pi-\pi$ interactions, and a number of other organic interactions.
 
 In addition to adding support for a large number of small molecule ligands a number of problems which plagued PDB loading have been corrected.
-These included lacking support for a number of crystal symmetry groups, and erronously loading modified amino acids as non-covalently bonded zwitterions.
+These included lacking support for a number of crystal symmetry groups, and erroneously loading modified amino acids as non-covalently bonded zwitterions.
 This latter problem frequently led to steric clashes as the free amino acid would clash with the free ends of the protein chain to which it should be covalently bonded.
 The energy involved in this sort of interaction is so severe that it would ``drown out'' small changes elsewhere in the system, though occasionally this could be worked around by freezing the coordinates of the problematic part of the protein structure.

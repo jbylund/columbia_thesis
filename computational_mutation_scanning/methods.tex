@@ -1,19 +1,19 @@
 \subsection{General Mutation Screening}
 The generalized mutation screening method implemented in PLOP allows efficient evaluation of a large number of possible mutations.
 It accepts as input a set of possible mutations for each residue, or a set of possible mutations for a set of residues.
-For instance tryptophan, tyrosine and arginine are overrepresented in hot spot resiudes \cite{hu2000conservation}, so it may be desirable to consider all mutations in which a set of residues are either left at their native identity or replaced with one of these residues.
+For instance tryptophan, tyrosine and arginine are overrepresented in hot spot residues \cite{hu2000conservation}, so it may be desirable to consider all mutations in which a set of residues are either left at their native identity or replaced with one of these residues.
 If desired the user can also set bounds for the minimum and maximum number of simultaneous mutations allowed.
 The residues which will be mutated are referred to as {\it free} residues as the conformations of the other residues are held fixed throughout the entire process.
 While the residues are still in their native states the structure is subjected to some sort of sampling.
 This is done in order to prevent bias towards predicted states which will later be predicted in the same fashion.
 In the present implementation this consists of predicting the conformation of each free residue is minimizing those residues.
 
-In this side chain sampling, for each free residue, the sidechain is initially replaced with a random conformation from a high resolution rotamer library screened for steric clashes with the static part of the protein.
+In this side chain sampling, for each free residue, the side chain is initially replaced with a random conformation from a high resolution rotamer library screened for steric clashes with the static part of the protein.
 The free residues are then examined sequentially replacing each with the lowest energy conformation present in the rotamer library.
 This replacement process is continued until the termination condition is met, which is that two or fewer residues are replaced by lower energy conformations during the replacement stage.
 Five iterations of this procedure, from randomization to a static conformation, are performed and the most frequently selected conformation is chosen for each amino acid \cite{jacobson2002force,jacobson2002role}.
 
-In the mutation stage, each free residue is first updated to its new chemical identity, possibly remaining in the native state, sidechains are replaced with the sidechain of the desired amino acid, with the corresponding updates to the bond, angle, torsion, and 1-4 interactions.
+In the mutation stage, each free residue is first updated to its new chemical identity, possibly remaining in the native state, side chains are replaced with the side chain of the desired amino acid, with the corresponding updates to the bond, angle, torsion, and 1-4 interactions.
 The conformations of free residues are then re-predicted using the same side chain prediction algorithm described for the native conformation.
 
 \subsection{Alanine Scanning Experiments}

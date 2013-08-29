@@ -14,17 +14,17 @@ Once the side chains have been selected three different possible moves are possi
 For 75\% of side chains, the rotamers are replaced with rotamers drawn at random from a high resolution rotamer library.
 The rotamer states for protein residues is the same library used in other place in PLOP, constructed from a set high resolution protein X-ray crystal structures \cite{xiang2001extending}.
 The rotamers for the ligand are constructed by sampling rotable bonds at 10 degree resolution and screening this set for steric clashes.
-In additon to the rotamer selected a small amount of ``noise'' which is random, and less than the resolution of the side chain library, is added to each rotamer.
+In addition to the rotamer selected a small amount of ``noise'' which is random, and less than the resolution of the side chain library, is added to each rotamer.
 
 For the remaining 25\% of side chains, moves are distributed equally between perturbations of a single dihedral and perturbations of all dihedrals.
 The perturbation for each dihedral is constructed of both a small and a large perturbation.
-The small perturbation is chosen at random in the range [-d,d] where d is the resolution of the sidechain library, in this case 10 degrees.
+The small perturbation is chosen at random in the range [-d,d] where d is the resolution of the side chain library, in this case 10 degrees.
 This term corresponds to the ``noise'' term in the case of rotamer moves.
 The large perturbation is a multiple of 60 degrees, which corresponds to the minima of both sp2 and sp3 carbons, though the null large perturbation is weighted more heavily.
 The effect of the union of these two terms is that dihedrals which are expected to yield higher acceptance probabilities are selected more frequently, though with the large perturbations this is balanced with large changes in conformation.
 
 After a set of dihedral angles has been proposed for all residues in the cluster the atomic locations are updated.
-Finally, before testing for acceptance of the new coodinates a screen is a applied.
+Finally, before testing for acceptance of the new coordinates a screen is a applied.
 A reduced radius, 0.6x scaling factor, hard sphere overlap screening criteria is applied for all possible side chain moves before a possibly costly minimization step.
 If the proposed structure does not pass the screening stage another side chain step is performed to obtain a new proposed conformation.
 
