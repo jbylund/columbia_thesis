@@ -1,9 +1,10 @@
 The energy model used in side chain prediction experiments was the optimized variable dielectric model (OVD), sometimes referenced as the variable dielectric surface generalized Born 2.0 model (VSGB2.0).
-This energy model is based on the OPLS-AA energy model, which in terms gets most of its covalent parameters from the AMBER force field \cite{jorgensen1996development}.
+This energy model is based on the OPLS-AA energy model, which in turn gets most of its covalent parameters from the AMBER force field \cite{jorgensen1996development}.
 The solvation term used is a surface area based generalized Born formulation, where the internal dielectrics of charged amino acids have been optimized over a set of 2239 single side chain predictions and 100 loop predictions of 11 to 13 residue loops.
-In addition to the covalent terms from the OPLS-AA model the current energy model also includes terms to describe $\pi-\pi$ stacking, hydrogen bonding, and a parametrized hydrophobic term for the non-polar free energy of solvation \cite{li2011vsgb}.
-For the electrostatic contribution to solvation free energy two different molecular surfaces are maintained at different resolutions.
-A surface mesh is constructed for each atom using the generalized spiral points method \cite{rakhmanov1994minimal,saff1997distributing,zhou1995arrangements}, the number of points for each sphere is 10 for the low resolution surface and 330 for the high resolution surface.
+In addition to the covalent terms from the OPLS-AA model, the current energy model also includes terms to describe $\pi-\pi$ stacking, hydrogen bonding, and a parametrized hydrophobic term for the non-polar free energy of solvation \cite{li2011vsgb}.
+For the electrostatic contribution to solvation free energy, two different molecular surfaces are maintained at different resolutions.
+A surface mesh is constructed for each atom using the generalized spiral points method \cite{rakhmanov1994minimal,saff1997distributing,zhou1995arrangements}.
+The number of points for each sphere is 10 for the low resolution surface and 330 for the high resolution surface.
 An atomic based distance cutoff is used when evaluating the electrostatic contribution to the solvation free energy.
-Inside a distance of $\sqrt{50}$ angstroms the high resolution surface is used, between this distance and 20 angstroms the lower resolution surface is used, and the contribution of atoms outside this distance is assumed to be negligable.
+Inside a distance of $\sqrt{50}$ angstroms, the high resolution surface is used; between this distance and 20 angstroms, the lower resolution surface is used; and the contribution of atoms outside this distance is assumed to be negligable.
 The same set of cutoffs is used in both the current implementation in PLOP and the new cell based method described here.

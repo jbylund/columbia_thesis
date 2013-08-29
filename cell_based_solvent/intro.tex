@@ -26,7 +26,7 @@ Among implicit solvent methods, the surface area based generalized Born (S-GB) m
 The surface area based generalized Born implicit solvent model provides an approximate solution to the Poisson--Boltzmann equation based on a surface integral \cite{ghosh1998generalized}.
 However, in a naive implementation of this model, the electrostatic contribution is a sum over every charge-charge pair in the system, in this case the protein and its crystal copies.
 \input{equations/solvent_equation}
-The electrostatic contribution to solvation free energy, can be decomposed into self, and pairwise terms.
+The electrostatic contribution to solvation free energy can be decomposed into self and pairwise terms.
 The time complexity of evaluating the pair term is quadratic in the number of charges in the system \cite{ghosh1998generalized}.
 This means that calculating the electrostatic solvation contribution for a single atom requires a linear search over all other charges in the system, which for large systems becomes the bottleneck of the computation.
 A common optimization is to assume that the electrostatic contribution to the solvation term for point charges separated by a distance greater than a defined cutoff distance is negligible \cite{gallicchio2004agbnp}. 
@@ -38,7 +38,7 @@ We present an application of a geometric hashing method, grid based spatial inde
 The hashing method proceeds by dividing space into cubical regions, or cells, and distributing atoms into those cells, while maintaining a list of the contents of each.
 Retrieval of atoms within a cell can then be performed in constant time, and retrieval of a superset of atoms contained within a region can be performed in time proportional to the number of cells intersecting the region.
 This efficient geometric lookup allows one to replace a loop over all atoms inside the structure with a loop over only the atoms contained in cells intersecting the sphere with radius corresponding to the distance cutoff of the force in question.
-While maintaining a list of atoms for each of these grid boxes introduces some overhead when updating atomic coordinates during a simulation, updating atomic coordinate is still a constant time operation.
+While maintaining a list of atoms for each of these grid boxes introduces some overhead when updating atomic coordinates during a simulation, updating atomic coordinates is still a constant time operation.
 Thus, the benefits outweigh the costs, especially for large systems.
 As long as the cell size is bounded below, the number of cells necessary to consider when evaluating a fixed distance interaction is constant.
 Physical limitations provide an upper limit to atom density.
