@@ -31,7 +31,7 @@ The time complexity of evaluating the pair term is quadratic in the number of ch
 This means that calculating the electrostatic solvation contribution for a single atom requires a linear search over all other charges in the system, which for large systems becomes the bottleneck of the computation.
 A common optimization is to assume that the electrostatic contribution to the solvation term for point charges separated by a distance greater than a defined cutoff distance is negligible \cite{gallicchio2004agbnp}. 
 However, making this assumption does not improve the underlying quadratic time complexity of evaluating the solvation term, as it is necessary to compute the inter-charge distance for every charge pair in the system before possibly excluding the interaction.
-In the implementation of S-GB in the Protein Local Optimization Program, computing the solvation term of a large structure is the rate limiting step of energy calculations, accounting for over 80\% of the total time spent computing the energy (see figure \ref{fig:timing_pie}).
+In the implementation of S-GB in the Protein Local Optimization Program, computing the solvation term of a large structure is the rate limiting step of energy calculations, accounting for over 80\% of the total time spent computing the energy (see figure \ref{figure:timing_pie}).
 Therefore, less expensive methods of evaluating the implicit solvent contribution to the energy of a system can allow for increased sampling with the same available resources, thus improving efficiency of computational modeling. 
 
 We present an application of a geometric hashing method, grid based spatial indexing, to implicit solvent calculations in PLOP.

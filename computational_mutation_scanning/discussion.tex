@@ -3,39 +3,39 @@ There are two necessary subproblems in accurately predicting the effect of mutat
 \item prediction of side chain conformations, and
 \item accurately describing the energetics of the interactions.
 \end{enumerate}
-In the work presented here we have shown that our current methods are able to accurately predict side chain conformations of mutated residues, discussed in \ref{subsection:side_chain_prediction_accuracy}.
+In the work presented here, we have shown that our current methods are able to accurately predict side chain conformations of mutated residues, discussed below in \ref{subsection:side_chain_prediction_accuracy}.
 However, it seems that despite being able to differentiate between native and non-native side chain conformations, we are unable to correlate experimental changes in binding energy with computational predictions.
-Possible reasons for this discrepancy are addressed in \ref{subsection:energetic_correlation_with_experimental_data}.
+Possible reasons for this discrepancy are addressed in subsection \ref{subsection:energetic_correlation_with_experimental_data}.
 
 \subsection{Side Chain Prediction Accuracy}
 \label{subsection:side_chain_prediction_accuracy}
 Our results indicate that we are able to successfully predict side chain conformations on protein interfaces in the majority of cases examined.
 Specifically, 29 of 32 side chains predicted over four chains in three independent structures are within 1.5 angstroms of the native conformation, with a significant number of side chains predicted closer to the native crystal conformation than the resolution of the crystal structure.
 This indicates that both the sampling performed here and the energy model are sufficiently extensive and accurate to reproduce the native conformation, which has been used as a standard metric of success in many previous studies, e.g. loop predictions \cite{jacobson2004hierarchical,rapp1999prediction,zhu2006long,sellers2008toward} and side chain predictions \cite{jacobson2002force,jacobson2002role,zhu2007improved}.
-One of the reasons that RMSD is so popular as a performance metric is the difficulty of obtaining experimental data which can be directly compared to experimental predictions.
-Binding affinity studies, especially alanine scanning experiments represent a wealth of data that might be used in training more accurate next generation molecular mechanics energy functions.
+One of the reasons that RMSD is so popular as a performance metric is the difficulty of obtaining experimental data that can be directly compared to experimental predictions.
+Binding affinity studies, especially alanine scanning experiments, represent a wealth of data that might be used in training more accurate next generation molecular mechanics energy functions.
 
 
 \subsection{Energetic Correlation with Experimental Data}
 \label{subsection:energetic_correlation_with_experimental_data}
-We found that, despite predicting side chain conformations approximately correctly, there was generally no correlation between our computed \ddg\ and the experimental \ddg\ from the alanine scanning database.
+We found that despite predicting side chain conformations approximately correctly, there was generally no correlation between our computed \ddg\ and the experimental \ddg\ from the alanine scanning database.
 The relationship between experimental and computationally predicted \ddg\ can be seen in figures \ref{figure:computational_mutation_scanning/1BRSa_ddg}, \ref{figure:computational_mutation_scanning/1BRSd_ddg}, \ref{figure:computational_mutation_scanning/1DVF_ddg}, and \ref{figure:computational_mutation_scanning/1FCC_ddg}.
 It is somewhat surprising that side chain predictions are as accurate as they are without any real correlation in binding affinity.
 A common assumption is that accuracy of predicted conformations implies accuracy of the energy model.
-However, this depends on very extensive sampling such as in full molecular dynamics simulations.
+However, this depends on very extensive sampling, such as in full molecular dynamics simulations.
 It is possible for biased sampling, such as is performed here with the goal of both increasing accuracy and speed of exploring conformation space, to mask shortcomings in an energy model.
 
 Experiments by other groups have demonstrated some success in correlating computational \ddg\ with experimental \ddg\ \cite{kortemme2004computational}.
-Some of these experiments have made use of energy models which are largely similar to the one implemented in the PLOP program.
+Some of these experiments have made use of energy models that are largely similar to the one implemented in the PLOP program.
 Despite this, we did not find a significant correlation between experimental data and predictions with respect to \ddg.
-It is possible that the interactions at a protein-protein interface are somehow different than the intramolecular interactions which have constituted the majority of the training sets used to develop the PLOP energy model.
+It is possible that the interactions at a protein-protein interface are somehow different than intramolecular interactions, which have constituted the majority of the training sets used to develop the PLOP energy model.
 
 Additionally, some hot spot residues are tightly constrained in conformation by neighboring protein structure, making prediction more similar to placing a jigsaw piece than searching for a low energy conformation among many possibilities.
 This sort of situation was especially prevalent in tyrosine 43 of 1FCC.
-In this case there were only two conformations from the side chain rotamer library which were not eliminated in the initial screening process.
+In this case there were only two conformations from the side chain rotamer library that were not eliminated in the initial screening process.
 The conformation of tyrosine 43 in the protein context is shown in \ref{figure:1fcc_43_pocket}.
 
-Finally, because the rotamer library used biases sampling towards experimentally observed side chain conformations it is possible that the energy model is capable of correctly ranking conformations present in the library by energy, but for areas of conformational space outside the rotamer library it performs less well.
+Finally, because the rotamer library used here biases sampling towards experimentally observed side chain conformations, it is possible that the energy model is capable of correctly ranking conformations present in the library by energy, but it performs less well for areas of conformational space outside the rotamer library.
 In order to test this hypothesis it would be necessary to use a non-rotamer based approach in a similar set of experiments.
 Conveniently, the side chain sampling method used in the minimization Monte Carlo experiments described in chapter \ref{chapter:p450} can be used to perform such an experiment.
 
@@ -43,8 +43,8 @@ Conveniently, the side chain sampling method used in the minimization Monte Carl
 % where is the error coming from sampling/energy
 Current data indicates that the sampling method introduced here is sufficiently exhaustive to identify native like conformations.
 Thus, it would be logical for future work to focus initially on exploring and improving the energy model.
-As mentioned above, one possible means of doing this would be to implement an energy model used in similar experiments, such as CHARMM, used by the Baker lab in their hot spot identification experiments, in which they were able to successfully predict hot-spot residues, and those which did not contribute significantly to the binding affinity \cite{kortemme2004computational,lazaridis1999effective}.
-This would allow for testing of the sampling method independently of the energy model used, to support or reveal potential shortcomings in the sampling method.
+As mentioned above, one possible means of doing this would be to implement an energy model used in similar experiments, such as CHARMM, used by the Baker lab in their hot spot identification experiments, in which they were able to successfully predict hot-spot residues, and those that did not contribute significantly to the binding affinity \cite{kortemme2004computational,lazaridis1999effective}.
+This would allow for testing of the sampling method independently of the energy model used, to support the success of or reveal potential shortcomings in the sampling method.
 
 % energy model accuracy
 Testing the performance of the energy model on protein-protein surfaces and classifying the errors would be a necessary step in improving the correlation between predicted and experimental \ddg.
@@ -53,16 +53,10 @@ It would also be very enlightening to be able to compare the performance of the 
 % sampling modular allows for flexibility
 The sampling introduced in these experiments is very modular in nature.
 Because of this, it would be possible to modify the sampling procedure used in the code, or even to specify the sampling method in the input file.
-This flexibility will hopefully allow testing of many different sampling methods, in order to find a method which provides a good balance of time and coverage of conformational space.
+This flexibility will hopefully allow testing of many different sampling methods in order to find a method that provides a good balance of time and coverage of conformational space.
 
 Because the method implemented here is capable of not only alanine scanning, but also generalized mutation scanning, it is possible to computationally screen interactions between a large number of variants of similar proteins.
-If the correlation between predicted and experimental binding affinities can be further improved there would be a number of extremely valuable applications for such a method.
+If the correlation between predicted and experimental binding affinities can be further improved, there would be a number of extremely valuable applications for such a method.
 First, it would be possible to screen variants of an antibody in order to help accelerate affinity maturation.
 Second, it might also be possible to test the efficacy of a number of drugs targeting highly variable proteins, such as HIV protease \cite{watkins2003selection}, by screening the drug against a number of possible mutations.
 
-%\cite{clark2006affinity}
-%\cite{hao2010computational}
-%\cite{kortemme2004computational}
-%\cite{lippow2007computational}
-%\cite{massova1999computational}
-%\cite{kortemme2002simple}
