@@ -4,7 +4,7 @@ These methods range from identifying leads using chemical similarity metrics, to
 In the recent past, structural methods have contributed to the identification of bioactive drug compounds \cite{corsino2009novel}, making computational protein structure prediction highly important to the medical field, and because of its pharmaceutical applications, economically relevant as well.
 
 % the expense of computational biology and necessity of fast algorithms 
-There are over 81,000 X-ray structures presently in the PDB, more than 8,500 of which have been added in the last 12 months, and the rate at which new structures are determined by X-ray crystallography continues to accelerate \cite{berman2007worldwide}.
+There are over 81,000 X-ray structures presently in the PDB, more than 8,500 of which have been added in the last 12 months, and the rate at which new structures are determined by X-ray crystallography continues to accelerate (see figure \ref{figure:pdb_growth}) \cite{berman2007worldwide}.
 The chemical space of small molecules, i.e. potential drug compounds, is essentially unlimited, and at the least too large to effectively screen using conventional experimental methods \cite{jorgensen2009efficient}. 
 Furthermore, computational loop prediction experiments are predicting longer loops, increasingly relying on the output of initial predictions as the input to a later ``fixed stage'' refinement step that re-predicts some central region of the same loop.
 This has been shown to increase accuracy \cite{jacobson2004hierarchical} at the cost of an increased number of experiments and corresponding increase in computational cost.
@@ -13,12 +13,12 @@ Taken together, these factors necessitate the development of more accurate and e
 % intro of plop and solvent models
 The Protein Local Optimization Program (PLOP), originally developed by Friesner and co-workers, is a popular program used to predict, sample, and evaluate protein conformations \cite{jacobson2002role,jacobson2002force,jacobson2004hierarchical}.
 PLOP makes use of the OPLS-AA energy model, an atomic detail force field optimized for organic, including protein, interactions \cite{jorgensen1996development}.
-In addition to the terms defined by the OPLS-AA model, it has been shown that solvent effects can have a large contribution to prediction accuracy.
+In addition to the terms defined by the OPLS-AA model, it has been shown that solvent effects can make a large contribution to prediction accuracy.
 The solvent contribution to an energy model can be evaluated either by explicitly modeling and sampling solvent molecules (usually water) or by treating the solvent as a continuous medium, i.e. implicit solvation.
 PLOP, like many other molecular mechanics programs, makes use of an implicit solvent model.
 % introduction of explicit/implicit solvent
 This is largely because explicitly modeling solvent molecules, while possibly very accurate, requires extensive, and therefore very time consuming, sampling of a large number of small molecules \cite{zhang2001solvent}.
-Further, energy errors using explicit solvent models can be due to either an unrealistic force field parameters or insufficient sampling of solvent molecule conformations \cite{zhou2003free}.
+Further, energy errors using explicit solvent models can be due to either unrealistic force field parameters or insufficient sampling of solvent molecule conformations \cite{zhou2003free}.
 Continuum solvation methods, or implicit solvent methods, attempt to address these issues by removing the dependence on sampling of solvent molecules and introducing approximations that reduce the cost of calculating the solvent contribution to energy \cite{roux1999implicit}.
 
 % talking about implicit solvent
@@ -26,10 +26,11 @@ Among implicit solvent methods, the surface area based generalized Born (S-GB) m
 The surface area based generalized Born implicit solvent model provides an approximate solution to the Poisson--Boltzmann equation based on a surface integral \cite{ghosh1998generalized}.
 However, in a naive implementation of this model, the electrostatic contribution is a sum over every charge-charge pair in the system, in this case the protein and its crystal copies.
 \input{equations/solvent_equation}
-Electrostatic contribution to solvation free energy, decomposed into self, and pair terms. The time complexity of evaluating the pair term is quadratic in the number of charges in the system \cite{ghosh1998generalized}.
+The electrostatic contribution to solvation free energy, can be decomposed into self, and pairwise terms.
+The time complexity of evaluating the pair term is quadratic in the number of charges in the system \cite{ghosh1998generalized}.
 This means that calculating the electrostatic solvation contribution for a single atom requires a linear search over all other charges in the system, which for large systems becomes the bottleneck of the computation.
 A common optimization is to assume that the electrostatic contribution to the solvation term for point charges separated by a distance greater than a defined cutoff distance is negligible \cite{gallicchio2004agbnp}. 
-However, making this assumption does not improve the underlying quadratic time complexity of evaluating the solvation term, as it is necessary to compute the inter-charge distance for every charge pair in the system, before possibly excluding the interaction.
+However, making this assumption does not improve the underlying quadratic time complexity of evaluating the solvation term, as it is necessary to compute the inter-charge distance for every charge pair in the system before possibly excluding the interaction.
 In the implementation of S-GB in the Protein Local Optimization Program, computing the solvation term of a large structure is the rate limiting step of energy calculations, accounting for over 80\% of the total time spent computing the energy (see figure \ref{fig:timing_pie}).
 Therefore, less expensive methods of evaluating the implicit solvent contribution to the energy of a system can allow for increased sampling with the same available resources, thus improving efficiency of computational modeling. 
 
