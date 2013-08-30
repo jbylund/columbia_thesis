@@ -1,5 +1,6 @@
 A strong correlation between observed and expected \ddg\ was not found for any of the structures nor for the set of mutations taken as a whole.
-Despite this single side chain conformations were in very good agreement between predicted side chain locations and crystal structures, suggesting that sufficient sampling was done in the side chain prediction step.
+Despite this, single side chain conformations were in very good agreement between predicted side chain locations and crystal structures, suggesting that sufficient sampling was done in the side chain prediction step.
+Results for mutations in the barstar-barnase complex, first with barnase mutated, then with barstar mutated; antibody anti-antibody Complex; and finally, streptococcal protein G fragment, IgG antibody complex are presented in turn below.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %1BRSa
@@ -9,7 +10,7 @@ The first complex examined is the Barstar-Barnase complex.
 This complex is frequently used as a case study in protein-protein interaction, as the complex exhibits one of the highest known binding affinities, K\subscript{d} = 0.01 pM \cite{hartley1988barnase,hartley1989barnase,schreiber1993interaction}.
 Experimental affinity data is available from alanine scanning mutations for eight residues in barnase and six residues for barstar.
 Mutations to each chain were considered independently, and mutations to barstar are covered in the following section.
-The correlation between predicted and experimental \ddg\ binding was not significant, see figure \ref{figure:computational_mutation_scanning/1BRSa_ddg}, $R^{2}=0.08$.
+The correlation between predicted and experimental \ddg\ binding was not significant (see figure \ref{figure:computational_mutation_scanning/1BRSa_ddg}, $R^{2}=0.08$).
 
 \begin{figure}[h]
     \centering
@@ -24,7 +25,7 @@ The correlation between predicted and experimental \ddg\ binding was not signifi
 Table \ref{table:1BRSa_results} shows the computed and experimental \ddg's used to generate figure \ref{figure:computational_mutation_scanning/1BRSa_ddg}.
 \input{tables/1brs_a.tex}
 Table \ref{table:1BRSa_rmsd} shows the root mean square distance for the side chain conformations predicted during the mutation scan to the crystal structure.
-All eight side chains are predicted within 1.3 angstroms of the native structure, and the median prediction is 0.359 angstroms, which is a very accurate prediction and generally sufficiently accurate to reproduce native binding interactions.
+All eight side chains are predicted within 1.3 angstroms of the native structure, and the median prediction is 0.359 angstroms, which is a very accurate prediction and sufficiently accurate to reproduce native binding interactions.
 \input{tables/1BRSa_rmsd.tex}
 
 Despite the lack of correlation of predicted binding affinities with experimental values, single single side chain conformations predicted in the course of the mutation scan were in very good agreement with crystal structures.
@@ -38,7 +39,6 @@ The conformations are almost identical, differing by only 0.121 angstroms, or le
     The predicted and crystal conformations are almost identical, differing by only 0.121 angstroms, or less than the resolution of the crystal structure.}
     \label{figure:computational_mutation_scanning/1brs_a_58}
 \end{figure}
-
 Figure \ref{figure:computational_mutation_scanning/1brs_a_73} shows a similar comparison for glutamic acid 73, which was one of the least successful predictions in this complex.
 However, it would still be classified as a successful side chain prediction for many purposes, differing from the crystal structure by 0.993 angstroms.
 \begin{figure}[h]
@@ -82,19 +82,19 @@ The only exception is glutamic acid 80, shown in the upper left of this figure, 
 \label{figure:computational_mutation_scanning/1brs_all}
 \end{figure}
 
-An example successful prediction is illustrated in \ref{figure:computational_mutation_scanning/1brs_d_35}.
+An example of a successful prediction is illustrated in \ref{figure:computational_mutation_scanning/1brs_d_35}.
 The predicted conformation of this aspartic acid is less than 0.1 angstroms RMSD from its crystal conformation.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1brs_chain_d_35.png}
-    \caption{Crystal, colored by element, and predicted (magenta) side chain conformations for barstar, chain D of PDBid 1BRS.
+    \caption{Crystal (colored by element) and predicted (magenta) side chain conformations for barstar, chain D of PDBid 1BRS.
     The distance to the crystal structure is only 0.098 angstroms, or nearly identical.}
     \label{figure:computational_mutation_scanning/1brs_d_35}
 \end{figure}
 
-The prediction which differs by the greatest amount from the crystal structure, Glu 80, is illustrated in \ref{figure:computational_mutation_scanning/1brs_d_80}.
-While this predictions differs from the native by \textapprox 1.8 angstroms, this is still on the border of what is frequently considered a successful side chain prediction.
-However, a prediction which differs from the native by this amount makes successfully predicting binding affinity difficult as the predicted conformation does not accurately recapitulate the contacts formed in the native complex.
+The prediction that differs by the greatest amount from the crystal structure, Glu 80, is illustrated in \ref{figure:computational_mutation_scanning/1brs_d_80}.
+While this prediction differs from the native by \textapprox 1.8 angstroms, this is still on the border of what is frequently considered a successful side chain prediction.
+However, a prediction that differs from the native by this amount makes successfully predicting binding affinity difficult, as the predicted conformation does not accurately recapitulate the contacts formed in the native complex.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1brs_chain_d_80.png}
@@ -108,8 +108,8 @@ However, a prediction which differs from the native by this amount makes success
 \FloatBarrier
 \subsection{Antibody anti-Antibody Complex}
 The third example is an an antibody, anti-antibody complex.
-The structure taken from PDBid 1DVF is of anti-hen-egg-white lysozyme antibody complexed with an antibody mimicking the hen egg white lysozyme \cite{braden1996crystal}.
-As in the barnase-barstar complex examples there is no significant correlation between predicted and experimental \ddg\ (figure \ref{figure:computational_mutation_scanning/1DVF_ddg}).
+The structure taken from PDBid 1DVF is of anti-hen-egg-white lysozyme antibody complexed with an anti-idiotopic antibody mimicking the hen egg white lysozyme \cite{braden1996crystal}.
+As in the barnase-barstar complex examples, there is no significant correlation between predicted and experimental \ddg\ (figure \ref{figure:computational_mutation_scanning/1DVF_ddg}).
 The specific predicted and experimental values of \ddg\ are presented in table \ref{table:1BRSd_results}.
 
 \begin{figure}[h]
@@ -136,8 +136,7 @@ The most significant exception was aspartic acid 100, shown in figure \ref{figur
     The predicted conformation of this aspartic acid, B:100, differs from the native state by 2.577 angstroms.}
     \label{figure:computational_mutation_scanning/1DVF_b_100}
 \end{figure}
-
-Two adjacent and successfully predicted side chains are, threonine 30 and tyrosine 32, with RMSDs of 0.056 and 0.412 angstroms respectively.
+Two adjacent and successfully predicted side chains are threonine 30 and tyrosine 32, with RMSDs of 0.056 and 0.412 angstroms respectively.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/mutation_side_chain_images/1dvf_chain_b_30_and_32.png}
@@ -150,15 +149,15 @@ Two adjacent and successfully predicted side chains are, threonine 30 and tyrosi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1FCC
 \FloatBarrier
-\subsection{Streptococcal Protein G fragment, IgG Antibody Complex.}
+\subsection{Streptococcal Protein G fragment, IgG Antibody Complex}
 The final complex considered is another antibody antigen complex.
 PDBid 1FCC depicts a fragment from streptococcal protein G in complex with an IgG antibody.
-As in the previous cases there is little agreement between predicted and experimental \ddg\ binding, $R^{2}=0.40$, as shown in figure \ref{figure:computational_mutation_scanning/1FCC_ddg}.
+As in the previous cases, there is little agreement between predicted and experimental \ddg\ binding, $R^{2}=0.40$, as shown in figure \ref{figure:computational_mutation_scanning/1FCC_ddg}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\textwidth]{figures/1fcc.png}
-    \caption{Computed versus experimental \ddg\ binding for 8 alanine mutations in  binding pair.
+    \caption{Computed versus experimental \ddg\ binding for 8 alanine mutations in the antibody antigen binding pair.
     Crystal structure used for computations was 1FCC.
     Specific amino acids mutated were residues 25, 27, 28, 31, 35, 40, 42, and 43, all of chain A.
     Experimental binding affinity taken from \protect\cite{thorn2001asedb}.}
@@ -181,7 +180,6 @@ The predicted conformations for glutamic acid 27, lysine 31 and tryptophan 43 ar
 These residues are shown in greater detail in other figures, glutamic acid 27 in figure \protect\ref{figure:computational_mutation_scanning/1FCC_27}, lysine 31 in figure \protect\ref{figure:computational_mutation_scanning/1FCC_31}, and tryptophan 43 in figure \protect\ref{figure:computational_mutation_scanning/1FCC_43}.}
   \label{figure:computational_mutation_scanning/1FCC_27_31_43}
 \end{figure}
-
 This side chain is in close proximity to a number of other hot spot residues on the protein-protein interface and is shown in context in figure \protect\ref{figure:computational_mutation_scanning/1FCC_27_31_43}.
 \begin{figure}[h]
   \centering
@@ -207,7 +205,6 @@ The root mean square distance of the predicted conformation to the native is 0.3
 The effect of the local protein structure on the conformation of this residue is examined in figure \protect\ref{figure:1fcc_43_pocket}.}
   \label{figure:computational_mutation_scanning/1FCC_43}
 \end{figure}
-
 Tryptophan 43 is interesting in that despite being critical to protein-protein binding it is largely buried in a pocket defined by the neighboring protein structure.
 This interaction is examined in figure \protect\ref{figure:1fcc_43_pocket}.
 \begin{figure}[h]
@@ -225,8 +222,8 @@ This interaction is examined in figure \protect\ref{figure:1fcc_43_pocket}.
         \caption{}
         \label{figure:mutation_side_chain_images/in_pocket_in_plane.png}
     \end{subfigure}
-    \caption{The pocket of tryptophan 43 of 1FCC, shown in two orthogonal orientations \label{figure:mutation_side_chain_images/in_pocket_out_of_plane} and \label{figure:mutation_side_chain_images/in_pocket_in_plane.png}.
-Because of conformation of the neighboring protein structure, this residue has very little conformational freedom, and any prediction which successfully locates the side chain in the pocket will be reasonably close to the native state.
+    \caption{The pocket of tryptophan 43 of 1FCC, shown in two orthogonal orientations (a) and (b).
+Because of conformation of the neighboring protein structure, this residue has very little conformational freedom, and any prediction that successfully locates the side chain in the pocket will be reasonably close to the native state.
 The conformation predicted in these experiments was very similar, 0.371 angstroms, and is depicted superimposed with the native in figure \protect\ref{figure:computational_mutation_scanning/1FCC_43}.}
     \label{figure:1fcc_43_pocket}
 \end{figure}
