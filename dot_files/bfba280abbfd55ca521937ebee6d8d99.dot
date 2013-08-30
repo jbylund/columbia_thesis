@@ -2,7 +2,7 @@ digraph world {
 rankdir="TB"
 //splines=true
 //size="8,8"
-bgcolor="0.58 0.40 1.00"
+//bgcolor="0.58 0.40 1.00"
 //ordering=out;
 
 node [fontsize=20, shape = record];

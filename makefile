@@ -8,7 +8,7 @@ BIBCOMMAND := bibtex
 TEXFILES   := $(shell find . -iname "*.tex")
 BIBFILES   := $(shell find refs -iname "*.bib")
 UTEXFILES  := $(shell find unsorted -name "*.tex" | \grep -v main.tex )
-FLOWCHARTS := dot_files/mcm_flowchart.png dot_files/idsite.png dot_files/regression_testing.png
+FLOWCHARTS := dot_files/mcm_flowchart.png dot_files/idsite.png dot_files/regression_testing.png dot_files/perturbed_minimiztion.png
 
 view : $(OUTPUTNAME)
 	@-evince $(shell ls -t pdfs/*.pdf|head -n 1)

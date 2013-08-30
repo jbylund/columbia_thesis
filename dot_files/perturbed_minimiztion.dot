@@ -1,0 +1,23 @@
+digraph world {
+rankdir="TB"
+//splines=true
+//size="8,8"
+//bgcolor="0.58 0.40 1.00"
+//ordering=out;
+
+node [fontsize=20, shape = record];
+//overlap=false
+
+start [label="Initial Structure"];
+perturb [label="Perturb"];
+minimize [label="Truncated Newton\nMinimization"];
+stopping_rule [label="Apply Stopping Rule"];
+final [label="Final Structure"];
+revert_lowest [label="Revert to\nLowest Energy"];
+
+start -> perturb -> minimize -> stopping_rule -> final
+stopping_rule -> start
+stopping_rule -> perturb
+stopping_rule -> revert_lowest -> perturb
+{ rank=same; revert_lowest minimize }
+}
