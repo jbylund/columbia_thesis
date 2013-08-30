@@ -3,7 +3,7 @@ This simulation allows all atoms in both the ligand and residues containing atom
 Initial velocities are taken from a Maxwell-Boltzmann distribution at 900 K.
 Bonded and short range interactions evaluated every 1 nanosecond inner time step, and long range potentials are assumed to be fixed over inner steps.
 Five inner steps compose each outer HMC step.
-In the outer step the molecular surface, long range interactions and, Born alphas are updated before computing the energy and applying the Metropolis acceptance criteria at a temperature of 900 K after each MD run.
+In the outer step, the molecular surface, long range interactions, and Born alphas are updated before computing the energy and applying the Metropolis acceptance criteria at a temperature of 900 K after each molecular dynamics run.
 Taking up to 15 minutes per move, the HMC is the most expensive among all three types of moves in PLOP.
 
 %, with long range interactions evaluated every long time step.

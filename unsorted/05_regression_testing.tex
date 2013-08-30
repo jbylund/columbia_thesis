@@ -2,9 +2,9 @@
 \label{section:unsorted/regression_testing}
 A number of common problems inherent in large programming projects are identifying bugs or regressions. 
 A common means of minimizing the cost of maintaining a project is regression testing.
-Regression testing identifies a number of test cases which ideally provide good coverage of the code base and are able to identify changes which may have adversely affected established features of the program \cite{wong1997study}.
-When testing is performed continuously the time spent testing can account for as much as half of all development time \cite{leung1989insights}.
-However, in cases where this testing is neglected large software projects can easily reach the point where it is no longer feasible to repair or reverse-engineer \cite{weide1995reverse}.
+Regression testing identifies a number of test cases that ideally provide good coverage of the code base and are able to identify changes that may have adversely affected established features of the program \cite{wong1997study}.
+When testing is performed continuously, the time spent testing can account for as much as half of all development time \cite{leung1989insights}.
+However, in cases where this testing is neglected, large software projects can easily reach the point where it is no longer feasible to repair or reverse-engineer \cite{weide1995reverse}.
 
 \begin{figure}[h]
 \centering
@@ -14,9 +14,10 @@ However, in cases where this testing is neglected large software projects can ea
 \end{figure}
 
 We have implemented a regression testing framework for the Protein Local Optimization Program with the goal of making the program more maintainable.
-Using this tool, after each modification a number of tests are performed and the results are compared with results from a known reference.
-All of this is performed in parallel, and without the users interaction.
+Using this tool, after each modification, a number of tests are performed and the results are compared with results from a known reference.
+All of this is performed in parallel, and without the users' interaction.
 This allows good code coverage without requiring an unwieldy amount of time.
+The regression testing framework implemented here is outlined in figure \ref{figure:regression_testing_flowchart}.
 
 % how to submit tests
 Tests can be submitted as new features are developed, hopefully maintaining good code coverage.
@@ -26,31 +27,32 @@ Each test file contains three pieces of information:
 \item a set of regular expressions matching the values to be compared between code changes,
 \item for numeric comparisons, a threshold, or tolerance for change in a test before it is classified as a failure.
 \end{enumerate}
-These test files are submitted to the version control system (CVS, git).
+These test files are submitted to the version control system (e.g. CVS, subversion, Mercurial, git\ldots).
 The regression tester checks out a copy of these tests along with the code necessary to build an executable.
-The executable is then built, logging any warnings or errors, and assuming the build is successful the experiments described in the test files are run saving all output files in an archive.
-The results for each test, identified using a set of patterns in the test file, are then compared to the last ``passing'' set of results in the archive (if there is no old copy of a result, as in the case of testing a new feature, that test is assumed to pass).
+The executable is then built, logging any warnings or errors, and assuming the build is successful, the experiments described in the test files are run, saving all output files in an archive.
+The results for each test, identified using a set of patterns in the test file, are then compared to the last ``passing'' set of results in the archive.
+If there is no old copy of a result, as in the case of testing a new feature, that test is assumed to pass.
 PLOP uses the major.minor.revision numbering scheme, and after a set of tests runs to completion and successfully reproduces the previous results, within the threshold, the revision number is changed.
 If a qualitative change in behavior is desired, i.e. larger than the threshold defined by the test files, incrementing the version number will allow the test to pass.
 This guarantees that results between two different revisions differ by no more than the threshold for each of the tests specified, which theoretically allows one to reproduce results simply by using the same major and minor version.
 
 % which tests does it run
-At the present functionality tested includes: loop predictions, side chain prediction, truncated Newton minimization, a number of different energy functions, protonation state prediction, the minimization Monte Carlo sampling procedure described in \ref{subsection:p450/mcm}, loading from sequence, retrieval of structures from the PDB, the knowledge based dihedral potential described in \ref{section:unsorted/rfs}, and every space group present in the PDB as of 2012.
+At the present, functionality tested includes: loop predictions, side chain prediction, truncated Newton minimization, a number of different energy functions, protonation state prediction, the minimization Monte Carlo sampling procedure described in \ref{subsection:p450/mcm}, loading from sequence, retrieval of structures from the PDB, the knowledge based dihedral potential described in \ref{section:unsorted/rfs}, and every space group present in the PDB as of 2012.
 An approximate performance based comparison is also included, which ensures that the time required for each test increases by no more than 10\% between successive revisions.
 
 % how long does it take
-Presently 159 tests are performed which takes about three hours.
-However, because the tests can be performed in parallel with a sufficient number of CPUs available the time is limited by the execution of the longest experiment.
-Using an eight core machine the total execution time for these tests is about 20 minutes.
+Presently 159 tests are performed, which takes about three hours.
+However, because the tests can be performed in parallel with a sufficient number of CPUs available, the time is limited by the execution of the longest experiment.
+Using an eight core machine, the total execution time for these tests is about 20 minutes.
 
 % why is that time worth it
-Although in a perfect world all changes would be tested throughly enough such that they no adverse affects on disparate parts of the program, this is not possible due to practical considerations.
-This allows developers to spend their time working on relevant and related parts of code, and leave tedious and slow testing to an automated process.
+Although in a perfect world all changes would be tested thoroughly enough such that they have no adverse affects on disparate parts of the program, this is not possible due to practical considerations.
+This allows developers to spend their time working on relevant and related parts of code, and leave tedious and slow, but important, testing to an automated process.
 
 % why decided to implement
 This was originally implemented because fragmentation had led to an inability to reproduce results between different versions of the program.
-By performing a scan over time the specific changes which caused the difference between two versions were able to be quickly identified and addressed.
-Performing the same task by hand might have required reviewing all the code changes over a three year period.
+By performing a scan over time the specific changes that caused the difference between two versions were able to be quickly identified and addressed.
+Performing the same task by hand might have required reviewing all the code changes over a three year period, an unreasonably time-consuming project.
 
 % flow chart
 

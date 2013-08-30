@@ -1,22 +1,24 @@
 Both a parameterized and an unparameterized model were used to classify potential sites of metabolism.
-IDSite makes the assumptions that all intermediates before the rate determining step are at equilibrium \cite{wang2007stochastic}, that hydrogen abstraction is the rate limiting step for hydroxylation of aliphatic carbons and electrophilic attack is the rate limiting step for hydroxylation of aromatic rings \cite{guengerich2001common,shaik2005theoretical}.
-With these assumptions the rate of metabolism at each possible site of reaction is affected by the free energy of binding in order to put that site in the site of reaction, as well as the free energy barrier of rate determining step, or
+IDSite makes the assumptions that all intermediates before the rate determining step are at equilibrium \cite{wang2007stochastic}, that hydrogen abstraction is the rate limiting step for hydroxylation of aliphatic carbons, and electrophilic attack is the rate limiting step for hydroxylation of aromatic rings \cite{guengerich2001common,shaik2005theoretical}.
+With these assumptions, the rate of metabolism at each possible site of reaction is affected by the free energy of binding in order to put that site in the site of reaction, as well as the free energy barrier of rate determining step, or
 \input{equations/curtin_hammett} % dG = dG bind + dG react
 The ${\Delta}G_{\mathrm{binding}}$ above is calculated using a PLOP evaluation of the refined pose.
-The intrinsic reactivity for the system is computed from DFT calculations on a simplified system, replacing the heme with a methoxy radical, and using a linear relationship between $IR(\mathrm{heme})$ and $IR(\mathrm{methoxy\ radical})$ to estimate the true reactivity for the heme system.
+The intrinsic reactivity for the system is computed from density functional theory calculations on a simplified system, replacing the heme with a methoxy radical, and using a linear relationship between $IR(\mathrm{heme})$ and $IR(\mathrm{methoxy\ radical})$ to estimate the true reactivity for the heme system.
+This linear relationship is illustrated in \ref{figure:idsite/intrinsic}. 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/idsite/intrinsic_corrected.png}
 \caption{The linear relationship between the calculated intrinsic reactivity of the methoxy radical complex and that of the heme complex.
 Adapted from \protect\cite{li2011idsite} with minor correction.
-In the original manuscript the slope of the regression was reported as 1.117 and that number was used throughout.
+In the original manuscript, the slope of the regression was reported as 1.117 and that number was used throughout.
 This difference should not significantly affect the physical IDSite classifier results, and does not affect the results of the fit model.
-In the rest of this text the value from the original publication of 1.117 will be used.}
-\label{fig:idsite/intrinsic}
+In the rest of this text, the value from the original publication of 1.117 will be used.
+The values used in this plot are presented in table \ref{table:heme_methoxy}.}
+\label{figure:idsite/intrinsic}
 \end{figure}
 \input{tables/heme_methoxy.tex}
 \input{equations/intrinsic_reactivity} % estimate from abbreviated reactivity
-Since this constant $C$ is identical for each state it has no effect on the relative differences in ${\Delta}G_{\mathrm{site}}$ or the relative rate of metabolism at possible sites.
+Since this constant $C$ is identical for each state, it has no effect on the relative differences in ${\Delta}G_{\mathrm{site}}$ or the relative rate of metabolism at possible sites.
 \input{equations/g_site} % E/G equation
 Since the ligand is forced to assume a different conformation in order to react, the energy of this transition state conformation, $E_{\mathrm{TS}}$, is also computed using PLOP.
 As the relative abundance of different metabolites is determined by differences in ${\Delta}G$ per site rather than absolute reactivities, the constant in equation \ref{equation:g_site} does not affect which metabolites are produced.

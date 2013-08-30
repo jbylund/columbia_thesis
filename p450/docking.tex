@@ -1,30 +1,32 @@
-In the initial docking stage of the IDSite protocol Glide is used to generate a number of proposed docked conformations for each ligand.
+In the initial docking stage of the IDSite protocol, Glide is used to generate a number of proposed docked conformations for each ligand.
 Glide (standard precision) is used to generate a number of different ligand conformations by sampling conformations of freely rotatable bonds and rings.
-A bounding box, which will be used for a grid search, is defined centered at the centroid of the ligand with an edge length of 10 angstroms.
+A bounding box, which will be used for a grid search, is defined, centered at the centroid of the ligand with an edge length of 10 angstroms.
 Because the crystal structure used for CYP2D6 (PDBID: 2F9Q) does not have a ligand, the centroid of residues Glu216, Asp301, Thr309, and Phe483 was used instead in this case.
-Because the steric clashes present in many proposed docked conformations can be relieved using a simple minimization procedure a reduced Van der Waals (VDW) radii are used in the docking stage for non-polar atoms.
-The VDW radii used for the P450 are scaled by a factor of 0.4, and the scaling for the ligand starts at 0.8.
-If an insufficient number of poses, in this case fewer than four, are found using these scaling factors for the radii the scaling of the ligand is stepped down until at least four poses are found.
+Because the steric clashes present in many proposed docked conformations can be relieved using a simple minimization procedure, reduced Van der Waals radii are used in the docking stage for non-polar atoms.
+The VDW radii used for P450 are scaled by a factor of 0.4, and the scaling for the ligand starts at 0.8.
+If an insufficient number of poses, in this case fewer than four, are found using these scaling factors for the radii, the scaling of the ligand is stepped down until at least four poses are found.
 Additional filtering of possible high energy conformations was also skipped in order to ensure the greatest diversity of docked poses reached the refinement stage.
 The collection of docked poses are then clustered according to the RMSD of the ligand, and each pose is minimized.
-The top sixty ranked poses according to the Glide SP metric are retained screened using a number of different criteria.
-A hard sphere overlap criteria is used to remove poses with obvious steric clashes which were not removed during the minimization procedure.
+The top sixty ranked poses according to the Glide SP metric are then passed on to the next screening stage.
+
+The conformations generated from the Glide docking procedure are then screened using a number of different criteria.
+A hard sphere overlap screen is used to remove poses with obvious steric clashes that were not removed during the minimization procedure.
 A conserved feature of CYP2D6 ligand complexes is a salt bridge with Glu216 or Asp301.
-In order to reduce sampling cost IDSite only considers structures with at least one hydrogen-bond donor within 4 angstroms of the centroid of these two residues and Ser304.
-The sphere defined by these residues is illustrated along with the bounding box used for sampling in Figure \ref{fig:idsite_glide}
-A number of other rule based geometric screens are used to remove structures which are unlikely to react.
-Structures meeting any of the following criteria:
+In order to reduce sampling cost, IDSite only considers structures with at least one hydrogen-bond donor within 4 angstroms of the centroid of these two residues and Ser304.
+The sphere defined by these residues is illustrated along with the bounding box used for sampling in Figure \ref{fig:idsite_glide}.
+A number of other rule based geometric screens are used to remove structures that are unlikely to react.
+Structures meeting any of the following criteria are removed:
 \begin{enumerate}
 \item The distance of the basic nitrogen to the ferryl oxygen is less than 5.0 angstroms;
 \item The distance of the basic nitrogen to the negative charged oxygen (in Glu216 or Asp301) is greater than 5.5 angstroms;
-\item More than 2 heavy atoms from the ligands are further than 16.0 angstroms away from the heme iron;
+\item More than 2 heavy atoms from the ligands are farther than 16.0 angstroms away from the heme iron;
 \item More than 1 heavy atom from the ligand are closer than 1.0 angstroms to the receptor;
 \item More than 6 heavy atoms from the ligand are closer than 1.8 angstroms to the receptor;
 \item No heavy atom in the ligand is within 5.0 angstroms to the heme iron;
 \end{enumerate}
-are removed.
+
 If the number of structures at this point is too low, the VDW scaling factors of the non-polar atoms of the ligand are stepped down, and the process is repeated.
-If four or more poses are found at these point these poses are passed onto the next stage of the IDSite procedure, the Monte Carlo Minimization refinement stage.
+If four or more poses are found at this point, these poses are passed onto the next stage of the IDSite procedure, the Monte Carlo Minimization refinement stage.
 
 \begin{figure}[h]
 \centering

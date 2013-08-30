@@ -1,27 +1,28 @@
 Side chain motions seek to sample different conformations of the neighboring side chains and flexible moieties attached to a static constrained central core of the ligand.
 Because side chain conformations are locally highly correlated, neighboring side chains are sampled simultaneously.
-First a number of side chains to be sampled is selected, for this study the possible cluster sizes were from one to three residues, all with equal probability.
-Once a cluster size is selected a single side chain is selected, at random.
-Until the desired cluster size is reached additional residues are selected, and rejected if the $\beta$ carbon is greater than 6 angstroms from any of the $\beta$ carbons of the residues already included in the cluster.
+First, a number of side chains to be sampled is selected.
+For this study, the possible cluster sizes were from one to three residues, all with equal probability.
+Once a cluster size is selected, a single side chain is selected at random.
+Until the desired cluster size is reached, additional residues are selected, and rejected if the $\beta$\ carbon is greater than 6 angstroms from any of the $\beta$\ carbons of the residues already included in the cluster.
 
-Once the side chains have been selected three different possible moves are possible for each side chain, these are:
+Once the side chains have been selected, three different moves are possible for each side chain:
 \begin{enumerate}
-\item rotamer library based moves
-\item random perturbations of a single dihedral
-\item random perturbation of all dihedrals
+\item rotamer library based moves,
+\item random perturbations of a single dihedral, and
+\item random perturbation of all dihedrals.
 \end{enumerate}
 
 For 75\% of side chains, the rotamers are replaced with rotamers drawn at random from a high resolution rotamer library.
-The rotamer states for protein residues is the same library used in other place in PLOP, constructed from a set high resolution protein X-ray crystal structures \cite{xiang2001extending}.
+The rotamer states for protein residues is the same library used in other places in PLOP, constructed from a set high resolution protein X-ray crystal structures \cite{xiang2001extending}.
 The rotamers for the ligand are constructed by sampling rotable bonds at 10 degree resolution and screening this set for steric clashes.
-In addition to the rotamer selected a small amount of ``noise'' which is random, and less than the resolution of the side chain library, is added to each rotamer.
+In addition to the rotamer selected, a small amount of ``noise'', which is random, and less than the resolution of the side chain library, is added to each rotamer.
 
 For the remaining 25\% of side chains, moves are distributed equally between perturbations of a single dihedral and perturbations of all dihedrals.
 The perturbation for each dihedral is constructed of both a small and a large perturbation.
-The small perturbation is chosen at random in the range [-d,d] where d is the resolution of the side chain library, in this case 10 degrees.
+The small perturbation is chosen at random in the range [-d,d], where d is the resolution of the side chain library, in this case 10 degrees.
 This term corresponds to the ``noise'' term in the case of rotamer moves.
-The large perturbation is a multiple of 60 degrees, which corresponds to the minima of both sp2 and sp3 carbons, though the null large perturbation is weighted more heavily.
-The effect of the union of these two terms is that dihedrals which are expected to yield higher acceptance probabilities are selected more frequently, though with the large perturbations this is balanced with large changes in conformation.
+The large perturbation is a multiple of 60 degrees, which corresponds to the minima of both sp\superscript{2} and sp\superscript{3} carbons, though the null large perturbation is weighted more heavily.
+The effect of the union of these two terms is that dihedrals that are expected to yield higher acceptance probabilities are selected more frequently, though with the large perturbations this is balanced with large changes in conformation.
 
 After a set of dihedral angles has been proposed for all residues in the cluster the atomic locations are updated.
 Finally, before testing for acceptance of the new coordinates a screen is a applied.
