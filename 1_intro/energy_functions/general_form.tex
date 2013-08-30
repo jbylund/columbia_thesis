@@ -8,6 +8,15 @@ The non-bonded terms are modeled as a Columbic potential between any point charg
 These non-bonded atoms are phased in by a ``fudge factor'' for atoms in a 1-4 configuration.
 \input{equations/nonbonded.tex}
 Where $\sigma_{ij} = \sqrt{\sigma_{ii} \sigma_{jj}}$ and $\epsilon_{ij} = \sqrt{\epsilon_{ii}\epsilon_{jj}}$ \cite{jorgensen1996development}.
+The terms of the energy model are illustrated in figure \ref{figure:force_field}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth,height=0.8\textwidth,keepaspectratio]{figures/molecular_mechanics_force_field2.png}
+\caption{A molecule illustrating some of the major terms present in molecular mechanics force fields.
+Figure adapted from \protect\cite{boas2007potential}, and licensed under cc-by-sa 3.0 license.}
+\label{figure:force_field}
+\end{figure}
 
 Energy models following this form have a number of desirable characteristics.
 First, they are reasonably accurate, having been shown to accurately predict a number of different physical phenomena.
