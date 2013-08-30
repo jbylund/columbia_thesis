@@ -25,12 +25,12 @@ The diehedrals used in the knowledge based penalty term are $(\phi_{1}, \psi_{1}
     \centering
     \includegraphics[width=0.8\textwidth,height=0.5\textheight,keepaspectratio]{figures/rfs_ex.png}
     \caption{A simulated Ramachandran plot illustrating a similar scoring surface in two dimensions.
-Dark gray areas, or those very near a library rotamer are considered native like and are never penalized.
-Light gray areas, are pseudo-native like and are penalized at a linear rate if fewer than 30 library rotamers are found within a Euclidean distance $D$ of the conformation.
+Dark gray areas, or those very near a library rotamer, are considered native like and are never penalized.
+Light gray areas are pseudo-native like and are penalized at a linear rate if fewer than 30 library rotamers are found within a Euclidean distance $D$ of the conformation.
 Rotamers in the white area are penalized according to how many library rotamers are contained within the distance $D$ of the rotamer, illustrated by a blue circle in the figure.
-If 30 or more library rotamers are found within the blue circle the conformation is not penalized at all.
-If the blue circle contains between 5 and 30 library rotamers the conformation is assigned a penalty proportional to the distance from the nearest rotamer.
-If the blue circle contains fewer than 5 library rotamers the penalty is proportional to the square of the distance to the nearest rotamer.}
+If 30 or more library rotamers are found within the blue circle, the conformation is not penalized at all.
+If the blue circle contains between 5 and 30 library rotamers, the conformation is assigned a penalty proportional to the distance from the nearest rotamer.
+If the blue circle contains fewer than 5 library rotamers, the penalty is proportional to the square of the distance to the nearest rotamer.}
     \label{figure:rfs_plot}
 \end{figure}
 
@@ -41,7 +41,7 @@ Frequently occurring rotamers, corresponding to very populated regions in the hi
 Two criteria determine whether a penalty will be applied to the dipeptide: 
 \begin{enumerate}
 \item If the Euclidean distance between the loop dipeptide and the nearest rotamer in the library is greater than a certain, empirically determined cutoff, or
-\item if the total population of rotamers within a set radius of the loop dipeptide is below a certain threshold.
+\item If the total population of rotamers within a set radius of the loop dipeptide is below a certain threshold.
 The form of this penalty term, its implementation, and its successes in improving loop prediction in crystal structure and homology model environments will be discussed in detail in an upcoming publication.
 \end{enumerate}
 
