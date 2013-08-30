@@ -15,7 +15,7 @@ Using this information, the predictive ability of PLOP was extended from thirtee
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.65\textwidth,height=0.3\textheight,keepaspectratio]{figures/backbone_labels.png}
+    \includegraphics[width=0.65\textwidth,height=0.45\textheight,keepaspectratio]{figures/backbone_labels.png}
     \caption{Labels assigned to protein backbone dihedrals.
 The diehedrals used in the knowledge based penalty term are $(\phi_{1}, \psi_{1}, \omega_{1}, \phi_{2}, \psi_{2})$.}
     \label{figure:backbone_labels}
@@ -44,4 +44,4 @@ Two criteria determine whether a penalty will be applied to the dipeptide:
 \item If the total population of rotamers within a set radius of the loop dipeptide is below a certain threshold.
 The form of this penalty term, its implementation, and its successes in improving loop prediction in crystal structure and homology model environments will be discussed in detail in an upcoming publication.
 \end{enumerate}
-
+An illustration of these criteria is presented in figure \ref{rfs_plot}.
