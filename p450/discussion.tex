@@ -13,8 +13,8 @@ This represents a significant improvement in prediction accuracy that has the po
 \label{subsection:p450/discussion/sampling_stages}
 \input{p450/roc_sampling}
 As shown in Figure \ref{figure:idsite_roc_sampling}, at a given specificity, sensitivity increases with additional sampling.
-For some compounds, there are either no conformations predicted via the docking procedure where the site of metabolism is sufficiently close to the heme oxygen to react or the scoring metric used by the docking procedure prefers conformations that are far from the reactive site over more reactive conformations.
-The sampling stages and constraints are useful in guiding these initial docked poses into more active conformations.
+For some compounds, either no conformations predicted via the docking procedure have the site of metabolism is sufficiently close to the heme oxygen to react or the Glide scoring metric prefers conformations that are far from the reactive site over more reactive conformations.
+In these cases the sampling stages and constraints are useful in guiding initial docked poses into more active conformations.
 
 The trajectory followed during the minimization Monte Carlo sampling stages differs appreciably for small and large ligands.
 For smaller ligands, in many cases the poses after the first constrained minimization were among the lowest energy poses explored.
@@ -34,15 +34,15 @@ As reflected in equation \ref{equation:curtin_hammett}, the binding energy and i
 The IDSite procedure evaluates and uses both of these quantities in classifying possible sites of metabolism.
 The combination of structural information and information about the intrinsic reactivity of a site allows IDSite to correctly predict cases which would not be possible using either of these methods alone.
 
-One case of such a prediction is nortriptyline, since the two sites on the seven-membered aliphatic ring are difficult to distinguish only with their intrinsic reactivity, as they are almost equally reactive.
+One case of such a prediction is nortriptyline (ligand 26), since the two sites on the seven-membered aliphatic ring are difficult to distinguish only with their intrinsic reactivity, as they are almost equally reactive.
 However, experiments show that only the (E)-10 site of nortriptyline is metabolized \cite{linnet1997metabolism}.
-In IDSite, the poses with the (Z)-10 site close to the ferryl oxygen are all at least 10 kcal/mol higher in energy compared to the poses with the (E)-10 atom close to the ferryl oxygen. 
-Such an energy gap is large enough for IDSite to correctly determine the (E)-isomer as the only metabolite. 
-While structural effects are therefore clearly very important to determine nortriptylene's site of metabolism, the intrinsic reactivities also play a key role. 
-This is again nicely illustrated with the example of nortriptyline, where a simple structure based method (without considering intrinsic reactivities) would predict the site of metabolism as being an aromatic hydroxylation due to the favorable energy of the corresponding poses.
-Therefore, IDSite is able to correctly balance the subtle effects stemming from intrinsic reactivity and structural fit.
+IDSite ranks the poses with the (Z)-10 site close to the ferryl oxygen at least 10 kcal/mol higher in energy than those with the (E)-10 atom close to the ferryl oxygen. 
+This is a sufficiently large energy gap for IDSite to correctly predict the (E)-isomer as the only metabolite. 
+While structural effects are clearly very important to determine nortriptylene's site of metabolism, the intrinsic reactivities also play a key role. 
+A purely structure based method would have predicted an aromatic hydroxylation due to the favorable energy of the corresponding poses.
+It is only through the combination of information about binding energy and intrinsic reactivity that IDSite is able to correctly predict these sites of metabolism.
 
-Another case illustrating the importance of balancing reactivity and structural information is brofaromine.
+Another case illustrating the importance of balancing reactivity and structural information is brofaromine (ligand 4).
 Experiments show that the major site of metabolism by CYP2D6 is O-demethylation \cite{feifel1993role}.
 The intrinsic reactivity of the site of metabolism (4.7 kcal/mol) is very close to those of sites on the aromatic rings (non-sites of metabolism, 3.3 to 4.9 kcal/mol).
 Due to the receptor geometry, it is impossible for the atoms on the furan ring to get close to the ferryl oxygen while still attaining the salt bridge with either Glu216 or Asp301.
