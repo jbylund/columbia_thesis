@@ -31,4 +31,4 @@ The second classifier is similar however:
 Otherwise the difference is scaled by 0.58,
 \item and the cutoff for an active prediction is changed from 4.75 kcal/mol to 1.46 kcal/mol.
 \end{enumerate}
-These parameters were decided upon by maximizing $\frac{\mathrm{true\ positives}}{(\mathrm{false\ positives + false\ negatives})}$ on a training set of 36 compounds.
+These parameters were decided upon by maximizing the positive predictive value of the model, defined as $\frac{\mathrm{true\ positives}}{(\mathrm{false\ positives + false\ negatives})}$, on a training set of 36 compounds \cite{altman1994statistics}.
